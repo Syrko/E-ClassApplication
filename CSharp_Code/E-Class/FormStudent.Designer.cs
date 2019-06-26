@@ -1,6 +1,6 @@
 ﻿namespace E_Class
 {
-    partial class StudentForm
+    partial class FormStudent
     {
         /// <summary>
         /// Required designer variable.

@@ -11,9 +11,9 @@ using System.IO;
 
 namespace E_Class
 {
-    public partial class StudentForm : Form
+    public partial class FormStudent : Form
     {
-        public StudentForm()
+        public FormStudent()
         {
             InitializeComponent();
 
