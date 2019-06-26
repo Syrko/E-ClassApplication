@@ -14,12 +14,12 @@ C:\Users\Mike\source\E-ClassApplication\CSharp_Code\E-Class\bin\Debug\E-Class.ex
 C:\Users\Mike\source\E-ClassApplication\CSharp_Code\E-Class\bin\Debug\E-Class.exe
 C:\Users\Mike\source\E-ClassApplication\CSharp_Code\E-Class\bin\Debug\E-Class.pdb
 C:\Users\Mike\source\E-ClassApplication\CSharp_Code\E-Class\obj\Debug\E-Class.csprojAssemblyReference.cache
-C:\Users\Mike\source\E-ClassApplication\CSharp_Code\E-Class\obj\Debug\E_Class.AdminForm.resources
-C:\Users\Mike\source\E-ClassApplication\CSharp_Code\E-Class\obj\Debug\E_Class.LoginForm.resources
-C:\Users\Mike\source\E-ClassApplication\CSharp_Code\E-Class\obj\Debug\E_Class.ProfessorForm.resources
 C:\Users\Mike\source\E-ClassApplication\CSharp_Code\E-Class\obj\Debug\E_Class.Properties.Resources.resources
 C:\Users\Mike\source\E-ClassApplication\CSharp_Code\E-Class\obj\Debug\E-Class.csproj.GenerateResource.cache
 C:\Users\Mike\source\E-ClassApplication\CSharp_Code\E-Class\obj\Debug\E-Class.csproj.CoreCompileInputs.cache
 C:\Users\Mike\source\E-ClassApplication\CSharp_Code\E-Class\obj\Debug\E-Class.exe
 C:\Users\Mike\source\E-ClassApplication\CSharp_Code\E-Class\obj\Debug\E-Class.pdb
-C:\Users\Mike\source\E-ClassApplication\CSharp_Code\E-Class\obj\Debug\E_Class.StudentForm.resources
+C:\Users\Mike\source\E-ClassApplication\CSharp_Code\E-Class\obj\Debug\E_Class.FormAdmin.resources
+C:\Users\Mike\source\E-ClassApplication\CSharp_Code\E-Class\obj\Debug\E_Class.FormLogin.resources
+C:\Users\Mike\source\E-ClassApplication\CSharp_Code\E-Class\obj\Debug\E_Class.FormProfessor.resources
+C:\Users\Mike\source\E-ClassApplication\CSharp_Code\E-Class\obj\Debug\E_Class.FormStudent.resources

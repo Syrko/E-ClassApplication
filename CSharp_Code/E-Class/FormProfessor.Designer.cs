@@ -62,13 +62,14 @@
             this.AssignToWhomLabel = new System.Windows.Forms.Label();
             this.GradeList = new System.Windows.Forms.ListView();
             this.GradeGroupBox = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.button3 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.ChooseCourseMnBtn = new System.Windows.Forms.Button();
             this.ProjectGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.TeamGroupBox.SuspendLayout();
@@ -80,24 +81,27 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.BackColor = System.Drawing.Color.LightGoldenrodYellow;
-            this.label1.Location = new System.Drawing.Point(-24, -24);
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(0, -19);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(166, 587);
+            this.label1.Size = new System.Drawing.Size(142, 575);
             this.label1.TabIndex = 15;
             // 
             // LogoutBtn
             // 
             this.LogoutBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.LogoutBtn.BackColor = System.Drawing.Color.LightGoldenrodYellow;
+            this.LogoutBtn.BackColor = System.Drawing.Color.Transparent;
             this.LogoutBtn.FlatAppearance.BorderSize = 0;
             this.LogoutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LogoutBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LogoutBtn.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LogoutBtn.ForeColor = System.Drawing.Color.White;
             this.LogoutBtn.Location = new System.Drawing.Point(-5, 479);
             this.LogoutBtn.Margin = new System.Windows.Forms.Padding(2);
             this.LogoutBtn.Name = "LogoutBtn";
-            this.LogoutBtn.Size = new System.Drawing.Size(148, 64);
+            this.LogoutBtn.Size = new System.Drawing.Size(147, 64);
             this.LogoutBtn.TabIndex = 25;
             this.LogoutBtn.Text = "Logout";
             this.LogoutBtn.UseVisualStyleBackColor = false;
@@ -105,14 +109,15 @@
             // 
             // AssignProjectMnBtn
             // 
-            this.AssignProjectMnBtn.BackColor = System.Drawing.Color.LightGoldenrodYellow;
+            this.AssignProjectMnBtn.BackColor = System.Drawing.Color.Transparent;
             this.AssignProjectMnBtn.FlatAppearance.BorderSize = 0;
             this.AssignProjectMnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AssignProjectMnBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AssignProjectMnBtn.Location = new System.Drawing.Point(-6, 133);
+            this.AssignProjectMnBtn.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AssignProjectMnBtn.ForeColor = System.Drawing.Color.White;
+            this.AssignProjectMnBtn.Location = new System.Drawing.Point(-5, 192);
             this.AssignProjectMnBtn.Margin = new System.Windows.Forms.Padding(2);
             this.AssignProjectMnBtn.Name = "AssignProjectMnBtn";
-            this.AssignProjectMnBtn.Size = new System.Drawing.Size(148, 64);
+            this.AssignProjectMnBtn.Size = new System.Drawing.Size(147, 64);
             this.AssignProjectMnBtn.TabIndex = 24;
             this.AssignProjectMnBtn.Text = "Assign Project";
             this.AssignProjectMnBtn.UseVisualStyleBackColor = false;
@@ -120,14 +125,15 @@
             // 
             // ModifyProjectMnBtn
             // 
-            this.ModifyProjectMnBtn.BackColor = System.Drawing.Color.LightGoldenrodYellow;
+            this.ModifyProjectMnBtn.BackColor = System.Drawing.Color.Transparent;
             this.ModifyProjectMnBtn.FlatAppearance.BorderSize = 0;
             this.ModifyProjectMnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ModifyProjectMnBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ModifyProjectMnBtn.Location = new System.Drawing.Point(-6, 65);
+            this.ModifyProjectMnBtn.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ModifyProjectMnBtn.ForeColor = System.Drawing.Color.White;
+            this.ModifyProjectMnBtn.Location = new System.Drawing.Point(-5, 124);
             this.ModifyProjectMnBtn.Margin = new System.Windows.Forms.Padding(2);
             this.ModifyProjectMnBtn.Name = "ModifyProjectMnBtn";
-            this.ModifyProjectMnBtn.Size = new System.Drawing.Size(148, 64);
+            this.ModifyProjectMnBtn.Size = new System.Drawing.Size(147, 64);
             this.ModifyProjectMnBtn.TabIndex = 23;
             this.ModifyProjectMnBtn.Text = "Create|Modify Projects";
             this.ModifyProjectMnBtn.UseVisualStyleBackColor = false;
@@ -135,14 +141,15 @@
             // 
             // ModifyTeamMnBtn
             // 
-            this.ModifyTeamMnBtn.BackColor = System.Drawing.Color.LightGoldenrodYellow;
+            this.ModifyTeamMnBtn.BackColor = System.Drawing.Color.Transparent;
             this.ModifyTeamMnBtn.FlatAppearance.BorderSize = 0;
             this.ModifyTeamMnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ModifyTeamMnBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ModifyTeamMnBtn.Location = new System.Drawing.Point(-5, -3);
+            this.ModifyTeamMnBtn.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ModifyTeamMnBtn.ForeColor = System.Drawing.Color.White;
+            this.ModifyTeamMnBtn.Location = new System.Drawing.Point(-4, 56);
             this.ModifyTeamMnBtn.Margin = new System.Windows.Forms.Padding(2);
             this.ModifyTeamMnBtn.Name = "ModifyTeamMnBtn";
-            this.ModifyTeamMnBtn.Size = new System.Drawing.Size(148, 64);
+            this.ModifyTeamMnBtn.Size = new System.Drawing.Size(146, 64);
             this.ModifyTeamMnBtn.TabIndex = 22;
             this.ModifyTeamMnBtn.Text = "Create|Modify Teams";
             this.ModifyTeamMnBtn.UseVisualStyleBackColor = false;
@@ -174,6 +181,7 @@
             // 
             // richTextBox1
             // 
+            this.richTextBox1.BackColor = System.Drawing.Color.White;
             this.richTextBox1.Location = new System.Drawing.Point(20, 121);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox1.Name = "richTextBox1";
@@ -183,6 +191,7 @@
             // 
             // numericUpDown1
             // 
+            this.numericUpDown1.BackColor = System.Drawing.Color.White;
             this.numericUpDown1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numericUpDown1.Location = new System.Drawing.Point(230, 64);
             this.numericUpDown1.Margin = new System.Windows.Forms.Padding(2);
@@ -226,6 +235,7 @@
             // 
             // RegNumBox
             // 
+            this.RegNumBox.BackColor = System.Drawing.Color.White;
             this.RegNumBox.Location = new System.Drawing.Point(20, 67);
             this.RegNumBox.Margin = new System.Windows.Forms.Padding(2);
             this.RegNumBox.Name = "RegNumBox";
@@ -285,14 +295,15 @@
             // 
             // GradeProjectsMnBtn
             // 
-            this.GradeProjectsMnBtn.BackColor = System.Drawing.Color.LightGoldenrodYellow;
+            this.GradeProjectsMnBtn.BackColor = System.Drawing.Color.Transparent;
             this.GradeProjectsMnBtn.FlatAppearance.BorderSize = 0;
             this.GradeProjectsMnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.GradeProjectsMnBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GradeProjectsMnBtn.Location = new System.Drawing.Point(-6, 201);
+            this.GradeProjectsMnBtn.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GradeProjectsMnBtn.ForeColor = System.Drawing.Color.White;
+            this.GradeProjectsMnBtn.Location = new System.Drawing.Point(-5, 260);
             this.GradeProjectsMnBtn.Margin = new System.Windows.Forms.Padding(2);
             this.GradeProjectsMnBtn.Name = "GradeProjectsMnBtn";
-            this.GradeProjectsMnBtn.Size = new System.Drawing.Size(148, 64);
+            this.GradeProjectsMnBtn.Size = new System.Drawing.Size(147, 64);
             this.GradeProjectsMnBtn.TabIndex = 29;
             this.GradeProjectsMnBtn.Text = "Grade Projects";
             this.GradeProjectsMnBtn.UseVisualStyleBackColor = false;
@@ -365,6 +376,7 @@
             // 
             // TeamIDBox
             // 
+            this.TeamIDBox.BackColor = System.Drawing.Color.White;
             this.TeamIDBox.Location = new System.Drawing.Point(20, 67);
             this.TeamIDBox.Margin = new System.Windows.Forms.Padding(2);
             this.TeamIDBox.Name = "TeamIDBox";
@@ -483,26 +495,39 @@
             this.GradeGroupBox.TabStop = false;
             this.GradeGroupBox.Text = "GradeTeam";
             // 
-            // textBox1
+            // button3
             // 
-            this.textBox1.Location = new System.Drawing.Point(20, 67);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(48, 20);
-            this.textBox1.TabIndex = 0;
+            this.button3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button3.Location = new System.Drawing.Point(92, 106);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(140, 34);
+            this.button3.TabIndex = 32;
+            this.button3.Text = "Submit";
+            this.button3.UseVisualStyleBackColor = false;
             // 
-            // label8
+            // numericUpDown2
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(20, 48);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(48, 13);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "Team ID";
+            this.numericUpDown2.BackColor = System.Drawing.Color.White;
+            this.numericUpDown2.Location = new System.Drawing.Point(250, 67);
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(50, 20);
+            this.numericUpDown2.TabIndex = 6;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(247, 48);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(36, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Grade";
             // 
             // textBox2
             // 
+            this.textBox2.BackColor = System.Drawing.Color.White;
             this.textBox2.Location = new System.Drawing.Point(89, 67);
             this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
@@ -519,41 +544,49 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "Project";
             // 
-            // label5
+            // textBox1
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(247, 48);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(36, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Grade";
+            this.textBox1.BackColor = System.Drawing.Color.White;
+            this.textBox1.Location = new System.Drawing.Point(20, 67);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(48, 20);
+            this.textBox1.TabIndex = 0;
             // 
-            // numericUpDown2
+            // label8
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(250, 67);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(50, 20);
-            this.numericUpDown2.TabIndex = 6;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(20, 48);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(48, 13);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "Team ID";
             // 
-            // button3
+            // ChooseCourseMnBtn
             // 
-            this.button3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.Location = new System.Drawing.Point(92, 106);
-            this.button3.Margin = new System.Windows.Forms.Padding(2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(140, 34);
-            this.button3.TabIndex = 32;
-            this.button3.Text = "Submit";
-            this.button3.UseVisualStyleBackColor = false;
+            this.ChooseCourseMnBtn.BackColor = System.Drawing.Color.Transparent;
+            this.ChooseCourseMnBtn.FlatAppearance.BorderSize = 0;
+            this.ChooseCourseMnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ChooseCourseMnBtn.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChooseCourseMnBtn.ForeColor = System.Drawing.Color.White;
+            this.ChooseCourseMnBtn.Location = new System.Drawing.Point(-4, -3);
+            this.ChooseCourseMnBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.ChooseCourseMnBtn.Name = "ChooseCourseMnBtn";
+            this.ChooseCourseMnBtn.Size = new System.Drawing.Size(146, 64);
+            this.ChooseCourseMnBtn.TabIndex = 38;
+            this.ChooseCourseMnBtn.Text = "Choose Course";
+            this.ChooseCourseMnBtn.UseVisualStyleBackColor = false;
             // 
-            // ProfessorForm
+            // FormProfessor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.Azure;
+            this.BackgroundImage = global::E_Class.Properties.Resources.ProfBackground;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1024, 549);
+            this.Controls.Add(this.ChooseCourseMnBtn);
             this.Controls.Add(this.GradeGroupBox);
             this.Controls.Add(this.GradeList);
             this.Controls.Add(this.AssignToWhomLabel);
@@ -570,7 +603,7 @@
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(1040, 570);
-            this.Name = "ProfessorForm";
+            this.Name = "FormProfessor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProfessorForm";
             this.ProjectGroupBox.ResumeLayout(false);
@@ -628,5 +661,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button ChooseCourseMnBtn;
     }
 }
