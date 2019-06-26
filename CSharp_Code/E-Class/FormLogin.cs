@@ -30,6 +30,7 @@ namespace E_Class
 
         private void LogInBtn_Click(object sender, EventArgs e)
         {
+            this.Hide();
             //AdminForm form = new AdminForm();
             //form.ShowDialog();
         }
@@ -37,20 +38,23 @@ namespace E_Class
 
         private void LoginAdmin_Click(object sender, EventArgs e)
         {
+            this.Hide();
             FormAdmin form = new FormAdmin();
             form.ShowDialog();
         }
 
         private void LoginProf_Click(object sender, EventArgs e)
         {
+            this.Hide();
             FormProfessor form = new FormProfessor();
             form.ShowDialog();
         }
 
         private void LoginStudent_Click(object sender, EventArgs e)
         {
+            this.Hide();
             FormStudent form = new FormStudent();
-            form.ShowDialog();
+            form.Show();
         }
     }
 }

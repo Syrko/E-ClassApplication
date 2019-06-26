@@ -420,6 +420,8 @@ namespace E_Class
         private void LogoutBtn_Click(object sender, EventArgs e)
         {
             this.Dispose();
+            FormLogin login = new FormLogin();
+            login.Show();
         }
 
         private void CreateCourseBtn_Click(object sender, EventArgs e)
