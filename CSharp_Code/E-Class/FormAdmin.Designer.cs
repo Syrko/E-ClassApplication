@@ -81,7 +81,7 @@
             // RegNumBox
             // 
             this.RegNumBox.Location = new System.Drawing.Point(20, 67);
-            this.RegNumBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RegNumBox.Margin = new System.Windows.Forms.Padding(2);
             this.RegNumBox.Name = "RegNumBox";
             this.RegNumBox.Size = new System.Drawing.Size(172, 20);
             this.RegNumBox.TabIndex = 0;
@@ -109,7 +109,7 @@
             // NameBox
             // 
             this.NameBox.Location = new System.Drawing.Point(20, 120);
-            this.NameBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.NameBox.Margin = new System.Windows.Forms.Padding(2);
             this.NameBox.Name = "NameBox";
             this.NameBox.Size = new System.Drawing.Size(172, 20);
             this.NameBox.TabIndex = 2;
@@ -127,7 +127,7 @@
             // SurnameBox
             // 
             this.SurnameBox.Location = new System.Drawing.Point(230, 120);
-            this.SurnameBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SurnameBox.Margin = new System.Windows.Forms.Padding(2);
             this.SurnameBox.Name = "SurnameBox";
             this.SurnameBox.Size = new System.Drawing.Size(172, 20);
             this.SurnameBox.TabIndex = 4;
@@ -145,7 +145,7 @@
             // EmailBox
             // 
             this.EmailBox.Location = new System.Drawing.Point(20, 177);
-            this.EmailBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EmailBox.Margin = new System.Windows.Forms.Padding(2);
             this.EmailBox.Name = "EmailBox";
             this.EmailBox.Size = new System.Drawing.Size(172, 20);
             this.EmailBox.TabIndex = 6;
@@ -163,7 +163,7 @@
             // PassBox
             // 
             this.PassBox.Location = new System.Drawing.Point(230, 177);
-            this.PassBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PassBox.Margin = new System.Windows.Forms.Padding(2);
             this.PassBox.Name = "PassBox";
             this.PassBox.PasswordChar = '*';
             this.PassBox.Size = new System.Drawing.Size(172, 20);
@@ -177,7 +177,7 @@
             "Professor",
             "Student"});
             this.CapacityBox.Location = new System.Drawing.Point(230, 65);
-            this.CapacityBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CapacityBox.Margin = new System.Windows.Forms.Padding(2);
             this.CapacityBox.Name = "CapacityBox";
             this.CapacityBox.Size = new System.Drawing.Size(172, 21);
             this.CapacityBox.TabIndex = 10;
@@ -197,7 +197,7 @@
             this.CreateEditUserBtn.BackColor = System.Drawing.Color.WhiteSmoke;
             this.CreateEditUserBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.CreateEditUserBtn.Location = new System.Drawing.Point(144, 204);
-            this.CreateEditUserBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CreateEditUserBtn.Margin = new System.Windows.Forms.Padding(2);
             this.CreateEditUserBtn.Name = "CreateEditUserBtn";
             this.CreateEditUserBtn.Size = new System.Drawing.Size(130, 37);
             this.CreateEditUserBtn.TabIndex = 12;
@@ -235,9 +235,9 @@
             this.UserGroupBox.Controls.Add(this.PassErrorLabel);
             this.UserGroupBox.Controls.Add(this.CapacityErrorLabel);
             this.UserGroupBox.Location = new System.Drawing.Point(167, 35);
-            this.UserGroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.UserGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.UserGroupBox.Name = "UserGroupBox";
-            this.UserGroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.UserGroupBox.Padding = new System.Windows.Forms.Padding(2);
             this.UserGroupBox.Size = new System.Drawing.Size(418, 295);
             this.UserGroupBox.TabIndex = 13;
             this.UserGroupBox.TabStop = false;
@@ -258,7 +258,7 @@
             this.CancelUsersBtn.BackColor = System.Drawing.Color.WhiteSmoke;
             this.CancelUsersBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancelUsersBtn.Location = new System.Drawing.Point(182, 246);
-            this.CancelUsersBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CancelUsersBtn.Margin = new System.Windows.Forms.Padding(2);
             this.CancelUsersBtn.Name = "CancelUsersBtn";
             this.CancelUsersBtn.Size = new System.Drawing.Size(56, 22);
             this.CancelUsersBtn.TabIndex = 31;
@@ -410,7 +410,7 @@
             this.CreateUserMnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CreateUserMnBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CreateUserMnBtn.Location = new System.Drawing.Point(-5, -2);
-            this.CreateUserMnBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CreateUserMnBtn.Margin = new System.Windows.Forms.Padding(2);
             this.CreateUserMnBtn.Name = "CreateUserMnBtn";
             this.CreateUserMnBtn.Size = new System.Drawing.Size(148, 64);
             this.CreateUserMnBtn.TabIndex = 15;
@@ -425,7 +425,7 @@
             this.CreateCourseMnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CreateCourseMnBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CreateCourseMnBtn.Location = new System.Drawing.Point(-5, 136);
-            this.CreateCourseMnBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CreateCourseMnBtn.Margin = new System.Windows.Forms.Padding(2);
             this.CreateCourseMnBtn.Name = "CreateCourseMnBtn";
             this.CreateCourseMnBtn.Size = new System.Drawing.Size(148, 64);
             this.CreateCourseMnBtn.TabIndex = 16;
@@ -440,7 +440,7 @@
             this.AssignCoursesMnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AssignCoursesMnBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AssignCoursesMnBtn.Location = new System.Drawing.Point(-5, 274);
-            this.AssignCoursesMnBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AssignCoursesMnBtn.Margin = new System.Windows.Forms.Padding(2);
             this.AssignCoursesMnBtn.Name = "AssignCoursesMnBtn";
             this.AssignCoursesMnBtn.Size = new System.Drawing.Size(148, 64);
             this.AssignCoursesMnBtn.TabIndex = 17;
@@ -456,7 +456,7 @@
             this.LogoutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LogoutBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LogoutBtn.Location = new System.Drawing.Point(-5, 462);
-            this.LogoutBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.LogoutBtn.Margin = new System.Windows.Forms.Padding(2);
             this.LogoutBtn.Name = "LogoutBtn";
             this.LogoutBtn.Size = new System.Drawing.Size(148, 64);
             this.LogoutBtn.TabIndex = 18;
@@ -471,7 +471,7 @@
             this.EditDelUsersMnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EditDelUsersMnBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EditDelUsersMnBtn.Location = new System.Drawing.Point(-5, 67);
-            this.EditDelUsersMnBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EditDelUsersMnBtn.Margin = new System.Windows.Forms.Padding(2);
             this.EditDelUsersMnBtn.Name = "EditDelUsersMnBtn";
             this.EditDelUsersMnBtn.Size = new System.Drawing.Size(148, 64);
             this.EditDelUsersMnBtn.TabIndex = 20;
@@ -486,7 +486,7 @@
             this.EditDelCoursesMnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EditDelCoursesMnBtn.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EditDelCoursesMnBtn.Location = new System.Drawing.Point(-5, 205);
-            this.EditDelCoursesMnBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EditDelCoursesMnBtn.Margin = new System.Windows.Forms.Padding(2);
             this.EditDelCoursesMnBtn.Name = "EditDelCoursesMnBtn";
             this.EditDelCoursesMnBtn.Size = new System.Drawing.Size(148, 64);
             this.EditDelCoursesMnBtn.TabIndex = 21;
@@ -503,9 +503,9 @@
             this.CourseGroupBox.Controls.Add(this.CourseTitleLabel);
             this.CourseGroupBox.Controls.Add(this.CourseTitleErrorLabel);
             this.CourseGroupBox.Location = new System.Drawing.Point(616, 10);
-            this.CourseGroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CourseGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.CourseGroupBox.Name = "CourseGroupBox";
-            this.CourseGroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CourseGroupBox.Padding = new System.Windows.Forms.Padding(2);
             this.CourseGroupBox.Size = new System.Drawing.Size(214, 174);
             this.CourseGroupBox.TabIndex = 15;
             this.CourseGroupBox.TabStop = false;
@@ -526,7 +526,7 @@
             this.CancelCoursesBtn.BackColor = System.Drawing.Color.WhiteSmoke;
             this.CancelCoursesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancelCoursesBtn.Location = new System.Drawing.Point(76, 139);
-            this.CancelCoursesBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CancelCoursesBtn.Margin = new System.Windows.Forms.Padding(2);
             this.CancelCoursesBtn.Name = "CancelCoursesBtn";
             this.CancelCoursesBtn.Size = new System.Drawing.Size(56, 22);
             this.CancelCoursesBtn.TabIndex = 32;
@@ -539,7 +539,7 @@
             this.CreateEditCourseBtn.BackColor = System.Drawing.Color.WhiteSmoke;
             this.CreateEditCourseBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.CreateEditCourseBtn.Location = new System.Drawing.Point(40, 97);
-            this.CreateEditCourseBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CreateEditCourseBtn.Margin = new System.Windows.Forms.Padding(2);
             this.CreateEditCourseBtn.Name = "CreateEditCourseBtn";
             this.CreateEditCourseBtn.Size = new System.Drawing.Size(130, 37);
             this.CreateEditCourseBtn.TabIndex = 12;
@@ -550,7 +550,7 @@
             // CourseTitleBox
             // 
             this.CourseTitleBox.Location = new System.Drawing.Point(23, 71);
-            this.CourseTitleBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CourseTitleBox.Margin = new System.Windows.Forms.Padding(2);
             this.CourseTitleBox.Name = "CourseTitleBox";
             this.CourseTitleBox.Size = new System.Drawing.Size(172, 20);
             this.CourseTitleBox.TabIndex = 2;
@@ -579,7 +579,7 @@
             this.UsersList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.UsersList.Location = new System.Drawing.Point(746, 398);
-            this.UsersList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.UsersList.Margin = new System.Windows.Forms.Padding(2);
             this.UsersList.Name = "UsersList";
             this.UsersList.Size = new System.Drawing.Size(99, 95);
             this.UsersList.TabIndex = 22;
@@ -591,7 +591,7 @@
             this.CoursesList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.CoursesList.Location = new System.Drawing.Point(640, 398);
-            this.CoursesList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CoursesList.Margin = new System.Windows.Forms.Padding(2);
             this.CoursesList.Name = "CoursesList";
             this.CoursesList.Size = new System.Drawing.Size(102, 95);
             this.CoursesList.TabIndex = 23;
@@ -601,7 +601,7 @@
             // AssignCourseBtn
             // 
             this.AssignCourseBtn.Location = new System.Drawing.Point(480, 398);
-            this.AssignCourseBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AssignCourseBtn.Margin = new System.Windows.Forms.Padding(2);
             this.AssignCourseBtn.Name = "AssignCourseBtn";
             this.AssignCourseBtn.Size = new System.Drawing.Size(90, 40);
             this.AssignCourseBtn.TabIndex = 24;
@@ -620,7 +620,7 @@
             this.AssignMsgLabel.TabIndex = 25;
             this.AssignMsgLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // AdminForm
+            // FormAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -639,11 +639,12 @@
             this.Controls.Add(this.CreateCourseMnBtn);
             this.Controls.Add(this.CreateUserMnBtn);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(1040, 570);
-            this.Name = "AdminForm";
+            this.Name = "FormAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AdminForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormAdmin_FormClosed);
             this.UserGroupBox.ResumeLayout(false);
             this.UserGroupBox.PerformLayout();
             this.CourseGroupBox.ResumeLayout(false);

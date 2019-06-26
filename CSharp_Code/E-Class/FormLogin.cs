@@ -56,5 +56,10 @@ namespace E_Class
             FormStudent form = new FormStudent();
             form.Show();
         }
+
+        private void FormLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(1);
+        }
     }
 }

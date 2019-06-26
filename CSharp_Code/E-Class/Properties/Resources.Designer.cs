@@ -63,16 +63,6 @@ namespace E_Class.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LoginProfilePic {
-            get {
-                object obj = ResourceManager.GetObject("LoginProfilePic", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap LoginScreenBg {
             get {
                 object obj = ResourceManager.GetObject("LoginScreenBg", resourceCulture);

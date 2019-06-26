@@ -696,5 +696,11 @@ namespace E_Class
             }
             
         }
+
+        private void FormAdmin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            FormLogin login = new FormLogin();
+            login.Show();
+        }
     }
 }

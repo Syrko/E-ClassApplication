@@ -464,7 +464,7 @@
             // AssignToWhomLabel
             // 
             this.AssignToWhomLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.AssignToWhomLabel.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.AssignToWhomLabel.BackColor = System.Drawing.Color.Transparent;
             this.AssignToWhomLabel.Location = new System.Drawing.Point(149, 410);
             this.AssignToWhomLabel.Name = "AssignToWhomLabel";
             this.AssignToWhomLabel.Size = new System.Drawing.Size(220, 40);
@@ -650,6 +650,7 @@
             this.Name = "FormProfessor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProfessorForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormProfessor_FormClosed);
             this.ProjectGroupBox.ResumeLayout(false);
             this.ProjectGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();

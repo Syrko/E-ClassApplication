@@ -140,7 +140,6 @@ namespace E_Class
                         
                 }
             }
-            ;
         }
 
 
@@ -290,12 +289,7 @@ namespace E_Class
         }
 
 
-        private void LogoutBtn_Click(object sender, EventArgs e)
-        {
-            this.Dispose();
-            FormLogin login = new FormLogin();
-            login.Show();
-        }
+        
 
         private void SelectCourseBtn_Click(object sender, EventArgs e)
         {
@@ -305,13 +299,27 @@ namespace E_Class
             }
             else
             {
-                SelectedCourseLabel.Text = CoursesList.SelectedItems[0].Text;
+                SelectedCourseLabel.Text = CoursesList.SelectedItems[0].Text + " is selected";
                 ModifyProjectMnBtn.Enabled = true;
                 ModifyTeamMnBtn.Enabled = true;
                 AssignProjectMnBtn.Enabled = true;
                 GradeProjectsMnBtn.Enabled = true;
                 ModifyTeamMnBtn.PerformClick();
             }
+        }
+
+
+        private void LogoutBtn_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            FormLogin login = new FormLogin();
+            login.Show();
+        }
+
+        private void FormProfessor_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            FormLogin login = new FormLogin();
+            login.Show();
         }
     }
 }
