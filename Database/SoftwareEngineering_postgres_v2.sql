@@ -1,7 +1,7 @@
 CREATE TABLE "Users" (
 	"reg_num" varchar(6) NOT NULL,
-	"password" varchar(32) NOT NULL,
 	"name" varchar(32) NOT NULL,
+	"password" varchar(32) NOT NULL,
 	"surname" varchar(32) NOT NULL,
 	"email" varchar(40) NOT NULL,
 	CONSTRAINT "User_pk" PRIMARY KEY ("reg_num")
