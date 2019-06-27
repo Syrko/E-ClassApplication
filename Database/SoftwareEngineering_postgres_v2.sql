@@ -1,5 +1,5 @@
-CREATE TABLE "User" (
-	"reg_num" serial(6) NOT NULL,
+CREATE TABLE "Users" (
+	"reg_num" varchar(6) NOT NULL,
 	"password" varchar(32) NOT NULL,
 	"name" varchar(32) NOT NULL,
 	"surname" varchar(32) NOT NULL,
@@ -11,32 +11,32 @@ CREATE TABLE "User" (
 
 
 
-CREATE TABLE "Admin" (
-	"reg_num" varchar(6) NOT NULL
+CREATE TABLE "Admins" (
+	"reg_num" varchar(6) NOT NULL UNIQUE
 ) WITH (
   OIDS=FALSE
 );
 
 
 
-CREATE TABLE "Student" (
-	"reg_num" varchar(6) NOT NULL
+CREATE TABLE "Students" (
+	"reg_num" varchar(6) NOT NULL UNIQUE
 ) WITH (
   OIDS=FALSE
 );
 
 
 
-CREATE TABLE "Professor" (
-	"reg_num" varchar(6) NOT NULL
+CREATE TABLE "Professors" (
+	"reg_num" varchar(6) NOT NULL UNIQUE
 ) WITH (
   OIDS=FALSE
 );
 
 
 
-CREATE TABLE "Team" (
-	"id" serial(6) NOT NULL UNIQUE,
+CREATE TABLE "Teams" (
+	"id" varchar(6) NOT NULL UNIQUE,
 	CONSTRAINT "Team_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -44,9 +44,9 @@ CREATE TABLE "Team" (
 
 
 
-CREATE TABLE "StudentsTeam" (
-	"stu_reg_num" varchar(6) NOT NULL,
-	"team_id" serial(6) NOT NULL,
+CREATE TABLE "StudentsTeams" (
+	"stu_reg_num" varchar(6) NOT NULL UNIQUE,
+	"team_id" varchar(6) NOT NULL,
 	"course_id" varchar(6) NOT NULL
 ) WITH (
   OIDS=FALSE
@@ -55,7 +55,7 @@ CREATE TABLE "StudentsTeam" (
 
 
 CREATE TABLE "ProfessorsCourses" (
-	"prof_reg_num" varchar(6) NOT NULL,
+	"prof_reg_num" varchar(6) NOT NULL UNIQUE,
 	"course_id" varchar(6) NOT NULL
 ) WITH (
   OIDS=FALSE
@@ -63,8 +63,8 @@ CREATE TABLE "ProfessorsCourses" (
 
 
 
-CREATE TABLE "Course" (
-	"id" serial(6) NOT NULL UNIQUE,
+CREATE TABLE "Courses" (
+	"id" varchar(6) NOT NULL UNIQUE,
 	"name" varchar(32) NOT NULL,
 	"project_id" varchar(6) NOT NULL,
 	CONSTRAINT "Course_pk" PRIMARY KEY ("id")
@@ -74,20 +74,20 @@ CREATE TABLE "Course" (
 
 
 
-CREATE TABLE "Project" (
-	"id" varchar(6) NOT NULL,
+CREATE TABLE "Projects" (
+	"id" varchar(6) NOT NULL UNIQUE,
 	"name" varchar(32) NOT NULL,
 	"description" varchar(100) NOT NULL,
-	"max_grade" integer(2) NOT NULL
+	"max_grade" integer NOT NULL
 ) WITH (
   OIDS=FALSE
 );
 
 
 
-CREATE TABLE "ProjectFile" (
-	"id" serial NOT NULL,
-	"file" BINARY NOT NULL,
+CREATE TABLE "ProjectFiles" (
+	"id" varchar NOT NULL UNIQUE,
+	"file" bytea NOT NULL,
 	"name" varchar(30) NOT NULL,
 	CONSTRAINT "ProjectFile_pk" PRIMARY KEY ("id")
 ) WITH (
@@ -96,11 +96,11 @@ CREATE TABLE "ProjectFile" (
 
 
 
-CREATE TABLE "ProjectOfTeam" (
-	"project_id" varchar(6) NOT NULL,
-	"project_file_id" integer(6) NOT NULL,
+CREATE TABLE "ProjectsOfTeam" (
+	"project_id" varchar(6) NOT NULL UNIQUE,
+	"project_file_id" varchar NOT NULL,
 	"team_id" varchar(6) NOT NULL,
-	"grade" integer(2)
+	"grade" integer
 ) WITH (
   OIDS=FALSE
 );
@@ -108,25 +108,24 @@ CREATE TABLE "ProjectOfTeam" (
 
 
 
-ALTER TABLE "Admin" ADD CONSTRAINT "Admin_fk0" FOREIGN KEY ("reg_num") REFERENCES "User"("reg_num");
+ALTER TABLE "Admins" ADD CONSTRAINT "Admin_fk0" FOREIGN KEY ("reg_num") REFERENCES "Users"("reg_num");
 
-ALTER TABLE "Student" ADD CONSTRAINT "Student_fk0" FOREIGN KEY ("reg_num") REFERENCES "User"("reg_num");
+ALTER TABLE "Students" ADD CONSTRAINT "Student_fk0" FOREIGN KEY ("reg_num") REFERENCES "Users"("reg_num");
 
-ALTER TABLE "Professor" ADD CONSTRAINT "Professor_fk0" FOREIGN KEY ("reg_num") REFERENCES "User"("reg_num");
-
-
-ALTER TABLE "StudentsTeam" ADD CONSTRAINT "StudentsTeam_fk0" FOREIGN KEY ("stu_reg_num") REFERENCES "Student"("reg_num");
-ALTER TABLE "StudentsTeam" ADD CONSTRAINT "StudentsTeam_fk1" FOREIGN KEY ("team_id") REFERENCES "Team"("id");
-ALTER TABLE "StudentsTeam" ADD CONSTRAINT "StudentsTeam_fk2" FOREIGN KEY ("course_id") REFERENCES "Course"("id");
-
-ALTER TABLE "ProfessorsCourses" ADD CONSTRAINT "ProfessorsCourses_fk0" FOREIGN KEY ("prof_reg_num") REFERENCES "Professor"("reg_num");
-ALTER TABLE "ProfessorsCourses" ADD CONSTRAINT "ProfessorsCourses_fk1" FOREIGN KEY ("course_id") REFERENCES "Course"("id");
-
-ALTER TABLE "Course" ADD CONSTRAINT "Course_fk0" FOREIGN KEY ("project_id") REFERENCES "Project"("id");
+ALTER TABLE "Professors" ADD CONSTRAINT "Professor_fk0" FOREIGN KEY ("reg_num") REFERENCES "Users"("reg_num");
 
 
+ALTER TABLE "StudentsTeams" ADD CONSTRAINT "StudentsTeam_fk0" FOREIGN KEY ("stu_reg_num") REFERENCES "Students"("reg_num");
+ALTER TABLE "StudentsTeams" ADD CONSTRAINT "StudentsTeam_fk1" FOREIGN KEY ("team_id") REFERENCES "Teams"("id");
+ALTER TABLE "StudentsTeams" ADD CONSTRAINT "StudentsTeam_fk2" FOREIGN KEY ("course_id") REFERENCES "Courses"("id");
 
-ALTER TABLE "ProjectOfTeam" ADD CONSTRAINT "ProjectOfTeam_fk0" FOREIGN KEY ("project_id") REFERENCES "Project"("id");
-ALTER TABLE "ProjectOfTeam" ADD CONSTRAINT "ProjectOfTeam_fk1" FOREIGN KEY ("project_file_id") REFERENCES "ProjectFile"("id");
-ALTER TABLE "ProjectOfTeam" ADD CONSTRAINT "ProjectOfTeam_fk2" FOREIGN KEY ("team_id") REFERENCES "Team"("id");
+ALTER TABLE "ProfessorsCourses" ADD CONSTRAINT "ProfessorsCourses_fk0" FOREIGN KEY ("prof_reg_num") REFERENCES "Professors"("reg_num");
+ALTER TABLE "ProfessorsCourses" ADD CONSTRAINT "ProfessorsCourses_fk1" FOREIGN KEY ("course_id") REFERENCES "Courses"("id");
 
+ALTER TABLE "Courses" ADD CONSTRAINT "Course_fk0" FOREIGN KEY ("project_id") REFERENCES "Projects"("id");
+
+
+
+ALTER TABLE "ProjectsOfTeam" ADD CONSTRAINT "ProjectOfTeam_fk0" FOREIGN KEY ("project_id") REFERENCES "Projects"("id");
+ALTER TABLE "ProjectsOfTeam" ADD CONSTRAINT "ProjectOfTeam_fk1" FOREIGN KEY ("project_file_id") REFERENCES "ProjectFiles"("id");
+ALTER TABLE "ProjectsOfTeam" ADD CONSTRAINT "ProjectOfTeam_fk2" FOREIGN KEY ("team_id") REFERENCES "Teams"("id");
