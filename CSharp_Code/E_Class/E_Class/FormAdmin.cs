@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace E_Class
 {
-    public partial class FormAdmin : Form
+    public partial class FormAdmin : UserForm
     {
-        private ListViewItem itm;
+		// Inherited properties
+		protected override User currentUser { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+		// Inherited methods
+		public override void logout()
+		{
+			throw new NotImplementedException();
+		}
+
+		private ListViewItem itm;
         private ContextMenuStrip UsersRightClickMenu = new ContextMenuStrip();
         private ContextMenuStrip CoursesRightClickMenu = new ContextMenuStrip();
         private List<String> LocalUsersDatabase = new List<String>();

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace E_Class
 {
-	class RegNum
+	public class RegNum
 	{
 		// Initializing counters from database
 		private static Dictionary<char, int> regNumCounters = new Dictionary<char, int>()

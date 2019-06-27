@@ -1,19 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
 namespace E_Class
 {
-    public partial class FormStudent : Form
+    public partial class FormStudent : UserForm
     {
-        private byte[] FileInBytes;
+		// Inherited properties
+		protected override User currentUser { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+		// Inherited methods
+		public override void logout()
+		{
+			throw new NotImplementedException();
+		}
+
+		private byte[] FileInBytes;
 
         public FormStudent()
         {
@@ -194,25 +198,10 @@ namespace E_Class
             }
         }
 
-
-
-
         private void UploadBtn_Click(object sender, EventArgs e)
         {
             
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
         private void FormStudent_FormClosed(object sender, FormClosedEventArgs e)
         {

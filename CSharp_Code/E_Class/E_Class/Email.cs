@@ -2,7 +2,7 @@
 
 namespace E_Class
 {
-	class Email
+	public class Email
 	{
 		private string emailAddress;
 

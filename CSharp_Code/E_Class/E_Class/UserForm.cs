@@ -1,18 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace E_Class
 {
-    abstract class UserForm
-    {
-        public User currentUser;
+	public abstract partial class UserForm : Form
+	{
+		public UserForm()
+		{
+			InitializeComponent();
+		}
+		protected abstract User currentUser
+		{
+				get;
+				set;
+		}
 
-        public void logout()
-        {
-            
-        }
-    }
+		public abstract void logout();
+	}
 }

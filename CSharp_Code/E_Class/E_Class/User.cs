@@ -1,7 +1,7 @@
 ﻿namespace E_Class
 {
 	// Base class of all users with the necessary properties
-	abstract class User
+	public abstract class User
 	{
 		protected abstract RegNum registrationNumber
 		{
