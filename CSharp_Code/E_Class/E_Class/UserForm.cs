@@ -10,18 +10,21 @@ using System.Windows.Forms;
 
 namespace E_Class
 {
-	public abstract partial class UserForm : Form
+	public partial class UserForm : Form
 	{
 		public UserForm()
 		{
 			InitializeComponent();
 		}
-		protected abstract User currentUser
+		protected virtual User currentUser
 		{
 				get;
 				set;
 		}
 
-		public abstract void logout();
+		public virtual void logout()
+		{
+
+		}
 	}
 }
