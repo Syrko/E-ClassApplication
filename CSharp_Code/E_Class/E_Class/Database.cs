@@ -35,36 +35,39 @@ namespace E_Class
             }
         }
 
- /*       public static List<Course> GetCoursesForProfessor(string prof_id)
-        {
-            using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
-            {
+		/*       public static List<Course> GetCoursesForProfessor(string prof_id)
+			   {
+				   using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+				   {
 
-				try
-				{
-					con.Open();
-					string sql = "SELECT * FROM \"ProfessorsCourses\" where prof_reg_num=" + "'" + prof_id + "';";
-					using (NpgsqlCommand command = new NpgsqlCommand(sql, con))
-					{
-						using (NpgsqlDataReader dataReader = command.ExecuteReader())
-						{
-							if (dataReader.Read())
-							{
-								MessageBox.Show(String.Format("{0}", dataReader[0]));
-							}
-						}
-					}
-					con.Close();
-				}
-				catch (Exception msg)
-				{
-					MessageBox.Show(msg.ToString());
-					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
-				}
-			}
-        }
-*/
-        public static void GetIds(string table)
+					   try
+					   {
+						   con.Open();
+						   string sql = "SELECT * FROM \"ProfessorsCourses\" where prof_reg_num=" + "'" + prof_id + "';";
+						   using (NpgsqlCommand command = new NpgsqlCommand(sql, con))
+						   {
+							   using (NpgsqlDataReader dataReader = command.ExecuteReader())
+							   {
+								   if (dataReader.Read())
+								   {
+									   MessageBox.Show(String.Format("{0}", dataReader[0]));
+								   }
+							   }
+						   }
+						   con.Close();
+					   }
+					   catch (Exception msg)
+					   {
+						   MessageBox.Show(msg.ToString());
+						   MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+					   }
+				   }
+			   }
+	   */
+
+
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		public static void GetIds(string table)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
             {           
@@ -101,8 +104,7 @@ namespace E_Class
 					con.Open();
 
 					string sql = "SELECT reg_num FROM Users WHERE reg_num=@regNum AND password=@password";
-					NpgsqlCommand cmd = new NpgsqlCommand(sql);
-					cmd.Prepare();
+					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
 					cmd.Parameters.AddWithValue("regNum", regNum);
 					cmd.Parameters.AddWithValue("password", password);
 					NpgsqlDataReader results = cmd.ExecuteReader();
@@ -137,5 +139,42 @@ namespace E_Class
 				}
 			}
 		}
-    }
+
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		public static User GetUser(string userType, string userRegNum)
+		{
+			using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+			{
+				try
+				{
+					con.Open();
+
+					string sql = "SELECT * FROM Users WHERE reg_num=@regNum";
+					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+					cmd.Prepare();
+					cmd.Parameters.AddWithValue("regNum", userRegNum);
+					NpgsqlDataReader results = cmd.ExecuteReader();
+					if (results.Read())
+					{
+						RegNum reg_num = new RegNum(results.GetString(results.GetOrdinal("reg_num"))[0], int.Parse(results.GetString(results.GetOrdinal("reg_num")).Substring(1)));
+
+
+
+
+						switch (userType)
+						{
+							case UserTypes.ADMIN:
+								return;
+			}
+					}
+					con.Close();
+				}
+				catch (Exception msg)
+				{
+					MessageBox.Show(msg.ToString());
+					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+				}
+			}
+		}
+	}
 }
