@@ -29,9 +29,7 @@ namespace E_Class
 
         private void LogInBtn_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            //AdminForm form = new AdminForm();
-            //form.ShowDialog();
+            Database.GetCourse("C1");
         }
 
 

@@ -74,7 +74,7 @@ namespace E_Class
                 try
                 {
                     con.Open();
-                    string sql = "SELECT * FROM \""+ table+"\";";
+                    string sql = "SELECT * FROM "+ table+";";
                     using (NpgsqlCommand command = new NpgsqlCommand(sql, con))
                     {
                         using (NpgsqlDataReader dataReader = command.ExecuteReader())
@@ -140,6 +140,7 @@ namespace E_Class
 			}
 		}
 
+<<<<<<< HEAD
 		[MethodImpl(MethodImplOptions.Synchronized)]
 		public static User GetUser(string userType, string userRegNum)
 		{
@@ -177,4 +178,39 @@ namespace E_Class
 			}
 		}
 	}
+=======
+
+
+        public static void GetCourse(string courseID)
+        {
+            using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+
+                    string sql = "SELECT * FROM Courses WHERE id=@courseID;";
+                    NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+                    cmd.Prepare();
+                    cmd.Parameters.AddWithValue("courseID", courseID);
+                    NpgsqlDataReader results = cmd.ExecuteReader();
+                    if (results.Read())
+                    {
+                        MessageBox.Show(results.ToString());//"Invalid reg_num -- Error at validation", "Error");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Credentials do not match. \nCheck your input and try again.");
+                    }
+                    con.Close();
+                }
+                catch (Exception msg)
+                {
+                    MessageBox.Show(msg.ToString());
+                    MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+                }
+            }
+        }
+    }
+>>>>>>> 418bfa043ba8bd26405a09a0b2adf859103deb64
 }
