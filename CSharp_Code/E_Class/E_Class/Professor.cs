@@ -64,14 +64,15 @@ namespace E_Class
 		}
 
 		// Methods
-		public void createProject(Project newProject);
-		public void editProject(Project project);
-		public void deleteProject(Project project);
-		public void createTeam(Team newTeam);
-		public void editTeam(Team team);
-		public void deleteTeam(Team team);
-		public void gradeProject(Project project);
-		
+		public void createProject(Project newProject) { throw new NotImplementedException(); }
+		public void editProject(Project project) { throw new NotImplementedException(); }
+		public void deleteProject(Project project) { throw new NotImplementedException(); }
+		public void createTeam(Team newTeam) { throw new NotImplementedException(); }
+		public void editTeam(Team team) { throw new NotImplementedException(); }
+		public void deleteTeam(Team team) { throw new NotImplementedException(); }
+		public void gradeProject(Project project) { throw new NotImplementedException(); }
+
+
 		// Setters - Getters
 		public List<Course> getCourseList() { return courseList; }
 		public void setCourseList(List<Course> courseList) { this.courseList = courseList; }

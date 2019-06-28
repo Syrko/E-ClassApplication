@@ -59,7 +59,8 @@ namespace E_Class
 		}
 
 		// Methods
-		public void uploadProjectFile(ProjectFile projectToUpload);
-		public void viewCourseGrades(Course course);
+		public void uploadProjectFile(ProjectFile projectToUpload) { throw new NotImplementedException(); }
+		public void viewCourseGrades(Course course) { throw new NotImplementedException(); }
+
 	}
 }

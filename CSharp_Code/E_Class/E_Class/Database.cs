@@ -35,7 +35,7 @@ namespace E_Class
             }
         }
 
-        public static List<Course> GetCoursesForProfessor(string prof_id)
+ /*       public static List<Course> GetCoursesForProfessor(string prof_id)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
             {
@@ -63,7 +63,7 @@ namespace E_Class
 				}
 			}
         }
-
+*/
         public static void GetIds(string table)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))

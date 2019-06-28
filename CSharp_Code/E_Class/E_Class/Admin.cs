@@ -60,12 +60,12 @@ namespace E_Class
 		}
 
 		// Methods
-		public bool createUser(User newUser);
-		public bool editUser(User user);
-		public bool deleteUser(User user);
-		public bool createCourse(Course newCourse);
-		public bool editCourse(Course course);
-		public bool deleteCourse(Course course);
+		public bool createUser(User newUser) { throw new NotImplementedException(); }
+		public bool editUser(User user) { throw new NotImplementedException(); }
+		public bool deleteUser(User user) { throw new NotImplementedException(); }
+		public bool createCourse(Course newCourse) { throw new NotImplementedException(); }
+		public bool editCourse(Course course) { throw new NotImplementedException(); }
+		public bool deleteCourse(Course course) { throw new NotImplementedException(); }
 
 	}
 }

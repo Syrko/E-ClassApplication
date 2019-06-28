@@ -22,6 +22,7 @@ namespace E_Class
 		// TODO remove static from createUser in class diagram
 		public User createUser(string userType)
 		{
+			/*
 			switch (userType)
 			{
 				case UserTypes.STUDENT:
@@ -34,6 +35,8 @@ namespace E_Class
 					// TODO display error message
 					return null;
 			}
+			*/
+			return null; // TODO delete after removing comment
 		}
 	}
 }
