@@ -10,9 +10,19 @@ namespace E_Class
     {
         string courseID;
         string courseName;
-        Professor professor = new Professor();
-        List<Project> projectList = new List<Project>();
-        List<Team> teamList = new List<Team>();
+		Professor professor;
+		List<Project> projectList;
+		List<Team> teamList;
+
+		// Constructor
+		public Course(string courseID, string courseName, Professor professor, List<Project> projectList, List<Team> teamList)
+		{
+			this.courseID = courseID;
+			this.courseName = courseName;
+			this.professor = professor;
+			this.projectList = projectList;
+			this.teamList = teamList;
+		}
 
         //getters
         public string getCourseID() { return courseID; }
@@ -20,6 +30,7 @@ namespace E_Class
         public Professor getProfessor() { return professor; }
         public List<Project> getProjectList() { return projectList; }
         public List<Team> getTeamList() { return teamList; }
+
         //setters
         public void setCourseID(string courseID) { this.courseID = courseID; }
         public void setCourseName(string courseName) { this.courseName = courseName; }

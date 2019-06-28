@@ -13,6 +13,15 @@ namespace E_Class
         string description;
         double maxGrade;
         
+		// Constructors
+		public Project(string projectID, string name, string description, double maxGrade)
+		{
+			this.projectID = projectID;
+			this.name = name;
+			this.description = description;
+			this.maxGrade = maxGrade;
+		}
+
         //getters
         public string getProjectID() { return projectID; }
         public string getname() { return name; }
