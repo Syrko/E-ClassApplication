@@ -6,6 +6,7 @@ namespace E_Class
 {
 	class Student : User
 	{
+		// User-inherited properties
 		protected override RegNum registrationNumber
 		{
 			get
@@ -47,6 +48,18 @@ namespace E_Class
 			set { }
 		}
 
+		// Constructors
+		public Student(RegNum registrationNumber, string password, string name, string surname, Email email)
+		{
+			this.registrationNumber = registrationNumber;
+			this.password = password;
+			this.name = name;
+			this.surname = surname;
+			this.email = email;
+		}
 
+		// Methods
+		public void uploadProjectFile(ProjectFile projectToUpload);
+		public void viewCourseGrades(Course course);
 	}
 }
