@@ -66,7 +66,6 @@ CREATE TABLE "ProfessorsCourses" (
 CREATE TABLE "Courses" (
 	"id" varchar(6) NOT NULL UNIQUE,
 	"name" varchar(32) NOT NULL,
-	"project_id" varchar(6) NOT NULL,
 	CONSTRAINT "Course_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -78,7 +77,8 @@ CREATE TABLE "Projects" (
 	"id" varchar(6) NOT NULL UNIQUE,
 	"name" varchar(32) NOT NULL,
 	"description" varchar(100) NOT NULL,
-	"max_grade" integer NOT NULL
+	"max_grade" integer NOT NULL,
+	"course_id" varchar(6) NOT NULL
 ) WITH (
   OIDS=FALSE
 );
@@ -122,7 +122,7 @@ ALTER TABLE "StudentsTeams" ADD CONSTRAINT "StudentsTeam_fk2" FOREIGN KEY ("cour
 ALTER TABLE "ProfessorsCourses" ADD CONSTRAINT "ProfessorsCourses_fk0" FOREIGN KEY ("prof_reg_num") REFERENCES "Professors"("reg_num");
 ALTER TABLE "ProfessorsCourses" ADD CONSTRAINT "ProfessorsCourses_fk1" FOREIGN KEY ("course_id") REFERENCES "Courses"("id");
 
-ALTER TABLE "Courses" ADD CONSTRAINT "Course_fk0" FOREIGN KEY ("project_id") REFERENCES "Projects"("id");
+ALTER TABLE "Projects" ADD CONSTRAINT "Projects_fk0" FOREIGN KEY ("course_id") REFERENCES "Courses"("id");
 
 
 
