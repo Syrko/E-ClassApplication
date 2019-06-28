@@ -102,13 +102,12 @@ namespace E_Class
 
 					string sql = "SELECT reg_num FROM Users WHERE reg_num=@regNum AND password=@password";
 					NpgsqlCommand cmd = new NpgsqlCommand(sql);
-					cmd.Prepare();
 					cmd.Parameters.AddWithValue("regNum", regNum);
 					cmd.Parameters.AddWithValue("password", password);
 					NpgsqlDataReader results = cmd.ExecuteReader();
 					if (results.Read())
 					{
-						switch (regNum[0])
+						switch (results[0])
 						{
 							case 'M':
 								return UserTypes.STUDENT;
@@ -147,10 +146,9 @@ namespace E_Class
                 try
                 {
                     con.Open();
-
+                    
                     string sql = "SELECT * FROM Courses WHERE id=@courseID;";
                     NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
-                    cmd.Prepare();
                     cmd.Parameters.AddWithValue("courseID", courseID);
                     NpgsqlDataReader results = cmd.ExecuteReader();
                     if (results.Read())
