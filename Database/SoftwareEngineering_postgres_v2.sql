@@ -89,6 +89,7 @@ CREATE TABLE "ProjectFiles" (
 	"id" varchar NOT NULL UNIQUE,
 	"file" bytea NOT NULL,
 	"name" varchar(30) NOT NULL,
+	"date" timestamp NOT NULL,
 	CONSTRAINT "ProjectFile_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
