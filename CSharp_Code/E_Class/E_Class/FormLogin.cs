@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Types;
 
 namespace E_Class
 {
@@ -8,11 +9,12 @@ namespace E_Class
     {
 		private static int gammaA = 255;
 
-		private AbstractFormFactory abstractFormFactory;
+		private AbstractFormFactory formFactory;
 
 		public FormLogin()
         {
             InitializeComponent();
+			formFactory = new UserFormFactory();
         }
 
         private void LogInBtn_Enter(object sender, EventArgs e)

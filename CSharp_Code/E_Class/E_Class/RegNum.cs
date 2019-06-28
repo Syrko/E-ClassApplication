@@ -25,7 +25,7 @@ namespace E_Class
 
 		public string getRegNumString()
 		{
-			return type.ToString() + "-" + yearID.ToString() + ID.ToString();
+			return type.ToString() + yearID.ToString() + ID.ToString();
 		}
 
 	}
