@@ -58,7 +58,7 @@ namespace E_Class
 
         private void FormLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Environment.Exit(1);
+			Application.Exit();
         }
     }
 }

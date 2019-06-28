@@ -13,7 +13,7 @@ namespace E_Class
 		// Inherited methods
 		public override void logout()
 		{
-			throw new NotImplementedException();
+			this.Dispose();
 		}
 
 		public FormProfessor()
@@ -314,15 +314,13 @@ namespace E_Class
 
         private void LogoutBtn_Click(object sender, EventArgs e)
         {
-            this.Dispose();
             FormLogin login = new FormLogin();
             login.Show();
         }
 
         private void FormProfessor_FormClosed(object sender, FormClosedEventArgs e)
         {
-            FormLogin login = new FormLogin();
-            login.Show();
+			logout();
         }
     }
 }

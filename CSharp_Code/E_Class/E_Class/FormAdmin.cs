@@ -13,7 +13,7 @@ namespace E_Class
 		// Inherited methods
 		public override void logout()
 		{
-			throw new NotImplementedException();
+			this.Dispose();
 		}
 
 		private ListViewItem itm;
@@ -423,9 +423,7 @@ namespace E_Class
 
         private void LogoutBtn_Click(object sender, EventArgs e)
         {
-            this.Dispose();
-            FormLogin login = new FormLogin();
-            login.Show();
+			logout();
         }
 
         private void CreateCourseBtn_Click(object sender, EventArgs e)
