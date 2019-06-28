@@ -6,6 +6,7 @@ namespace E_Class
 {
     class Admin : User
     {
+		// User-inherited properties
 		protected override RegNum registrationNumber
 		{
 			get
@@ -46,6 +47,25 @@ namespace E_Class
 			}
 			set { }
 		}
+
+
+		// Constructors
+		public Admin(RegNum registrationNumber, string password, string name, string surname, Email email)
+		{
+			this.registrationNumber = registrationNumber;
+			this.password = password;
+			this.name = name;
+			this.surname = surname;
+			this.email = email;
+		}
+
+		// Methods
+		public bool createUser(User newUser);
+		public bool editUser(User user);
+		public bool deleteUser(User user);
+		public bool createCourse(Course newCourse);
+		public bool editCourse(Course course);
+		public bool deleteCourse(Course course);
 
 	}
 }
