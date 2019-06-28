@@ -5,28 +5,45 @@ namespace E_Class
 {
 	public class RegNum
 	{
-		// Initializing counters from database
-		private static Dictionary<char, int> regNumCounters = new Dictionary<char, int>()
-		{
-			{'S', 0 } // TODO add calls to database
-		};
-
 		private char type;
-		private int yearID;
-		private int ID;
+		private int value;
 
 		// Constructor
-		public RegNum(char type)
+		public RegNum(char type, int value)
 		{
 			this.type = type;
-			this.yearID = int.Parse(DateTime.Today.Year.ToString().Substring(2));
-			this.ID = regNumCounters[type]++;
+			this.value = value;
 		}
 
 		public string getRegNumString()
 		{
-			return type.ToString() + yearID.ToString() + ID.ToString();
+			return type.ToString() + value.ToString();
 		}
 
+		public static int getNextValue(char type)
+		{
+			int id;
+			{
+				List<int> ids = new List<int>();
+
+				// TODO
+				// get ids from database
+
+				ids.Sort();
+				int counter = 0;
+				while(true) {
+					counter++;
+					if(counter > ids.Count) {
+						id = (ids[ids.Count - 1] + 1);
+						break;
+					}
+					if (!(counter == ids[counter - 1])) {
+						id = counter;
+						break;
+					}
+				}
+				return id;
+			}
+		}
 	}
 }
