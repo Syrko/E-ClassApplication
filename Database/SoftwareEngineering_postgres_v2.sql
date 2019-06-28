@@ -45,7 +45,7 @@ CREATE TABLE Teams (
 
 
 CREATE TABLE StudentsTeams (
-	"stu_reg_num" varchar(6) NOT NULL UNIQUE,
+	"stu_reg_num" varchar(6) NOT NULL,
 	"team_id" varchar(6) NOT NULL,
 	"course_id" varchar(6) NOT NULL
 ) WITH (
@@ -55,7 +55,7 @@ CREATE TABLE StudentsTeams (
 
 
 CREATE TABLE ProfessorsCourses (
-	"prof_reg_num" varchar(6) NOT NULL UNIQUE,
+	"prof_reg_num" varchar(6) NOT NULL,
 	"course_id" varchar(6) NOT NULL
 ) WITH (
   OIDS=FALSE
@@ -98,7 +98,7 @@ CREATE TABLE ProjectFiles (
 
 
 CREATE TABLE ProjectsOfTeam (
-	"project_id" varchar(6) NOT NULL UNIQUE,
+	"project_id" varchar(6) NOT NULL,
 	"project_file_id" varchar NOT NULL,
 	"team_id" varchar(6) NOT NULL,
 	"grade" integer
@@ -120,6 +120,7 @@ ALTER TABLE StudentsTeams ADD CONSTRAINT StudentsTeam_fk0 FOREIGN KEY ("stu_reg_
 ALTER TABLE StudentsTeams ADD CONSTRAINT StudentsTeam_fk1 FOREIGN KEY ("team_id") REFERENCES Teams("id");
 ALTER TABLE StudentsTeams ADD CONSTRAINT StudentsTeam_fk2 FOREIGN KEY ("course_id") REFERENCES Courses("id");
 
+ALTER TABLE ProfessorsCourses ADD CONSTRAINT ProfessorsCourses_fk0 FOREIGN KEY ("prof_reg_num") REFERENCES Professors("reg_num");
 ALTER TABLE ProfessorsCourses ADD CONSTRAINT ProfessorsCourses_fk1 FOREIGN KEY ("course_id") REFERENCES Courses("id");
 
 ALTER TABLE Projects ADD CONSTRAINT Projects_fk0 FOREIGN KEY ("course_id") REFERENCES Courses("id");
