@@ -109,24 +109,23 @@ CREATE TABLE ProjectsOfTeam (
 
 
 
-ALTER TABLE Admins ADD CONSTRAINT "Admin_fk0" FOREIGN KEY ("reg_num") REFERENCES Users("reg_num");
+ALTER TABLE Admins ADD CONSTRAINT Admin_fk0 FOREIGN KEY ("reg_num") REFERENCES Users("reg_num");
 
-ALTER TABLE Students ADD CONSTRAINT "Student_fk0" FOREIGN KEY ("reg_num") REFERENCES Users("reg_num");
+ALTER TABLE Students ADD CONSTRAINT Student_fk0 FOREIGN KEY ("reg_num") REFERENCES Users("reg_num");
 
 ALTER TABLE Professors ADD CONSTRAINT "Professor_fk0" FOREIGN KEY ("reg_num") REFERENCES Users("reg_num");
 
 
-ALTER TABLE StudentsTeams ADD CONSTRAINT "StudentsTeam_fk0" FOREIGN KEY ("stu_reg_num") REFERENCES Students("reg_num");
-ALTER TABLE StudentsTeams ADD CONSTRAINT "StudentsTeam_fk1" FOREIGN KEY ("team_id") REFERENCES Teams("id");
-ALTER TABLE StudentsTeams ADD CONSTRAINT "StudentsTeam_fk2" FOREIGN KEY ("course_id") REFERENCES Courses("id");
+ALTER TABLE StudentsTeams ADD CONSTRAINT StudentsTeam_fk0 FOREIGN KEY ("stu_reg_num") REFERENCES Students("reg_num");
+ALTER TABLE StudentsTeams ADD CONSTRAINT StudentsTeam_fk1 FOREIGN KEY ("team_id") REFERENCES Teams("id");
+ALTER TABLE StudentsTeams ADD CONSTRAINT StudentsTeam_fk2 FOREIGN KEY ("course_id") REFERENCES Courses("id");
 
-ALTER TABLE ProfessorsCourses ADD CONSTRAINT "ProfessorsCourses_fk0" FOREIGN KEY ("prof_reg_num") REFERENCES Professors("reg_num");
-ALTER TABLE ProfessorsCourses ADD CONSTRAINT "ProfessorsCourses_fk1" FOREIGN KEY ("course_id") REFERENCES Courses("id");
+ALTER TABLE ProfessorsCourses ADD CONSTRAINT ProfessorsCourses_fk1 FOREIGN KEY ("course_id") REFERENCES Courses("id");
 
-ALTER TABLE Projects ADD CONSTRAINT "Projects_fk0" FOREIGN KEY ("course_id") REFERENCES Courses("id");
-
+ALTER TABLE Projects ADD CONSTRAINT Projects_fk0 FOREIGN KEY ("course_id") REFERENCES Courses("id");
 
 
-ALTER TABLE ProjectsOfTeam ADD CONSTRAINT "ProjectOfTeam_fk0" FOREIGN KEY ("project_id") REFERENCES Projects("id");
-ALTER TABLE ProjectsOfTeam ADD CONSTRAINT "ProjectOfTeam_fk1" FOREIGN KEY ("project_file_id") REFERENCES ProjectFiles("id");
-ALTER TABLE ProjectsOfTeam ADD CONSTRAINT "ProjectOfTeam_fk2" FOREIGN KEY ("team_id") REFERENCES Teams("id");
+
+ALTER TABLE ProjectsOfTeam ADD CONSTRAINT ProjectOfTeam_fk0 FOREIGN KEY ("project_id") REFERENCES Projects("id");
+ALTER TABLE ProjectsOfTeam ADD CONSTRAINT ProjectOfTeam_fk1 FOREIGN KEY ("project_file_id") REFERENCES ProjectFiles("id");
+ALTER TABLE ProjectsOfTeam ADD CONSTRAINT ProjectOfTeam_fk2 FOREIGN KEY ("team_id") REFERENCES Teams("id");
