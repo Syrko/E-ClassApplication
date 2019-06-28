@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Npgsql;
-
+using Types;
 
 namespace E_Class
 {
@@ -29,48 +29,40 @@ namespace E_Class
                 }
                 catch (Exception msg)
                 {
-                    MessageBox.Show("There was a problem connecting to the server.");
+					MessageBox.Show(msg.ToString());
+					MessageBox.Show("There was a problem connecting to the server.");
                 }
             }
         }
 
-        public static void GetCoursesForProfessor(string prof_id)
+        public static List<Course> GetCoursesForProfessor(string prof_id)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
             {
-                using (NpgsqlCommand cmd = new NpgsqlCommand())
-                {
-                    try
-                    {
-                        con.Open();
-                        string sql = "SELECT * FROM \"ProfessorsCourses\" where prof_reg_num="+"'"+prof_id + "';";
-                        using (NpgsqlCommand command = new NpgsqlCommand(sql, con))
-                        {
-                            using (NpgsqlDataReader dataReader = command.ExecuteReader())
-                            {
-                                if (dataReader.Read())
-                                {
-                                    MessageBox.Show(String.Format("{0}", dataReader[0]));
-                                }
-                            }
-                        }
-                        con.Close();
-                    }
-                    catch (Exception msg)
-                    {
-                        //MessageBox.Show(msg.ToString());
-                        MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
-                    }
-                }
-            }
+
+				try
+				{
+					con.Open();
+					string sql = "SELECT * FROM \"ProfessorsCourses\" where prof_reg_num=" + "'" + prof_id + "';";
+					using (NpgsqlCommand command = new NpgsqlCommand(sql, con))
+					{
+						using (NpgsqlDataReader dataReader = command.ExecuteReader())
+						{
+							if (dataReader.Read())
+							{
+								MessageBox.Show(String.Format("{0}", dataReader[0]));
+							}
+						}
+					}
+					con.Close();
+				}
+				catch (Exception msg)
+				{
+					MessageBox.Show(msg.ToString());
+					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+				}
+			}
         }
-
-
-
-
-
-
-
 
         public static void GetIds(string table)
         {
@@ -94,10 +86,56 @@ namespace E_Class
                 }
                 catch (Exception msg)
                 {
-                    //MessageBox.Show(msg.ToString());
+                    MessageBox.Show(msg.ToString());
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
                 }
             }
         }
+
+		public static string ValidateCredentials(string regNum, string password)
+		{
+			using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+			{
+				try
+				{
+					con.Open();
+
+					string sql = "SELECT reg_num FROM Users WHERE reg_num=@regNum AND password=@password";
+					NpgsqlCommand cmd = new NpgsqlCommand(sql);
+					cmd.Prepare();
+					cmd.Parameters.AddWithValue("regNum", regNum);
+					cmd.Parameters.AddWithValue("password", password);
+					NpgsqlDataReader results = cmd.ExecuteReader();
+					if (results.Read())
+					{
+						switch (regNum[0])
+						{
+							case 'M':
+								return UserTypes.STUDENT;
+							case 'K':
+								return UserTypes.PROFESSOR;
+							case 'A':
+								return UserTypes.ADMIN;
+							default:
+								MessageBox.Show("Invalid reg_num -- Error at validation", "Error");
+								con.Close();
+								return null;
+						}
+					}
+					else
+					{
+						MessageBox.Show("Credentials do not match. \nCheck your input and try again.");
+						con.Close();
+						return null;
+					}
+				}
+				catch (Exception msg)
+				{
+					MessageBox.Show(msg.ToString());
+					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+					return null;
+				}
+			}
+		}
     }
 }
