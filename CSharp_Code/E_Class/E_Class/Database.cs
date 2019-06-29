@@ -190,7 +190,6 @@ namespace E_Class
 				try
 				{
 					con.Open();
-
 					string sql = "INSERT INTO Users VALUES(@reg_num, @name, @password, @surname, @email)";
 					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
 
@@ -428,73 +427,65 @@ namespace E_Class
                 }
             }
         }
-/*
-        public static List<Course> GetCoursesForProf(string prof_reg_num)
+        /*
+                public static List<Course> GetCoursesForProf(string prof_reg_num)
 
+                {
+                    using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+                    {
+                        try
+                        {
+                            con.Open();
+                            string sql = "Select courses.id, courses.name from(users inner join professors on users.reg_num = professors.reg_num)" +
+                                " inner join ProfessorsCourses on users.reg_num=professorscourses.prof_reg_num" +
+                                " inner join courses on professorscourses.course_id=courses.id where professors.reg_num=@reg_num";
+                            NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+                            cmd.Parameters.AddWithValue("reg_num", prof_reg_num);
+                            NpgsqlDataReader results = cmd.ExecuteReader();
+                            List<string> courses = new List<string>();
+                            while (results.Read())
+                            {
+                                courses.Add(new Course(results[0].ToString(), results[1].ToString()));//0 = course id, 1 = course name
+                            }
+                            con.Close();
+                            return courses;
+
+                        }
+                        catch (Exception msg)
+                        {
+                            MessageBox.Show(msg.ToString());
+                            MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+                            con.Close();
+                            return null;
+                        }
+                    }
+                }
+                */
+
+
+        public static void UploadProject(string id, byte[] file, string name, string date)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
             {
                 try
                 {
                     con.Open();
-                    string sql = "Select courses.id, courses.name from(users inner join professors on users.reg_num = professors.reg_num)" +
-                        " inner join ProfessorsCourses on users.reg_num=professorscourses.prof_reg_num" +
-                        " inner join courses on professorscourses.course_id=courses.id where professors.reg_num=@reg_num";
+                    string sql = "INSERT INTO files VALUES(@id, @file, @name, @date)";
                     NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
-                    cmd.Parameters.AddWithValue("reg_num", prof_reg_num);
-                    NpgsqlDataReader results = cmd.ExecuteReader();
-                    List<string> courses = new List<string>();
-                    while (results.Read())
-                    {
-                        courses.Add(new Course(results[0].ToString(), results[1].ToString()));//0 = course id, 1 = course name
-                    }
-                    con.Close();
-                    return courses;
 
+                    cmd.Parameters.AddWithValue("id", id);
+                    cmd.Parameters.AddWithValue("file", file);
+                    cmd.Parameters.AddWithValue("name", name);
+                    cmd.Parameters.AddWithValue("date", date);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
                 }
                 catch (Exception msg)
                 {
                     MessageBox.Show(msg.ToString());
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
-                    con.Close();
-                    return null;
                 }
             }
         }
-        */
-
-        public static void InsertCourse(string prof_reg_num)
-        {
-            using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
-            {
-                try
-                {
-                    con.Open();
-                    string sql = "Select courses.id, courses.name from(users inner join professors on users.reg_num = professors.reg_num)" +
-                        " inner join ProfessorsCourses on users.reg_num=professorscourses.prof_reg_num" +
-                        " inner join courses on professorscourses.course_id=courses.id where professors.reg_num=@reg_num";
-                    NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
-                    cmd.Parameters.AddWithValue("reg_num", prof_reg_num);
-                    N results = cmd.ExecuteNonQuery();
-                    List<string> courses = new List<string>();
-                    if(results.Read())
-                    {
-                        
-                    }
-                    con.Close();
-
-                }
-                catch (Exception msg)
-                {
-                    MessageBox.Show(msg.ToString());
-                    MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
-                    con.Close();
-                    return null;
-                }
-            }
-        }
-
-
-
     }
 }

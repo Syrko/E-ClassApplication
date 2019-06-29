@@ -52,6 +52,7 @@
             this.CoursesList = new System.Windows.Forms.ListView();
             this.SelectedCourseLabel = new System.Windows.Forms.Label();
             this.SelectCourseBtn = new System.Windows.Forms.Button();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.UploadGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -381,5 +382,6 @@
         private System.Windows.Forms.ListView CoursesList;
         private System.Windows.Forms.Label SelectedCourseLabel;
         private System.Windows.Forms.Button SelectCourseBtn;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }

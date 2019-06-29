@@ -4,20 +4,27 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
+using Npgsql;
+using System.Text;
+using System.Security.Permissions;
+
 
 namespace E_Class
 {
     public partial class FormStudent : UserForm
     {
-		// Inherited properties
-		protected override User currentUser { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        private byte[] FileInBytes;
+
+        // Inherited properties
+        protected override User currentUser { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		// Inherited methods
 		public override void logout()
 		{
 			this.Dispose();
 		}
 
-		private byte[] FileInBytes;
+		
 
         public FormStudent()
         {
@@ -140,7 +147,6 @@ namespace E_Class
 
         private void BrowseBtn_Click(object sender, EventArgs e)
         {
-            
             OpenFileDialog openfDialog = new OpenFileDialog();
             openFileDialog.CheckFileExists = true;
             openFileDialog.CheckPathExists = true;
@@ -148,7 +154,7 @@ namespace E_Class
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 FileNameLabel.Text = openFileDialog.FileName;
-                byte[] FileInBytes = System.IO.File.ReadAllBytes(openFileDialog.FileName);
+                FileInBytes = System.IO.File.ReadAllBytes(openFileDialog.FileName);
             }
         }
 
@@ -200,8 +206,12 @@ namespace E_Class
 
         private void UploadBtn_Click(object sender, EventArgs e)
         {
-            
+
         }
+
+
+
+        
 
         private void FormStudent_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -213,7 +223,6 @@ namespace E_Class
         {
 			logout();
         }
-
-
+           
     }
 }
