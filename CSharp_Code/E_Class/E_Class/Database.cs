@@ -176,45 +176,6 @@ namespace E_Class
         }
 
 
-
-		[MethodImpl(MethodImplOptions.Synchronized)]
-		public static User GetUser(string userType, string userRegNum)
-		{
-			using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
-			{
-				try
-				{
-					con.Open();
-
-					string sql = "SELECT * FROM Users WHERE reg_num=@regNum";
-					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
-					cmd.Prepare();
-					cmd.Parameters.AddWithValue("regNum", userRegNum);
-					NpgsqlDataReader results = cmd.ExecuteReader();
-					if (results.Read())
-					{
-						RegNum reg_num = new RegNum(results.GetString(results.GetOrdinal("reg_num"))[0], int.Parse(results.GetString(results.GetOrdinal("reg_num")).Substring(1)));
-
-
-
-
-						switch (userType)
-						{
-							case UserTypes.ADMIN:
-						    return;
-			}
-					}
-					con.Close();
-				}
-				catch (Exception msg)
-				{
-					MessageBox.Show(msg.ToString());
-					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
-				}
-			}
-		}
-
-
         public static void InsertProject(Project proj)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
@@ -295,6 +256,4 @@ namespace E_Class
         */
     }
 
-
->>>>>>> 381dae112ce7de49f04d49e3058527dc00463544
 }
