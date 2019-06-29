@@ -31,6 +31,7 @@ namespace E_Class
         {
             //Database.ValidateCredentials("K000", "0MlIdww1B");
             //Database.GetCoursesForProf("K14160");
+            Database.GetTeams("C1");
         }
 
 

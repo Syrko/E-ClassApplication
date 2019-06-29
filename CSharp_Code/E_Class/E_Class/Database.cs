@@ -14,7 +14,7 @@ namespace E_Class
 {
     class Database
     {
-        private static string connectionString = "Server=127.0.0.1; User id=postgres; Password=123456789; Database=eclass";
+        private static string connectionString = "Server=127.0.0.1; User id=postgres; Password=123456789; Database=eclassmirror";
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public static void CreateTeam(string team_id, List<string> students)
@@ -545,9 +545,59 @@ namespace E_Class
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
                 }
                 con.Close();
-                return;
+            }
+        }
+
+
+        public static void InsertTeam(string id)
+        {
+            using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    string sql = "INSERT INTO files VALUES(@id)";
+                    NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+
+                    cmd.Parameters.AddWithValue("id", id);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                catch (Exception msg)
+                {
+                    MessageBox.Show(msg.ToString());
+                    MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+                }
+                con.Close();
+            }
+        }
+
+
+        public static void GetTeams(string courseID) 
+        {
+            using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    string sql = "select teams.id from teams inner join StudentsTeams on teams.id=StudentsTeams.team_id where course_id=@courseID";
+                    NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+
+                    cmd.Parameters.AddWithValue("courseID", courseID);
+                    NpgsqlDataReader results = cmd.ExecuteReader();
+                    while (results.Read())
+                    {
+                        MessageBox.Show(results[0].ToString());
+                    }
+                    con.Close();
+                }
+                catch (Exception msg)
+                {
+                    MessageBox.Show(msg.ToString());
+                    MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+                }
+                con.Close();
             }
         }
     }
-}
 }
