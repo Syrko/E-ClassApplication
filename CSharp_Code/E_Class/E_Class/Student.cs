@@ -7,7 +7,7 @@ namespace E_Class
 	class Student : User
 	{
 		// User-inherited properties
-		protected override RegNum registrationNumber
+		public override RegNum registrationNumber
 		{
 			get
 			{
@@ -15,7 +15,7 @@ namespace E_Class
 			}
 			set { }
 		}
-		protected override string password
+		public override string password
 		{
 			get
 			{
@@ -23,7 +23,7 @@ namespace E_Class
 			}
 			set { }
 		}
-		protected override string name
+		public override string name
 		{
 			get
 			{
@@ -31,7 +31,7 @@ namespace E_Class
 			}
 			set { }
 		}
-		protected override string surname
+		public override string surname
 		{
 			get
 			{
@@ -39,7 +39,7 @@ namespace E_Class
 			}
 			set { }
 		}
-		protected override Email email
+		public override Email email
 		{
 			get
 			{

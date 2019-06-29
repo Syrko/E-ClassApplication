@@ -3,27 +3,27 @@
 	// Base class of all users with the necessary properties
 	public abstract class User
 	{
-		protected abstract RegNum registrationNumber
+		public abstract RegNum registrationNumber
 		{
 			get;
 			set;
 		}
-		protected abstract string password
+		public abstract string password
 		{
 			get;
 			set;
 		}
-		protected abstract string name
+		public abstract string name
 		{
 			get;
 			set;
 		}
-		protected abstract string surname
+		public abstract string surname
 		{
 			get;
 			set;
 		}
-		protected abstract Email email
+		public abstract Email email
 		{
 			get;
 			set;
