@@ -10,6 +10,7 @@ namespace E_Class
     {
 
         //TODO Clear lists on every menu click
+        //Refresh List, Max grade limit
 
 
 
@@ -117,7 +118,6 @@ namespace E_Class
             TeamRightClickMenu.Items.AddRange(new ToolStripItem[] { TeamRightClickMenuEdit, TeamRightClickMenuDelete });
             //===================================================================================
 
-/*
             //Projects Right Click menu creation
             ToolStripMenuItem ProjectRightClickMenuEdit = new ToolStripMenuItem("Edit");
             ToolStripMenuItem ProjectRightClickMenuDelete = new ToolStripMenuItem("Delete");
@@ -127,7 +127,6 @@ namespace E_Class
             //===================================================================================
 
 
-    */
 
 
 
@@ -389,11 +388,9 @@ namespace E_Class
 
 
 
-
-
         private void TeamDelete_RightClick(object sender, System.EventArgs e)
         {
-
+            //Database.DeleteTeam();
         }
 
         private void TeamEdit_RightClick(object sender, System.EventArgs e)
@@ -419,6 +416,33 @@ namespace E_Class
         }
 
 
+        private void ProjectDelete_RightClick(object sender, System.EventArgs e)
+        {
+
+        }
+
+
+        private void ProjectEdit_RightClick(object sender, System.EventArgs e)
+        {
+            CreateEditTeamBtn.Text = "Submit";
+            List<TextBox> list = new List<TextBox>();
+            list.Add(Student1Box);
+            list.Add(Student2Box);
+            list.Add(Student3Box);
+            list.Add(Student4Box);
+            list.Add(Student5Box);
+
+            foreach (Team team in selCourse.getTeamList())
+            {
+                if (team.getTeamID() == TeamList.SelectedItems[0].Text)
+                {
+                    for (int i = 0; i < team.getStudentList().Count; i++)
+                    {
+                        list[i].Text = team.getStudentList()[i].registrationNumber.getRegNumString();
+                    }
+                }
+            }
+        }
 
 
 
