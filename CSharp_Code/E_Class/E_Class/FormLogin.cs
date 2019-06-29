@@ -29,7 +29,8 @@ namespace E_Class
 
         private void LogInBtn_Click(object sender, EventArgs e)
         {
-            Database.GetCourse("C1");
+            //Database.ValidateCredentials("K000", "0MlIdww1B");
+            Database.GetCoursesForProf("K14160");
         }
 
 
