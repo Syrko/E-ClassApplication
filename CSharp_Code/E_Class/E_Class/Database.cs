@@ -14,7 +14,7 @@ namespace E_Class
 {
     class Database
     {
-        private static string connectionString="Server=127.0.0.1; User id=postgres; Password=123456789; Database=eclass";
+        private static string connectionString = "Server=127.0.0.1; User id=postgres; Password=123456789; Database=eclass";
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public static void CreateTeam(string team_id, List<string> students)
@@ -29,13 +29,13 @@ namespace E_Class
                 }
                 catch (Exception msg)
                 {
-					MessageBox.Show(msg.ToString());
-					MessageBox.Show("There was a problem connecting to the server.");
+                    MessageBox.Show(msg.ToString());
+                    MessageBox.Show("There was a problem connecting to the server.");
                 }
             }
         }
 
-		/*       public static List<Course> GetCoursesForProfessor(string prof_id)
+        /*       public static List<Course> GetCoursesForProfessor(string prof_id)
 			   {
 				   using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
 				   {
@@ -66,15 +66,15 @@ namespace E_Class
 	   */
 
 
-		[MethodImpl(MethodImplOptions.Synchronized)]
-		public static void GetIds(string table)
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public static void GetIds(string table)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
-            {           
+            {
                 try
                 {
                     con.Open();
-                    string sql = "SELECT * FROM "+ table+";";
+                    string sql = "SELECT * FROM " + table + ";";
                     using (NpgsqlCommand command = new NpgsqlCommand(sql, con))
                     {
                         using (NpgsqlDataReader dataReader = command.ExecuteReader())
@@ -95,53 +95,51 @@ namespace E_Class
             }
         }
 
-		public static string ValidateCredentials(string regNum, string password)
-		{
-			using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
-			{
-				try
-				{
-					con.Open();
+        public static string ValidateCredentials(string regNum, string password)
+        {
+            using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    string sql = "SELECT reg_num FROM Users WHERE reg_num=@regNum AND password=@password";
+                    NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+                    cmd.Parameters.AddWithValue("regNum", regNum);
+                    cmd.Parameters.AddWithValue("password", password);
+                    NpgsqlDataReader results = cmd.ExecuteReader();
+                    if (results.Read())
+                    {
+                        switch (regNum[0])
+                        {
+                            case 'M':
+                                return UserTypes.STUDENT;
+                            case 'K':
+                                return UserTypes.PROFESSOR;
+                            case 'A':
+                                return UserTypes.ADMIN;
+                            default:
+                                MessageBox.Show("Invalid reg_num -- Error at validation", "Error");
+                                con.Close();
+                                return null;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Credentials do not match. \nCheck your input and try again.");
+                        con.Close();
+                        return null;
+                    }
+                }
+                catch (Exception msg)
+                {
+                    MessageBox.Show(msg.ToString());
+                    MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+                    return null;
+                }
+            }
+        }
 
-					string sql = "SELECT reg_num FROM Users WHERE reg_num=@regNum AND password=@password";
-					NpgsqlCommand cmd = new NpgsqlCommand(sql);
-					cmd.Prepare();
-					cmd.Parameters.AddWithValue("regNum", regNum);
-					cmd.Parameters.AddWithValue("password", password);
-					NpgsqlDataReader results = cmd.ExecuteReader();
-					if (results.Read())
-					{
-						switch (results[0])
-						{
-							case 'M':
-								return UserTypes.STUDENT;
-							case 'K':
-								return UserTypes.PROFESSOR;
-							case 'A':
-								return UserTypes.ADMIN;
-							default:
-								MessageBox.Show("Invalid reg_num -- Error at validation", "Error");
-								con.Close();
-								return null;
-						}
-					}
-					else
-					{
-						MessageBox.Show("Credentials do not match. \nCheck your input and try again.");
-						con.Close();
-						return null;
-					}
-				}
-				catch (Exception msg)
-				{
-					MessageBox.Show(msg.ToString());
-					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
-					return null;
-				}
-			}
-		}
-
-<<<<<<< HEAD
+        /*
 		[MethodImpl(MethodImplOptions.Synchronized)]
 		public static User GetUser(string userType, string userRegNum)
 		{
@@ -166,7 +164,7 @@ namespace E_Class
 						switch (userType)
 						{
 							case UserTypes.ADMIN:
-								return;
+						    return;
 			}
 					}
 					con.Close();
@@ -179,38 +177,39 @@ namespace E_Class
 			}
 		}
 	}
-=======
 
-
-        public static void GetCourse(string courseID)
+        public static List<Course> GetCoursesForProf(string prof_reg_num)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
             {
                 try
                 {
                     con.Open();
-                    
-                    string sql = "SELECT * FROM Courses WHERE id=@courseID;";
+                    string sql = "Select courses.id, courses.name from(users inner join professors on users.reg_num = professors.reg_num)" +
+                        " inner join ProfessorsCourses on users.reg_num=professorscourses.prof_reg_num" +
+                        " inner join courses on professorscourses.course_id=courses.id where professors.reg_num=@reg_num";
                     NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
-                    cmd.Parameters.AddWithValue("courseID", courseID);
+                    cmd.Parameters.AddWithValue("reg_num", prof_reg_num);
                     NpgsqlDataReader results = cmd.ExecuteReader();
-                    if (results.Read())
+                    List<string> courses = new List<string>();
+                    while (results.Read())
                     {
-                        MessageBox.Show(results.ToString());//"Invalid reg_num -- Error at validation", "Error");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Credentials do not match. \nCheck your input and try again.");
+                        courses.Add(new Course(results[0].ToString(), results[1].ToString()));//0 = course id, 1 = course name
                     }
                     con.Close();
+                    return courses;
+                    
                 }
                 catch (Exception msg)
                 {
                     MessageBox.Show(msg.ToString());
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+                    con.Close();
+                    return null;
                 }
             }
         }
+        */
     }
->>>>>>> 418bfa043ba8bd26405a09a0b2adf859103deb64
+
 }
