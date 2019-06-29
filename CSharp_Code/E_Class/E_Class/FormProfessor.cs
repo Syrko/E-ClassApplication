@@ -28,13 +28,13 @@ namespace E_Class
             ProjectGroupBox.Paint += Paint;
             GradeGroupBox.Paint += Paint;
             
-            /*List<String> Courses = new List<string>();
+            List<String> Courses = new List<string>();
             Courses.Add("Test Course 1");
             Courses.Add("Test Course 2");
             Courses.Add("Test Course 3");
             Courses.Add("Test Course 4");
             Courses.Add("Test Course 5");
-            */
+            
             //Courses List: A list that displays professor's courses
             CoursesList.Bounds = new Rectangle(new Point(450, 50), new Size(275, 400));
             CoursesList.View = View.Details;
@@ -43,7 +43,7 @@ namespace E_Class
             CoursesList.Sorting = SortOrder.Ascending;
             CoursesList.Columns.Add("Select a course to continue", -2, HorizontalAlignment.Center);
 
-            /*var listViewItem = new ListViewItem(Courses[0]);
+            var listViewItem = new ListViewItem(Courses[0]);
             CoursesList.Items.Add(listViewItem);
             listViewItem = new ListViewItem(Courses[1]);
             CoursesList.Items.Add(listViewItem);
@@ -53,7 +53,7 @@ namespace E_Class
             CoursesList.Items.Add(listViewItem);
             listViewItem = new ListViewItem(Courses[4]);
             CoursesList.Items.Add(listViewItem);
-            */
+            
             SelectedCourseLabel.Location = new Point(475, 20);
             SelectCourseBtn.Location = new Point(551, 458);
             //==============================================================================

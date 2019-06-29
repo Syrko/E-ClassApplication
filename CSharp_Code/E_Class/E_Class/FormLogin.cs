@@ -30,7 +30,8 @@ namespace E_Class
         private void LogInBtn_Click(object sender, EventArgs e)
         {
             //Database.ValidateCredentials("K000", "0MlIdww1B");
-            Database.GetCoursesForProf("K14160");
+            //Database.GetCoursesForProf("K14160");
+            Database.GetTeams("C1");
         }
 
 
