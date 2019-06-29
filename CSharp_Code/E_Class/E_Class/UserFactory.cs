@@ -20,23 +20,21 @@ namespace E_Class
 		private UserFactory() { }
 
 		// TODO remove static from createUser in class diagram
-		public User createUser(string userType)
+		public User createUser(string userType, RegNum reg_num, string password, string name, string surname, Email email)
 		{
-			/*
+			
 			switch (userType)
 			{
 				case UserTypes.STUDENT:
-					return new Student();
+					return new Student(reg_num, password, name, surname, email);
 				case UserTypes.PROFESSOR:
-					return new Professor();
+					//return new Professor(reg_num, password, name, surname, email, ); TODO
 				case UserTypes.ADMIN:
-					return new Admin();
+					return new Admin(reg_num, password, name, surname, email);
 				default:
 					// TODO display error message
 					return null;
 			}
-			*/
-			return null; // TODO delete after removing comment
 		}
 	}
 }
