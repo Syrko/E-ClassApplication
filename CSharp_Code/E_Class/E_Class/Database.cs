@@ -25,7 +25,7 @@ namespace E_Class
                 {
                     con.Open();
 
-                    con.Close();
+                    
                 }
                 catch (Exception msg)
                 {
@@ -55,7 +55,7 @@ namespace E_Class
 						returnList.Add(results.GetInt32(0));
 					}
 					
-                    con.Close();
+                     
 					return returnList;
                 }
                 catch (Exception msg)
@@ -93,14 +93,14 @@ namespace E_Class
 								return UserTypes.ADMIN;
 							default:
 								MessageBox.Show("Invalid reg_num -- Error at validation", "Error");
-								con.Close();
+								 
 								return null;
 						}
 					}
 					else
 					{
 						MessageBox.Show("Credentials do not match. \nCheck your input and try again.");
-						con.Close();
+						 
 						return null;
 					}
 				}
@@ -128,19 +128,19 @@ namespace E_Class
 					NpgsqlDataReader results = cmd.ExecuteReader();
 					if (results.Read())
 					{
-						RegNum reg_num = new RegNum(results.GetString(results.GetOrdinal("reg_num"))[0], int.Parse(results.GetString(results.GetOrdinal("reg_num")).Substring(1)));
+						RegNum reg_num = new RegNum(results.GetString(results.GetOrdinal("reg_num")));
 						string name = results.GetString(results.GetOrdinal("name"));
 						string surname = results.GetString(results.GetOrdinal("surname"));
 						string password = results.GetString(results.GetOrdinal("password"));
 						Email email = new Email(results.GetString(results.GetOrdinal("email")));
-                        con.Close();
+                         
 						return UserFactory.getInstance().createUser(userType, reg_num, password, name, surname, email);
 
 					}
 					else
 					{
 						MessageBox.Show("No such user -- Database get user");
-						con.Close();
+						 
 						return null;
 					}
 
@@ -180,7 +180,7 @@ namespace E_Class
 					cmd.Parameters.AddWithValue("reg_num", regNum.getRegNumString());
 					cmd.ExecuteNonQuery();
 
-					con.Close();
+					 
 				}
 				catch (Exception msg)
 				{
@@ -227,7 +227,7 @@ namespace E_Class
 					cmd = new NpgsqlCommand(sql, con);
 					cmd.Parameters.AddWithValue("reg_Num", user.registrationNumber.getRegNumString());
 
-					con.Close();
+					 
 				}
 				catch (Exception msg)
 				{
@@ -247,7 +247,7 @@ namespace E_Class
 				{
 					con.Open();
 
-					string sql = "DELETE FROM StudentsTeam WHERE stu_reg_num=@reg_num";
+					string sql = "DELETE FROM StudentsTeams WHERE stu_reg_num=@reg_num";
 					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
 
 					cmd.Parameters.AddWithValue("reg_num", student.registrationNumber.getRegNumString());
@@ -255,7 +255,7 @@ namespace E_Class
 					cmd.ExecuteNonQuery();
 
 
-					con.Close();
+					 
 				}
 				catch (Exception msg)
 				{
@@ -275,7 +275,7 @@ namespace E_Class
 				{
 					con.Open();
 
-					string sql = "DELETE FROM StudentsTeam WHERE stu_reg_num=@reg_num AND team_id=@team_id";
+					string sql = "DELETE FROM StudentsTeams WHERE stu_reg_num=@reg_num AND team_id=@team_id";
 					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
 
 					cmd.Parameters.AddWithValue("reg_num", student.registrationNumber.getRegNumString());
@@ -283,7 +283,7 @@ namespace E_Class
 
 					cmd.ExecuteNonQuery();
 
-					con.Close();
+					 
 				}
 				catch (Exception msg)
 				{
@@ -310,7 +310,7 @@ namespace E_Class
 
 					cmd.ExecuteNonQuery();
 
-					con.Close();
+					 
 				}
 				catch (Exception msg)
 				{
@@ -338,13 +338,13 @@ namespace E_Class
                         string name = results.GetString(results.GetOrdinal("name"));
                         string description = results.GetString(results.GetOrdinal("description"));
                         int max_grade = results.GetInt32(results.GetOrdinal("max_grade"));
-                        con.Close();
+                         
                         return new Project(projectID, name, description, max_grade);
                     }
                     else
                     {
                         MessageBox.Show("No project with id: " + projectID + " found!");
-                        con.Close();
+                         
                         return null;
                     }
 
@@ -374,7 +374,7 @@ namespace E_Class
                     List<Project> Projects = new List<Project>();
                     while (results.Read())
                     {
-                        string id = results.GetString(results.GetOrdinal("course_id"));
+                        string id = results[0].ToString();
                         Projects.Add(GetProject(id));
                     }
                     return Projects;
@@ -403,7 +403,7 @@ namespace E_Class
                     cmd.Parameters.AddWithValue("description", description);
                     cmd.Parameters.AddWithValue("max_grade", max_grade);
                     cmd.ExecuteNonQuery();
-                    con.Close();
+                     
                 }
                 catch (Exception msg)
                 {
@@ -425,7 +425,7 @@ namespace E_Class
                     NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
                     cmd.Parameters.AddWithValue("id", proj.getProjectID());
                     cmd.ExecuteNonQuery();
-                    con.Close();
+                     
                 }
                 catch (Exception msg)
                 {
@@ -448,7 +448,7 @@ namespace E_Class
                     cmd.Parameters.AddWithValue("grade", grade);
                     cmd.Parameters.AddWithValue("fileID", projectFile.getProjectFileID());
                     cmd.ExecuteNonQuery();
-                    con.Close();
+                     
                 }
                 catch (Exception msg)
                 {
@@ -478,7 +478,7 @@ namespace E_Class
                     {
                         courses.Add(new Course(results[0].ToString(), results[1].ToString(), (Professor)GetUser("Professor", prof_reg_num), GetProjectsForCourse(results[0].ToString()),GetTeams(results[0].ToString())));//0 = course id, 1 = course name
                     }
-                    con.Close();
+                     
                     return courses;
 
                 }
@@ -486,7 +486,7 @@ namespace E_Class
                 {
                     MessageBox.Show(msg.ToString());
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
-                    con.Close();
+                     
                     return null;
                 }
             }
@@ -512,14 +512,14 @@ namespace E_Class
                     {
                         
                     }
-                    con.Close();
+                     
 
                 }
                 catch (Exception msg)
                 {
                     MessageBox.Show(msg.ToString());
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
-                    con.Close();
+                     
                     return;
                 }
             }
@@ -534,13 +534,13 @@ namespace E_Class
 				try
 				{
 					con.Open();
-					string sql = "INSERT INTO StudentsTeam VALUES(@stu_reg_num, @team_id, @course_id)";
+					string sql = "INSERT INTO StudentsTeams VALUES(@stu_reg_num, @team_id, @course_id)";
 					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
 					cmd.Parameters.AddWithValue("stu_reg_num", student.registrationNumber.getRegNumString());
 					cmd.Parameters.AddWithValue("team_id", team.getTeamID());
 					cmd.Parameters.AddWithValue("course_id", course.getCourseID());
 					cmd.ExecuteNonQuery();
-					con.Close();
+					 
 				}
 				catch (Exception msg)
 				{
@@ -567,14 +567,14 @@ namespace E_Class
                     cmd.Parameters.AddWithValue("name", name);
                     cmd.Parameters.AddWithValue("date", date);
                     cmd.ExecuteNonQuery();
-                    con.Close();
+                     
                 }
                 catch (Exception msg)
                 {
                     MessageBox.Show(msg.ToString());
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
                 }
-                con.Close();
+                 
             }
         }
 
@@ -591,18 +591,18 @@ namespace E_Class
 
                     cmd.Parameters.AddWithValue("id", id);
                     cmd.ExecuteNonQuery();
-                    con.Close();
+                     
                 }
                 catch (Exception msg)
                 {
                     MessageBox.Show(msg.ToString());
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
                 }
-                con.Close();
+                 
             }
         }
         
-        /*
+        
         [MethodImpl(MethodImplOptions.Synchronized)]
         public static List<Team> GetTeams(string courseID) 
         {
@@ -617,23 +617,25 @@ namespace E_Class
                     cmd.Parameters.AddWithValue("courseID", courseID);
                     NpgsqlDataReader results = cmd.ExecuteReader();
 
-                    List<string> teams = new List<string>();
+                    List<Team> teams = new List<Team>();
                     while (results.Read())
                     {
-                        teams.Add(new Team(results[0].ToString(), );
+                        teams.Add(new Team(results[0].ToString(), getStudentsOfTeam(results[0].ToString()), GetTeamsProjectFiles(results[0].ToString())));
+                        
                     }
-                    con.Close();
+                     
+                    return teams;
                 }
                 catch (Exception msg)
                 {
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
                     MessageBox.Show(msg.ToString());
-                    
+                    return null;
                 }
-                con.Close();
+                
             }
         }
-        */
+        
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public static Dictionary<Project, ProjectFile> GetTeamsProjectFiles(string teamID)
@@ -653,7 +655,7 @@ namespace E_Class
                     {
                         dict.Add(GetProject(results[0].ToString()), GetFileDetails(teamID, results[0].ToString()));
                     }
-                    con.Close();
+                     
                     return dict;
                 }
                 catch (Exception msg)
@@ -662,7 +664,6 @@ namespace E_Class
                     MessageBox.Show(msg.ToString());
                     return null;
                 }
-                con.Close();
             }
         }
 
@@ -682,12 +683,20 @@ namespace E_Class
                     NpgsqlDataReader results = cmd.ExecuteReader();
                     if (results.Read())
                     {
-                        con.Close();
-                        return new ProjectFile(results[0].ToString(), (byte[])results[1], results[2].ToString(),GetGrade(teamID, projectID), results.GetTimeStamp(3).ToDateTime());
+                        Console.Write(results[0].ToString());
+                        Console.Write((byte[])results[1]);
+                        Console.Write(results[2].ToString());
+                        Console.Write(GetGrade(teamID, projectID));
+                        Console.Write(DateTime.Parse(results[3].ToString()));
+
+
+                         
+                        return new ProjectFile(results[0].ToString(), (byte[])results[1], results[2].ToString(),GetGrade(teamID, projectID), DateTime.Parse(results[3].ToString()));
+                        
                     }
                     else
                     {
-                        con.Close();
+                         
                         return null;
                     }
                     
@@ -696,10 +705,10 @@ namespace E_Class
                 {
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
                     MessageBox.Show(msg.ToString());
+                     
                     return null;
 
                 }
-                con.Close();
             }
         }
 
@@ -719,21 +728,22 @@ namespace E_Class
                     NpgsqlDataReader results = cmd.ExecuteReader();
                     if (results.Read())
                     {
-                        return results.GetInt32(3);
+
+                        return (int)results[0];
                     }
                     else
                     {
                         return -1;
                     }
-                    con.Close();
+                    
                 }
                 catch (Exception msg)
                 {
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
                     MessageBox.Show(msg.ToString());
+                    
                     return -1;
                 }
-                con.Close();
             }
 
         }
@@ -746,7 +756,7 @@ namespace E_Class
 				try
 				{
 					con.Open();
-					string sql = "SELECT stu_reg_num FROM StudentsTeam WHERE team_id=@team_id";
+					string sql = "SELECT stu_reg_num FROM StudentsTeams WHERE team_id=@team_id";
 					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
 
 					cmd.Parameters.AddWithValue("team_id", team_id);
@@ -757,7 +767,7 @@ namespace E_Class
 					{
 						returnList.Add((Student)(Database.GetUser("student", results.GetString(0))));
 					}
-					con.Close();
+					
 					return returnList;
 				}
 				catch (Exception msg)
@@ -766,8 +776,12 @@ namespace E_Class
 					MessageBox.Show(msg.ToString());
 					return null;
 				}
-				con.Close();
+				
 			}
 		}
+
+        public static 
+
+
     }
 }

@@ -28,8 +28,7 @@ namespace E_Class
 				case UserTypes.STUDENT:
 					return new Student(reg_num, password, name, surname, email);
 				case UserTypes.PROFESSOR:
-                    //return new Professor(reg_num, password, name, surname, email, Database.Get);
-                    return null;
+                    return new Professor(reg_num, password, name, surname, email, Database.GetCoursesForProf(reg_num.getRegNumString()));
 				case UserTypes.ADMIN:
 					return new Admin(reg_num, password, name, surname, email);
 				default:

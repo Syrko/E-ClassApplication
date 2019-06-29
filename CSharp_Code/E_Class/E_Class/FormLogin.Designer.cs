@@ -123,6 +123,7 @@
             this.LoginAdmin.TabIndex = 9;
             this.LoginAdmin.Text = "Admin";
             this.LoginAdmin.UseVisualStyleBackColor = false;
+            this.LoginAdmin.Click += new System.EventHandler(this.LoginAdmin_Click);
             // 
             // LoginProf
             // 

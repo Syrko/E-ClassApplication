@@ -39,7 +39,8 @@ namespace E_Class
 
         private void LogInBtn_Click(object sender, EventArgs e)
         {
-            login(UsernameBox.Text, PasswordBox.Text);
+            login("K11108", "gifU7TbKk2lq");
+            //login(UsernameBox.Text, PasswordBox.Text);
         }
 
 
@@ -53,6 +54,12 @@ namespace E_Class
         private void button1_Click(object sender, EventArgs e)
         {
             Database.GetTeamsProjectFiles("T3");
+        }
+
+        private void LoginAdmin_Click(object sender, EventArgs e)
+        {
+            FormAdmin test = new FormAdmin("dasda");
+            test.Show();
         }
     }
 }

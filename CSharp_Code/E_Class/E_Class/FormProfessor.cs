@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-
+using Types;
 namespace E_Class
 {
     public partial class FormProfessor : UserForm
     {
 		// Inherited properties
 		protected override User currentUser { get; set; }
-		// Inherited methods
-		
+        // Inherited methods
 
-		public FormProfessor(string reg_num)
+        private ContextMenuStrip TeamRightClickMenu = new ContextMenuStrip();
+        private string selectedCourse;
+        Professor user;
+        Course selCourse = null;
+
+
+        public FormProfessor(string reg_num)
         {
             InitializeComponent();
             ChooseCourseMnBtn.BackColor = Color.FromArgb(100, 10, 10, 10);
@@ -28,21 +33,25 @@ namespace E_Class
             ProjectGroupBox.Paint += Paint;
             GradeGroupBox.Paint += Paint;
 
-            currentUser = Database.GetUser("Professor", reg_num);
-            Professor user = (Professor)currentUser;
+            currentUser = Database.GetUser(UserTypes.PROFESSOR, reg_num);
+
+
+            user = (Professor)currentUser;
             //Courses List: A list that displays professor's courses
             CoursesList.Bounds = new Rectangle(new Point(450, 50), new Size(275, 400));
             CoursesList.View = View.Details;
             CoursesList.FullRowSelect = true;
             CoursesList.GridLines = true;
             CoursesList.Sorting = SortOrder.Ascending;
-            CoursesList.Columns.Add("Select a course to continue", -2, HorizontalAlignment.Center);
+            CoursesList.Columns.Add("Cource name", -2, HorizontalAlignment.Center);
+            CoursesList.Columns.Add("ID", -2, HorizontalAlignment.Center);
 
 
 
-            foreach(Course course in user.getCourseList())
+            foreach (Course course in user.getCourseList())
             {
                 var listViewItem = new ListViewItem(course.getCourseName());
+                listViewItem.SubItems.Add(course.getCourseID());
                 CoursesList.Items.Add(listViewItem);
             }
 
@@ -65,14 +74,13 @@ namespace E_Class
 
 
             //Students List: A list that displays each teams infos
-            StudentsList.Bounds = new Rectangle(new Point(150, 12), new Size(375, 500));
-            StudentsList.View = View.Details;
-            StudentsList.FullRowSelect = true;
-            StudentsList.GridLines = true;
-            StudentsList.Sorting = SortOrder.Ascending;
-            StudentsList.Columns.Add("Team", -2, HorizontalAlignment.Left);
-            StudentsList.Columns.Add("Registration Number", -2, HorizontalAlignment.Left);
-            StudentsList.Columns.Add("Email", -2, HorizontalAlignment.Left);
+            TeamList.Bounds = new Rectangle(new Point(150, 12), new Size(375, 500));
+            TeamList.View = View.Details;
+            TeamList.FullRowSelect = true;
+            TeamList.GridLines = true;
+            TeamList.Sorting = SortOrder.Ascending;
+            TeamList.Columns.Add("Team", -2, HorizontalAlignment.Left);
+            TeamList.Columns.Add("Registration Number", -2, HorizontalAlignment.Left);
             //=============================================================================
 
 
@@ -89,18 +97,46 @@ namespace E_Class
 
 
 
+
+
+            //Users Right Click menu creation
+            ToolStripMenuItem TeamRightClickMenuEdit = new ToolStripMenuItem("Edit");
+            ToolStripMenuItem TeamRightClickMenuDelete = new ToolStripMenuItem("Delete");
+            TeamRightClickMenuDelete.Click += new EventHandler(TeamDelete_RightClick);
+            TeamRightClickMenuEdit.Click += new EventHandler(TeamEdit_RightClick);
+            TeamRightClickMenu.Items.AddRange(new ToolStripItem[] { TeamRightClickMenuEdit, TeamRightClickMenuDelete });
+
+            //===================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             TeamGroupBox.Text = "";
             ProjectGroupBox.Text = "";
             GradeGroupBox.Text = "";
 
-            TeamGroupBox.Bounds = new Rectangle(new Point(550, 12), new Size(320, 320));
+            TeamGroupBox.Bounds = new Rectangle(new Point(550, 12), new Size(380, 355)); 
 
             CoursesList.Show();
             SelectCourseBtn.Show();
             ChooseCourseMnBtn.BackColor = Color.Black;
 
             TeamGroupBox.Hide();
-            StudentsList.Hide();
+            TeamList.Hide();
             GradeList.Hide();
             GradeGroupBox.Hide();
             AssignToWhomLabel.Hide();
@@ -187,7 +223,7 @@ namespace E_Class
             AssignProjectBtn.Hide();
             GradeGroupBox.Hide();
             TeamGroupBox.Hide();
-            StudentsList.Hide();
+            TeamList.Hide();
             SelectedCourseLabel.Show();
 
             CoursesList.Show();
@@ -211,11 +247,43 @@ namespace E_Class
             GradeGroupBox.Hide();
 
 
-            StudentsList.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Top);
+            TeamList.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Top);
             TeamGroupBox.Show();
-            StudentsList.Show();
+            TeamList.Show();
             TeamGroupBox.Location = new Point(550, 12);
-            StudentsList.Location = new Point(150, 12);
+            TeamList.Location = new Point(150, 12);
+
+
+            //StudentsList.Clear();
+            
+            foreach (Course course in user.getCourseList())
+            {
+                if (course.getCourseID() == selectedCourse)
+                {
+                    selCourse = course;
+                    break;
+                }
+            }
+
+            foreach(Team team in selCourse.getTeamList())
+            {
+                
+                var listViewItem = new ListViewItem();
+                listViewItem.Text = team.getTeamID();
+                foreach(Student stu in team.getStudentList())
+                {
+                    listViewItem.SubItems.Add(stu.registrationNumber.getRegNumString());
+                }
+                TeamList.Items.Add(listViewItem);
+            }
+
+
+
+
+
+
+
+
         }
 
 
@@ -226,7 +294,7 @@ namespace E_Class
             SelectedCourseLabel.Hide();
             CoursesList.Hide();
             SelectCourseBtn.Hide();
-            StudentsList.Hide();
+            TeamList.Hide();
             TeamGroupBox.Hide();
             AssignToWhomLabel.Hide();
             AssignProjectBtn.Hide();
@@ -251,12 +319,12 @@ namespace E_Class
             GradeList.Hide();
             GradeGroupBox.Hide();
 
-            StudentsList.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Top);
+            TeamList.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Top);
             AssignToWhomLabel.Show();
             AssignProjectBtn.Show();
             ProjectList.Show();
-            StudentsList.Show();
-            StudentsList.Location = new Point(635, 12);
+            TeamList.Show();
+            TeamList.Location = new Point(635, 12);
             AssignProjectBtn.Location = new Point(467, 100);
             AssignToWhomLabel.Location = new Point(407, 50);
         }
@@ -272,7 +340,7 @@ namespace E_Class
             ProjectList.Hide();
             ProjectGroupBox.Hide();
             TeamGroupBox.Hide();
-            StudentsList.Hide();
+            TeamList.Hide();
             AssignToWhomLabel.Hide();
             AssignProjectBtn.Hide();
 
@@ -292,6 +360,7 @@ namespace E_Class
             }
             else
             {
+                selectedCourse = CoursesList.SelectedItems[0].SubItems[1].Text;
                 SelectedCourseLabel.Text = CoursesList.SelectedItems[0].Text + " is selected";
                 ModifyProjectMnBtn.Enabled = true;
                 ModifyTeamMnBtn.Enabled = true;
@@ -300,6 +369,42 @@ namespace E_Class
                 ModifyTeamMnBtn.PerformClick();
             }
         }
+
+
+
+
+
+
+        private void TeamDelete_RightClick(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void TeamEdit_RightClick(object sender, System.EventArgs e)
+        {
+            CreateEditTeamBtn.Text = "Submit";
+            List<TextBox> list = new List<TextBox>();
+            list.Add(Student1Box);
+            list.Add(Student2Box);
+            list.Add(Student3Box);
+            list.Add(Student4Box);
+            list.Add(Student5Box);
+
+            foreach (Team team in selCourse.getTeamList())
+            {
+                if(team.getTeamID() == TeamList.SelectedItems[0].Text)
+                {
+                    for(int i = 0; i < team.getStudentList().Count; i++)
+                    {
+                        list[i].Text = team.getStudentList()[i].registrationNumber.getRegNumString();
+                    }
+                }
+            }
+        }
+
+
+
+
 
 
         private void LogoutBtn_Click(object sender, EventArgs e)
@@ -317,6 +422,28 @@ namespace E_Class
         {
             FormLogin login = new FormLogin();
             login.Show();
+        }
+
+        private void TeamList_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (TeamList.FocusedItem.Bounds.Contains(e.Location))
+                {
+                    TeamRightClickMenu.Show(Cursor.Position);
+                }
+            }
+        }
+
+        private void CreateEditTeamBtn_Click(object sender, EventArgs e)
+        {
+            if(CreateEditTeamBtn.Text == "Submit")
+            {
+                CreateEditTeamBtn.Text = "Create";
+            }
+            else
+            {
+            }
         }
     }
 }
