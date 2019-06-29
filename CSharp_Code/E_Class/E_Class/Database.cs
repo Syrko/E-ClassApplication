@@ -347,50 +347,6 @@ namespace E_Class
 			}
 		}
 
-        public static string ValidateCredentials(string regNum, string password)
-        {
-            using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
-            {
-                try
-                {
-                    con.Open();
-                    string sql = "SELECT reg_num FROM Users WHERE reg_num=@regNum AND password=@password";
-                    NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
-                    cmd.Parameters.AddWithValue("regNum", regNum);
-                    cmd.Parameters.AddWithValue("password", password);
-                    NpgsqlDataReader results = cmd.ExecuteReader();
-                    if (results.Read())
-                    {
-                        switch (regNum[0])
-                        {
-                            case 'M':
-                                return UserTypes.STUDENT;
-                            case 'K':
-                                return UserTypes.PROFESSOR;
-                            case 'A':
-                                return UserTypes.ADMIN;
-                            default:
-                                MessageBox.Show("Invalid reg_num -- Error at validation", "Error");
-                                con.Close();
-                                return null;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Credentials do not match. \nCheck your input and try again.");
-                        con.Close();
-                        return null;
-                    }
-                }
-                catch (Exception msg)
-                {
-                    MessageBox.Show(msg.ToString());
-                    MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
-                    return null;
-                }
-            }
-        }
-
         public static Project GetProject(string projectID)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
