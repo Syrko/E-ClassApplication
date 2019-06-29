@@ -11,7 +11,7 @@ namespace E_Class
         string projectID;
         string name;
         string description;
-        double maxGrade;
+        int maxGrade;
         
 		// Constructors
 		public Project(string projectID, string name, string description, double maxGrade)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Types;
 
 namespace E_Class
 {
@@ -15,19 +16,22 @@ namespace E_Class
 			this.value = value;
 		}
 
+		public RegNum(string regNumString)
+		{
+			this.type = regNumString[0];
+			this.value = int.Parse(regNumString.Substring(1));
+		}
+
 		public string getRegNumString()
 		{
 			return type.ToString() + value.ToString();
 		}
 
-		public static int getNextValue(char type)
+		public static string getNextValue(string type)
 		{
 			int id;
 			{
-				List<int> ids = new List<int>();
-
-				// TODO
-				// get ids from database
+				List<int> ids = Database.GetIds(type + "s");
 
 				ids.Sort();
 				int counter = 0;
@@ -42,7 +46,20 @@ namespace E_Class
 						break;
 					}
 				}
-				return id;
+				
+				switch (type)
+				{
+					case UserTypes.ADMIN:
+						return "A" + id.ToString();
+					case UserTypes.STUDENT:
+						return "M" + id.ToString();
+					case UserTypes.PROFESSOR:
+						return "K" + id.ToString();
+					case "Project":
+						return "P" + id.ToString();
+					default:
+						return null;
+				}
 			}
 		}
 	}

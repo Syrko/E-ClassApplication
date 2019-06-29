@@ -9,7 +9,7 @@ namespace E_Class
     class ProjectFile
     {
         byte[] file;
-        double grade;
+        int grade;
         DateTime uploadDate;
 
 		// Cosntructors

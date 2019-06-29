@@ -156,7 +156,7 @@ namespace E_Class
 		}
 
 		[MethodImpl(MethodImplOptions.Synchronized)]
-		public static void InsertUser(string userType, User user)
+		public static void InsertUser(string userType, string name, string password, string surname, Email email)
 		{
 			using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
 			{
@@ -167,16 +167,18 @@ namespace E_Class
 					string sql = "INSERT INTO Users VALUES(@reg_num, @name, @password, @surname, @email)";
 					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
 
-					cmd.Parameters.AddWithValue("reg_Num", user.registrationNumber.getRegNumString());
-					cmd.Parameters.AddWithValue("name", user.name);
-					cmd.Parameters.AddWithValue("password", user.password);
-					cmd.Parameters.AddWithValue("surname", user.surname);
-					cmd.Parameters.AddWithValue("email", user.email.getEmailAddress());
+					
+					RegNum regNum = new RegNum(RegNum.getNextValue(userType));
+					cmd.Parameters.AddWithValue("reg_num", regNum.getRegNumString());
+					cmd.Parameters.AddWithValue("name", name);
+					cmd.Parameters.AddWithValue("password", password);
+					cmd.Parameters.AddWithValue("surname", surname);
+					cmd.Parameters.AddWithValue("email", email.getEmailAddress());
 					cmd.ExecuteNonQuery();
 
 					sql = "INSERT INTO " + userType + "s VALUES(@reg_num)";
 					cmd = new NpgsqlCommand(sql, con);
-					cmd.Parameters.AddWithValue("reg_num", user.registrationNumber.getRegNumString());
+					cmd.Parameters.AddWithValue("reg_num", regNum.getRegNumString());
 					cmd.ExecuteNonQuery();
 
 					con.Close();
@@ -358,7 +360,7 @@ namespace E_Class
         }
 
 		[MethodImpl(MethodImplOptions.Synchronized)]
-		public static void InsertProject(Project proj)
+		public static void InsertProject(string name, string description, int max_grade)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
             {
@@ -367,10 +369,10 @@ namespace E_Class
                     con.Open();
                     string sql = "INSERT INTO Projects VALUES(@id, @name, @description, @max_grade)";
                     NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
-                    cmd.Parameters.AddWithValue("id", proj.getProjectID());
-                    cmd.Parameters.AddWithValue("name", proj.getname());
-                    cmd.Parameters.AddWithValue("description", proj.getdescription());
-                    cmd.Parameters.AddWithValue("max_grade", proj.getmaxGrade());
+                    cmd.Parameters.AddWithValue("id", RegNum.getNextValue("project"));
+                    cmd.Parameters.AddWithValue("name", name);
+                    cmd.Parameters.AddWithValue("description", description);
+                    cmd.Parameters.AddWithValue("max_grade", max_grade);
                     cmd.ExecuteNonQuery();
                     con.Close();
                 }
@@ -465,12 +467,34 @@ namespace E_Class
                     MessageBox.Show(msg.ToString());
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
                     con.Close();
-                    return null;
+                    return;
                 }
             }
         }
 
 
-
-    }
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		public static void InsertStudentToTeam(Course course, Student student, Team team)
+		{
+			using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+			{
+				try
+				{
+					con.Open();
+					string sql = "INSERT INTO StudentsTeam VALUES(@stu_reg_num, @team_id, @course_id)";
+					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+					cmd.Parameters.AddWithValue("stu_reg_num", student.registrationNumber.getRegNumString());
+					cmd.Parameters.AddWithValue("team_id", team.getTeamID());
+					cmd.Parameters.AddWithValue("course_id", course.getCourseID());
+					cmd.ExecuteNonQuery();
+					con.Close();
+				}
+				catch (Exception msg)
+				{
+					MessageBox.Show(msg.ToString());
+					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+				}
+			}
+		}
+	}
 }
