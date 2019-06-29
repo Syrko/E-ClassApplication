@@ -10,7 +10,7 @@ namespace E_Class
     {
 
         //TODO Clear lists on every menu click
-        //Refresh List, Max grade limit
+        //Refresh List, Max grade limit, selection NOT null
 
 
 
@@ -75,6 +75,7 @@ namespace E_Class
             ProjectList.FullRowSelect = true;
             ProjectList.GridLines = true;
             ProjectList.Sorting = SortOrder.Ascending;
+            ProjectList.Columns.Add("ID", -2, HorizontalAlignment.Left);
             ProjectList.Columns.Add("Project Name", -2, HorizontalAlignment.Left);
             ProjectList.Columns.Add("Max Grade", -2, HorizontalAlignment.Left);
             //==========================================================================
@@ -312,13 +313,16 @@ namespace E_Class
             ProjectGroupBox.Location = new Point(450, 12);
 
             
-            var listViewItem = new ListViewItem();
+            
             foreach (Project proj in selCourse.getProjectList())
             {
-                listViewItem.Text = proj.getname();
+                var listViewItem = new ListViewItem();
+                listViewItem.Text = proj.getProjectID();
+                listViewItem.SubItems.Add(proj.getname());
                 listViewItem.SubItems.Add(proj.getmaxGrade().ToString());
-            }
                 ProjectList.Items.Add(listViewItem);
+            }
+               
         }
 
 
@@ -390,7 +394,7 @@ namespace E_Class
 
         private void TeamDelete_RightClick(object sender, System.EventArgs e)
         {
-            //Database.DeleteTeam();
+            Database.DeleteTeam(TeamList.SelectedItems[0].Text);
         }
 
         private void TeamEdit_RightClick(object sender, System.EventArgs e)
@@ -421,27 +425,20 @@ namespace E_Class
 
         }
 
-
+        
         private void ProjectEdit_RightClick(object sender, System.EventArgs e)
         {
             CreateEditTeamBtn.Text = "Submit";
-            List<TextBox> list = new List<TextBox>();
-            list.Add(Student1Box);
-            list.Add(Student2Box);
-            list.Add(Student3Box);
-            list.Add(Student4Box);
-            list.Add(Student5Box);
-
-            foreach (Team team in selCourse.getTeamList())
+            foreach (Project proj in selCourse.getProjectList())
             {
-                if (team.getTeamID() == TeamList.SelectedItems[0].Text)
+                if (proj.getProjectID() == ProjectList.SelectedItems[0].Text)
                 {
-                    for (int i = 0; i < team.getStudentList().Count; i++)
-                    {
-                        list[i].Text = team.getStudentList()[i].registrationNumber.getRegNumString();
-                    }
+                    ProjectNameBox.Text = proj.getname();
+                    MaxGradeBox.Value = proj.getmaxGrade();
+                    DescriptionBox.Text = proj.getdescription();
                 }
             }
+
         }
 
 
@@ -483,6 +480,17 @@ namespace E_Class
             }
             else
             {
+            }
+        }
+
+        private void ProjectList_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (ProjectList.FocusedItem.Bounds.Contains(e.Location))
+                {
+                    ProjectRightClickMenu.Show(Cursor.Position);
+                }
             }
         }
     }

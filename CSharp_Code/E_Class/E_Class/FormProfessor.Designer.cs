@@ -34,12 +34,12 @@
             this.ModifyProjectMnBtn = new System.Windows.Forms.Button();
             this.ModifyTeamMnBtn = new System.Windows.Forms.Button();
             this.ProjectGroupBox = new System.Windows.Forms.GroupBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.DescriptionBox = new System.Windows.Forms.TextBox();
+            this.MaxGradeBox = new System.Windows.Forms.NumericUpDown();
             this.CreateEditUserLabel = new System.Windows.Forms.Label();
             this.CancelUsersBtn = new System.Windows.Forms.Button();
             this.RegMsgLabel = new System.Windows.Forms.Label();
-            this.RegNumBox = new System.Windows.Forms.TextBox();
+            this.ProjectNameBox = new System.Windows.Forms.TextBox();
             this.CreateEditProjectBtn = new System.Windows.Forms.Button();
             this.ProjectNameLabel = new System.Windows.Forms.Label();
             this.MaxGradeLabel = new System.Windows.Forms.Label();
@@ -78,7 +78,7 @@
             this.SelectCourseBtn = new System.Windows.Forms.Button();
             this.SelectedCourseLabel = new System.Windows.Forms.Label();
             this.ProjectGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaxGradeBox)).BeginInit();
             this.TeamGroupBox.SuspendLayout();
             this.GradeGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -166,12 +166,12 @@
             // 
             this.ProjectGroupBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ProjectGroupBox.BackColor = System.Drawing.Color.White;
-            this.ProjectGroupBox.Controls.Add(this.richTextBox1);
-            this.ProjectGroupBox.Controls.Add(this.numericUpDown1);
+            this.ProjectGroupBox.Controls.Add(this.DescriptionBox);
+            this.ProjectGroupBox.Controls.Add(this.MaxGradeBox);
             this.ProjectGroupBox.Controls.Add(this.CreateEditUserLabel);
             this.ProjectGroupBox.Controls.Add(this.CancelUsersBtn);
             this.ProjectGroupBox.Controls.Add(this.RegMsgLabel);
-            this.ProjectGroupBox.Controls.Add(this.RegNumBox);
+            this.ProjectGroupBox.Controls.Add(this.ProjectNameBox);
             this.ProjectGroupBox.Controls.Add(this.CreateEditProjectBtn);
             this.ProjectGroupBox.Controls.Add(this.ProjectNameLabel);
             this.ProjectGroupBox.Controls.Add(this.MaxGradeLabel);
@@ -186,25 +186,23 @@
             this.ProjectGroupBox.TabStop = false;
             this.ProjectGroupBox.Text = "CreateEditProject";
             // 
-            // richTextBox1
+            // DescriptionBox
             // 
-            this.richTextBox1.BackColor = System.Drawing.Color.White;
-            this.richTextBox1.Location = new System.Drawing.Point(20, 121);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(286, 123);
-            this.richTextBox1.TabIndex = 29;
-            this.richTextBox1.Text = "";
+            this.DescriptionBox.Location = new System.Drawing.Point(23, 121);
+            this.DescriptionBox.Multiline = true;
+            this.DescriptionBox.Name = "DescriptionBox";
+            this.DescriptionBox.Size = new System.Drawing.Size(276, 123);
+            this.DescriptionBox.TabIndex = 32;
             // 
-            // numericUpDown1
+            // MaxGradeBox
             // 
-            this.numericUpDown1.BackColor = System.Drawing.Color.White;
-            this.numericUpDown1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown1.Location = new System.Drawing.Point(230, 64);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(2);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(69, 22);
-            this.numericUpDown1.TabIndex = 29;
+            this.MaxGradeBox.BackColor = System.Drawing.Color.White;
+            this.MaxGradeBox.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MaxGradeBox.Location = new System.Drawing.Point(230, 64);
+            this.MaxGradeBox.Margin = new System.Windows.Forms.Padding(2);
+            this.MaxGradeBox.Name = "MaxGradeBox";
+            this.MaxGradeBox.Size = new System.Drawing.Size(69, 22);
+            this.MaxGradeBox.TabIndex = 29;
             // 
             // CreateEditUserLabel
             // 
@@ -240,14 +238,14 @@
             this.RegMsgLabel.TabIndex = 29;
             this.RegMsgLabel.Text = "no";
             // 
-            // RegNumBox
+            // ProjectNameBox
             // 
-            this.RegNumBox.BackColor = System.Drawing.Color.White;
-            this.RegNumBox.Location = new System.Drawing.Point(20, 67);
-            this.RegNumBox.Margin = new System.Windows.Forms.Padding(2);
-            this.RegNumBox.Name = "RegNumBox";
-            this.RegNumBox.Size = new System.Drawing.Size(172, 20);
-            this.RegNumBox.TabIndex = 0;
+            this.ProjectNameBox.BackColor = System.Drawing.Color.White;
+            this.ProjectNameBox.Location = new System.Drawing.Point(20, 67);
+            this.ProjectNameBox.Margin = new System.Windows.Forms.Padding(2);
+            this.ProjectNameBox.Name = "ProjectNameBox";
+            this.ProjectNameBox.Size = new System.Drawing.Size(172, 20);
+            this.ProjectNameBox.TabIndex = 0;
             // 
             // CreateEditProjectBtn
             // 
@@ -489,6 +487,7 @@
             this.ProjectList.Size = new System.Drawing.Size(92, 80);
             this.ProjectList.TabIndex = 34;
             this.ProjectList.UseCompatibleStateImageBehavior = false;
+            this.ProjectList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ProjectList_MouseClick);
             // 
             // AssignProjectBtn
             // 
@@ -694,7 +693,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormProfessor_FormClosed);
             this.ProjectGroupBox.ResumeLayout(false);
             this.ProjectGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MaxGradeBox)).EndInit();
             this.TeamGroupBox.ResumeLayout(false);
             this.TeamGroupBox.PerformLayout();
             this.GradeGroupBox.ResumeLayout(false);
@@ -715,14 +714,13 @@
         private System.Windows.Forms.Label CreateEditUserLabel;
         private System.Windows.Forms.Button CancelUsersBtn;
         private System.Windows.Forms.Label RegMsgLabel;
-        private System.Windows.Forms.TextBox RegNumBox;
+        private System.Windows.Forms.TextBox ProjectNameBox;
         private System.Windows.Forms.Button CreateEditProjectBtn;
         private System.Windows.Forms.Label ProjectNameLabel;
         private System.Windows.Forms.Label MaxGradeLabel;
         private System.Windows.Forms.Label DescriptionLabel;
         private System.Windows.Forms.Label RegNumErrorLabel;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown MaxGradeBox;
         private System.Windows.Forms.Button GradeProjectsMnBtn;
         private System.Windows.Forms.GroupBox TeamGroupBox;
         private System.Windows.Forms.Label label2;
@@ -755,5 +753,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox DescriptionBox;
     }
 }
