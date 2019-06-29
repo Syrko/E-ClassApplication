@@ -210,6 +210,40 @@ namespace E_Class
             }
         }
         */
+
+        public static void InsertCourse(string prof_reg_num)
+        {
+            using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    string sql = "Select courses.id, courses.name from(users inner join professors on users.reg_num = professors.reg_num)" +
+                        " inner join ProfessorsCourses on users.reg_num=professorscourses.prof_reg_num" +
+                        " inner join courses on professorscourses.course_id=courses.id where professors.reg_num=@reg_num";
+                    NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+                    cmd.Parameters.AddWithValue("reg_num", prof_reg_num);
+                    N results = cmd.ExecuteNonQuery();
+                    List<string> courses = new List<string>();
+                    if(results.Read())
+                    {
+                        
+                    }
+                    con.Close();
+
+                }
+                catch (Exception msg)
+                {
+                    MessageBox.Show(msg.ToString());
+                    MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+                    con.Close();
+                    return null;
+                }
+            }
+        }
+
+
+
     }
 
 }
