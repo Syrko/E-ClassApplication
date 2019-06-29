@@ -11,10 +11,10 @@ namespace E_Class
         string projectID;
         string name;
         string description;
-        double maxGrade;
+        int maxGrade;
         
 		// Constructors
-		public Project(string projectID, string name, string description, double maxGrade)
+		public Project(string projectID, string name, string description, int maxGrade)
 		{
 			this.projectID = projectID;
 			this.name = name;
@@ -26,12 +26,12 @@ namespace E_Class
         public string getProjectID() { return projectID; }
         public string getname() { return name; }
         public string getdescription() { return description; }
-        public double getmaxGrade() { return maxGrade; }
+        public int getmaxGrade() { return maxGrade; }
         //setters
         public void setProjectID(string projectID) { this.projectID = projectID; }
         public void setName(string name) { this.name = name; }
         public void setdescription(string description) { this.description = description; }
-        public void setmaxGrade(double maxGrade) { this.maxGrade = maxGrade; }
+        public void setmaxGrade(int maxGrade) { this.maxGrade = maxGrade; }
 
     }
 }

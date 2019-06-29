@@ -8,26 +8,29 @@ namespace E_Class
 {
     class ProjectFile
     {
+        string id;
         byte[] file;
-        double grade;
+        int grade;
         DateTime uploadDate;
 
-		// Cosntructors
-		public ProjectFile(byte[] file, double grade, DateTime uploadDate)
+		// Constructors
+		public ProjectFile(string id, byte[] file, int grade, DateTime uploadDate)
 		{
 			this.file = file;
 			this.grade = grade;
 			this.uploadDate = uploadDate;
 		}
 
-		// Getters
+        // Getters
+        public string getProjectFileID() { return id; }
         public byte[] getFile() { return file; }
-        public double getGrade() { return grade; }
+        public int getGrade() { return grade; }
         public DateTime getUploadDate() { return uploadDate; }
 
 		// Setters
+        public void setProjectFileID(string id) { this.id = id; }
         public void setFile(byte[] file) { this.file = file; }
-        public void setGrade(double grade) { this.grade = grade; }
+        public void setGrade(int grade) { this.grade = grade; }
         public void setUploadDate(DateTime uploadDate) { this.uploadDate = uploadDate; }
 
     }
