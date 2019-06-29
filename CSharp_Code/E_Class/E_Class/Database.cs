@@ -824,6 +824,16 @@ namespace E_Class
 					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
 					cmd.Parameters.AddWithValue("team_id", team_id);
 					cmd.ExecuteNonQuery();
+
+					sql = "DELETE FROM ProjectsOfTeam WHERE team_id=@team_id";
+					cmd = new NpgsqlCommand(sql, con);
+					cmd.Parameters.AddWithValue("team_id", team_id);
+					cmd.ExecuteNonQuery();
+
+					sql = "DELETE FROM Teams WHERE id=@team_id";
+					cmd = new NpgsqlCommand(sql, con);
+					cmd.Parameters.AddWithValue("team_id", team_id);
+					cmd.ExecuteNonQuery();
 				}
 				catch (Exception msg)
 				{
