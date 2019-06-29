@@ -154,7 +154,7 @@ namespace E_Class
                     {
                         string name = results.GetString(results.GetOrdinal("name"));
                         string description = results.GetString(results.GetOrdinal("description"));
-                        double max_grade = results.GetDouble(results.GetOrdinal("max_grade"));
+                        int max_grade = results.GetInt32(results.GetOrdinal("max_grade"));
                         con.Close();
                         return new Project(projectID, name, description, max_grade);
                     }
@@ -210,6 +210,28 @@ namespace E_Class
                     string sql = "DELETE FROM Projects WHERE id = @id)";
                     NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
                     cmd.Parameters.AddWithValue("id", proj.getProjectID());
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                catch (Exception msg)
+                {
+                    MessageBox.Show(msg.ToString());
+                    MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+                }
+            }
+        }
+
+        public static void GradeProject(ProjectFile projectFile, int grade)
+        {
+            using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    string sql = "UPDATE ProjectsOfTeam SET grade = @grade WHERE project_file_id = @fileID";
+                    NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+                    cmd.Parameters.AddWithValue("grade", grade);
+                    cmd.Parameters.AddWithValue("fileID", projectFile.getProjectFileID());
                     cmd.ExecuteNonQuery();
                     con.Close();
                 }
