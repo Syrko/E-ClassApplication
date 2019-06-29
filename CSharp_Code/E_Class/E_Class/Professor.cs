@@ -64,9 +64,9 @@ namespace E_Class
 		}
 
 		// Methods
-		public void createProject(Project newProject) { throw new NotImplementedException(); }
+		public void createProject(string name, string description, int max_grade) { Database.InsertProject(name, description, max_grade); }
 		public void editProject(Project project) { throw new NotImplementedException(); }
-		public void deleteProject(Project project) { throw new NotImplementedException(); }
+		public void deleteProject(Project project) { Database.DeleteProject(project); }
 		public void createTeam(Team newTeam) { throw new NotImplementedException(); }
 		public void editTeam(Team team) { throw new NotImplementedException(); }
 		public void deleteTeam(Team team) { throw new NotImplementedException(); }
