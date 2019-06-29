@@ -8,11 +8,17 @@ namespace E_Class
 {
     public partial class FormProfessor : UserForm
     {
+
+        //TODO Clear lists on every menu click
+
+
+
 		// Inherited properties
 		protected override User currentUser { get; set; }
         // Inherited methods
 
         private ContextMenuStrip TeamRightClickMenu = new ContextMenuStrip();
+        private ContextMenuStrip ProjectRightClickMenu = new ContextMenuStrip();
         private string selectedCourse;
         Professor user;
         Course selCourse = null;
@@ -80,7 +86,11 @@ namespace E_Class
             TeamList.GridLines = true;
             TeamList.Sorting = SortOrder.Ascending;
             TeamList.Columns.Add("Team", -2, HorizontalAlignment.Left);
-            TeamList.Columns.Add("Registration Number", -2, HorizontalAlignment.Left);
+            TeamList.Columns.Add("Student 1", -2, HorizontalAlignment.Left);
+            TeamList.Columns.Add("Student 2", -2, HorizontalAlignment.Left);
+            TeamList.Columns.Add("Student 3", -2, HorizontalAlignment.Left);
+            TeamList.Columns.Add("Student 4", -2, HorizontalAlignment.Left);
+            TeamList.Columns.Add("Student 5", -2, HorizontalAlignment.Left);
             //=============================================================================
 
 
@@ -99,18 +109,25 @@ namespace E_Class
 
 
 
-            //Users Right Click menu creation
+            //Teams Right Click menu creation
             ToolStripMenuItem TeamRightClickMenuEdit = new ToolStripMenuItem("Edit");
             ToolStripMenuItem TeamRightClickMenuDelete = new ToolStripMenuItem("Delete");
             TeamRightClickMenuDelete.Click += new EventHandler(TeamDelete_RightClick);
             TeamRightClickMenuEdit.Click += new EventHandler(TeamEdit_RightClick);
             TeamRightClickMenu.Items.AddRange(new ToolStripItem[] { TeamRightClickMenuEdit, TeamRightClickMenuDelete });
+            //===================================================================================
 
+/*
+            //Projects Right Click menu creation
+            ToolStripMenuItem ProjectRightClickMenuEdit = new ToolStripMenuItem("Edit");
+            ToolStripMenuItem ProjectRightClickMenuDelete = new ToolStripMenuItem("Delete");
+            ProjectRightClickMenuDelete.Click += new EventHandler(ProjectDelete_RightClick);
+            ProjectRightClickMenuEdit.Click += new EventHandler(ProjectEdit_RightClick);
+            ProjectRightClickMenu.Items.AddRange(new ToolStripItem[] { ProjectRightClickMenuEdit, ProjectRightClickMenuDelete });
             //===================================================================================
 
 
-
-
+    */
 
 
 
@@ -255,7 +272,7 @@ namespace E_Class
 
 
             //StudentsList.Clear();
-            
+            var listViewItem = new ListViewItem();
             foreach (Course course in user.getCourseList())
             {
                 if (course.getCourseID() == selectedCourse)
@@ -264,11 +281,9 @@ namespace E_Class
                     break;
                 }
             }
-
             foreach(Team team in selCourse.getTeamList())
             {
-                
-                var listViewItem = new ListViewItem();
+                listViewItem = new ListViewItem();
                 listViewItem.Text = team.getTeamID();
                 foreach(Student stu in team.getStudentList())
                 {
@@ -276,14 +291,6 @@ namespace E_Class
                 }
                 TeamList.Items.Add(listViewItem);
             }
-
-
-
-
-
-
-
-
         }
 
 
@@ -304,6 +311,15 @@ namespace E_Class
             ProjectList.Show();
             ProjectGroupBox.Show();
             ProjectGroupBox.Location = new Point(450, 12);
+
+            
+            var listViewItem = new ListViewItem();
+            foreach (Project proj in selCourse.getProjectList())
+            {
+                listViewItem.Text = proj.getname();
+                listViewItem.SubItems.Add(proj.getmaxGrade().ToString());
+            }
+                ProjectList.Items.Add(listViewItem);
         }
 
 

@@ -611,7 +611,7 @@ namespace E_Class
                 try
                 {
                     con.Open();
-                    string sql = "select teams.id from teams inner join StudentsTeams on teams.id=StudentsTeams.team_id where course_id=@courseID";
+                    string sql = "select distinct teams.id from teams inner join StudentsTeams on teams.id=StudentsTeams.team_id where course_id=@courseID";
                     NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
 
                     cmd.Parameters.AddWithValue("courseID", courseID);
@@ -807,6 +807,7 @@ namespace E_Class
 					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
 					MessageBox.Show(msg.ToString());
 				}
+
 
 			}
 		}
