@@ -14,7 +14,7 @@ namespace E_Class
 {
     class Database
     {
-        private static string connectionString = "Server=127.0.0.1; User id=postgres; Password=123456789; Database=eclassmirror";
+        private static string connectionString = "Server=127.0.0.1; User id=postgres; Password=123456789; Database=eclass";
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public static void CreateTeam(string team_id, List<string> students)
