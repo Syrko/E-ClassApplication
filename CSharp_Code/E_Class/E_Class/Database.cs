@@ -462,6 +462,7 @@ namespace E_Class
         }
         */
 
+/*
 		[MethodImpl(MethodImplOptions.Synchronized)]
         public static void InsertCourse(string prof_reg_num)
         {
@@ -493,7 +494,7 @@ namespace E_Class
                 }
             }
         }
-
+        */
 
 		[MethodImpl(MethodImplOptions.Synchronized)]
 		public static void InsertStudentToTeam(Course course, Student student, Team team)
@@ -518,5 +519,35 @@ namespace E_Class
 				}
 			}
 		}
-	}
+
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public static void UploadProject(string id, byte[] file, string name, string date)
+        {
+            using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    string sql = "INSERT INTO files VALUES(@id, @file, @name, @date)";
+                    NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+
+                    cmd.Parameters.AddWithValue("id", id);
+                    cmd.Parameters.AddWithValue("file", file);
+                    cmd.Parameters.AddWithValue("name", name);
+                    cmd.Parameters.AddWithValue("date", date);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                catch (Exception msg)
+                {
+                    MessageBox.Show(msg.ToString());
+                    MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+                }
+                con.Close();
+                return;
+            }
+        }
+    }
+}
 }
