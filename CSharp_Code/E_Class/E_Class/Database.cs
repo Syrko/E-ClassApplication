@@ -140,7 +140,6 @@ namespace E_Class
 			}
 		}
 
-<<<<<<< HEAD
 		[MethodImpl(MethodImplOptions.Synchronized)]
 		public static User GetUser(string userType, string userRegNum)
 		{
@@ -152,36 +151,205 @@ namespace E_Class
 
 					string sql = "SELECT * FROM Users WHERE reg_num=@regNum";
 					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
-					cmd.Prepare();
 					cmd.Parameters.AddWithValue("regNum", userRegNum);
 					NpgsqlDataReader results = cmd.ExecuteReader();
 					if (results.Read())
 					{
 						RegNum reg_num = new RegNum(results.GetString(results.GetOrdinal("reg_num"))[0], int.Parse(results.GetString(results.GetOrdinal("reg_num")).Substring(1)));
+						string name = results.GetString(results.GetOrdinal("name"));
+						string surname = results.GetString(results.GetOrdinal("surname"));
+						string password = results.GetString(results.GetOrdinal("password"));
+						Email email = new Email(results.GetString(results.GetOrdinal("email")));
 
-
-
-
-						switch (userType)
-						{
-							case UserTypes.ADMIN:
-								return;
-			}
+						con.Close();
+						return UserFactory.getInstance().createUser(userType, reg_num, password, name, surname, email);
+						
 					}
+					else
+					{
+						MessageBox.Show("No such user -- Database get user");
+						con.Close();
+						return null;
+					}
+
+				}
+				catch (Exception msg)
+				{
+					MessageBox.Show(msg.ToString());
+					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+					return null;
+				}
+			}
+		}
+
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		public static void InsertUser(string userType, User user)
+		{
+			using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+			{
+				try
+				{
+					con.Open();
+
+					string sql = "INSERT INTO Users VALUES(@reg_num, @name, @password, @surname, @email)";
+					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+
+					cmd.Parameters.AddWithValue("reg_Num", user.registrationNumber.getRegNumString());
+					cmd.Parameters.AddWithValue("name", user.name);
+					cmd.Parameters.AddWithValue("password", user.password);
+					cmd.Parameters.AddWithValue("surname", user.surname);
+					cmd.Parameters.AddWithValue("email", user.email.getEmailAddress());
+					cmd.ExecuteNonQuery();
+
+					sql = "INSERT INTO " + userType + "s VALUES(@reg_num)";
+					cmd = new NpgsqlCommand(sql, con);
+					cmd.Parameters.AddWithValue("reg_num", user.registrationNumber.getRegNumString());
+					cmd.ExecuteNonQuery();
+
 					con.Close();
 				}
 				catch (Exception msg)
 				{
 					MessageBox.Show(msg.ToString());
 					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+					return;
 				}
 			}
 		}
-	}
-=======
+
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		public static void DeleteUser(string userType, User user)
+		{
+			using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+			{
+				try
+				{
+					con.Open();
+					string sql;
+					NpgsqlCommand cmd;
+					if(user is Admin)
+					{
+						sql = "DELETE FROM Admins WHERE reg_num=@reg_num";
+						cmd = new NpgsqlCommand(sql, con);
+						cmd.Parameters.AddWithValue("reg_Num", user.registrationNumber.getRegNumString());
+					}
+					else if(user is Student)
+					{
+						DeleteStudentFromAllTeams((Student)user);
+
+						sql = "DELETE FROM Students WHERE reg_num=@reg_num";
+						cmd = new NpgsqlCommand(sql, con);
+						cmd.Parameters.AddWithValue("reg_Num", user.registrationNumber.getRegNumString());
+					}
+					else
+					{
+						DeleteProfessorFromProfessorsCourses((Professor)user);
+						sql = "DELETE FROM Proffesors WHERE reg_num=@reg_num";
+						cmd = new NpgsqlCommand(sql, con);
+						cmd.Parameters.AddWithValue("reg_Num", user.registrationNumber.getRegNumString());
+					}
+
+					sql = "DELETE FROM Users WHERE reg_num=@reg_num";
+					cmd = new NpgsqlCommand(sql, con);
+					cmd.Parameters.AddWithValue("reg_Num", user.registrationNumber.getRegNumString());
+
+					con.Close();
+				}
+				catch (Exception msg)
+				{
+					MessageBox.Show(msg.ToString());
+					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+					return;
+				}
+			}
+		}
+
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		public static void DeleteStudentFromAllTeams(Student student)
+		{
+			using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+			{
+				try
+				{
+					con.Open();
+
+					string sql = "DELETE FROM StudentsTeam WHERE stu_reg_num=@reg_num";
+					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+
+					cmd.Parameters.AddWithValue("reg_num", student.registrationNumber.getRegNumString());
+					
+					cmd.ExecuteNonQuery();
 
 
-        public static void GetCourse(string courseID)
+					con.Close();
+				}
+				catch (Exception msg)
+				{
+					MessageBox.Show(msg.ToString());
+					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+					return;
+				}
+			}
+		}
+
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		public static void DeleteStudentFromTeam(Student student, Team team)
+		{
+			using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+			{
+				try
+				{
+					con.Open();
+
+					string sql = "DELETE FROM StudentsTeam WHERE stu_reg_num=@reg_num AND team_id=@team_id";
+					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+
+					cmd.Parameters.AddWithValue("reg_num", student.registrationNumber.getRegNumString());
+					cmd.Parameters.AddWithValue("team_id", team.getTeamID());
+
+					cmd.ExecuteNonQuery();
+
+					con.Close();
+				}
+				catch (Exception msg)
+				{
+					MessageBox.Show(msg.ToString());
+					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+					return;
+				}
+			}
+		}
+
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		public static void DeleteProfessorFromProfessorsCourses(Professor professor)
+		{
+			using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+			{
+				try
+				{
+					con.Open();
+
+					string sql = "DELETE FROM ProfessorsCourses WHERE prof_reg_num=@reg_num";
+					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+
+					cmd.Parameters.AddWithValue("reg_num", professor.registrationNumber.getRegNumString());
+
+					cmd.ExecuteNonQuery();
+
+					con.Close();
+				}
+				catch (Exception msg)
+				{
+					MessageBox.Show(msg.ToString());
+					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+					return;
+				}
+			}
+		}
+
+
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		public static void GetCourse(string courseID)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
             {
@@ -212,5 +380,4 @@ namespace E_Class
             }
         }
     }
->>>>>>> 418bfa043ba8bd26405a09a0b2adf859103deb64
 }
