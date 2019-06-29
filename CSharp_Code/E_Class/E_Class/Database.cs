@@ -779,12 +779,60 @@ namespace E_Class
 				
 			}
 		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		public static void EditTeam(string team_id, string course_id, List<string> teamsStudents)
+		{
+			using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+			{
+				try
+				{
+					con.Open();
+					string sql = "DELETE FROM StudentsTeams WHERE team_id=@team_id";
+					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+					cmd.Parameters.AddWithValue("team_id", team_id);
+					cmd.ExecuteNonQuery();
 
-        public static void EditTeam()
-        {
+					foreach(string student_reg_num in teamsStudents)
+					{
+						sql = "INSERT INTO StudentsTeams VALUES(@stu_reg_num, @team_id, @course_id)";
+						cmd = new NpgsqlCommand(sql, con);
+						cmd.Parameters.AddWithValue("stu_reg_num", student_reg_num);
+						cmd.Parameters.AddWithValue("team_id", team_id);
+						cmd.Parameters.AddWithValue("course_id", course_id);
+						cmd.ExecuteNonQuery();
+					}
+				}
+				catch (Exception msg)
+				{
+					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+					MessageBox.Show(msg.ToString());
+				}
 
-        }
 
+			}
+		}
 
-    }
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		public static void DeleteTeam(string team_id)
+		{
+			using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+			{
+				try
+				{
+					con.Open();
+					string sql = "DELETE FROM StudentsTeams WHERE team_id=@team_id";
+					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+					cmd.Parameters.AddWithValue("team_id", team_id);
+					cmd.ExecuteNonQuery();
+				}
+				catch (Exception msg)
+				{
+					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+					MessageBox.Show(msg.ToString());
+				}
+
+			}
+		}
+
+	}
 }
