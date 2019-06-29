@@ -35,66 +35,39 @@ namespace E_Class
             }
         }
 
-        /*       public static List<Course> GetCoursesForProfessor(string prof_id)
-			   {
-				   using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
-				   {
-
-					   try
-					   {
-						   con.Open();
-						   string sql = "SELECT * FROM \"ProfessorsCourses\" where prof_reg_num=" + "'" + prof_id + "';";
-						   using (NpgsqlCommand command = new NpgsqlCommand(sql, con))
-						   {
-							   using (NpgsqlDataReader dataReader = command.ExecuteReader())
-							   {
-								   if (dataReader.Read())
-								   {
-									   MessageBox.Show(String.Format("{0}", dataReader[0]));
-								   }
-							   }
-						   }
-						   con.Close();
-					   }
-					   catch (Exception msg)
-					   {
-						   MessageBox.Show(msg.ToString());
-						   MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
-					   }
-				   }
-			   }
-	   */
-
-
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public static void GetIds(string table)
+        public static List<int> GetIds(string table)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
             {
                 try
                 {
                     con.Open();
-                    string sql = "SELECT * FROM " + table + ";";
-                    using (NpgsqlCommand command = new NpgsqlCommand(sql, con))
-                    {
-                        using (NpgsqlDataReader dataReader = command.ExecuteReader())
-                        {
-                            if (dataReader.Read())
-                            {
-                                MessageBox.Show(String.Format("{0}", dataReader[0]));
-                            }
-                        }
-                    }
+
+					string sql = "SELECT * FROM " + table;
+					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+					NpgsqlDataReader results = cmd.ExecuteReader();
+
+					List<int> returnList = new List<int>();
+
+					while (results.Read())
+					{
+						returnList.Add(results.GetInt32(0));
+					}
+					
                     con.Close();
+					return returnList;
                 }
                 catch (Exception msg)
                 {
                     MessageBox.Show(msg.ToString());
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+					return null;
                 }
             }
         }
 
+		[MethodImpl(MethodImplOptions.Synchronized)]
 		public static string ValidateCredentials(string regNum, string password)
 		{
 			using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
@@ -347,7 +320,8 @@ namespace E_Class
 			}
 		}
 
-        public static Project GetProject(string projectID)
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		public static Project GetProject(string projectID)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
             {
@@ -383,8 +357,8 @@ namespace E_Class
             }
         }
 
-
-        public static void InsertProject(Project proj)
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		public static void InsertProject(Project proj)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
             {
@@ -408,7 +382,8 @@ namespace E_Class
             }
         }
 
-        public static void DeleteProject(Project proj)
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		public static void DeleteProject(Project proj)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
             {
@@ -463,6 +438,7 @@ namespace E_Class
         }
         */
 
+		[MethodImpl(MethodImplOptions.Synchronized)]
         public static void InsertCourse(string prof_reg_num)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
