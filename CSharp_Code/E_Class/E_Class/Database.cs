@@ -627,5 +627,37 @@ namespace E_Class
                 con.Close();
             }
         }
+
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		public static List<Student> getStudentsOfTeam(string team_id)
+		{
+			using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+			{
+				try
+				{
+					con.Open();
+					string sql = "SELECT stu_reg_num FROM StudentsTeam WHERE team_id=@team_id";
+					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+
+					cmd.Parameters.AddWithValue("team_id", team_id);
+					NpgsqlDataReader results = cmd.ExecuteReader();
+
+					List<Student> returnList = new List<Student>();
+					while (results.Read())
+					{
+						returnList.Add((Student)(Database.GetUser("student", results.GetString(0))));
+					}
+					con.Close();
+					return returnList;
+				}
+				catch (Exception msg)
+				{
+					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+					MessageBox.Show(msg.ToString());
+					return null;
+				}
+				con.Close();
+			}
+		}
     }
 }
