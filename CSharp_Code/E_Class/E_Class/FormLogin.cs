@@ -7,7 +7,7 @@ namespace E_Class
 {
     public partial class FormLogin : Form
     {
-		private static int gammaA = 255;
+    
 
 		private AbstractFormFactory formFactory;
 
@@ -15,6 +15,16 @@ namespace E_Class
         {
             InitializeComponent();
 			formFactory = new UserFormFactory();
+        }
+
+        private void login(string username, string password)
+        {
+            string user = Database.ValidateCredentials(username, password);
+            if (user != null)
+            {
+                this.Hide();
+                formFactory.createForm(user, username).Show();
+            }
         }
 
         private void LogInBtn_Enter(object sender, EventArgs e)
@@ -29,36 +39,28 @@ namespace E_Class
 
         private void LogInBtn_Click(object sender, EventArgs e)
         {
-            //Database.ValidateCredentials("K000", "0MlIdww1B");
-            //Database.GetCoursesForProf("K14160");
-            Database.GetTeams("C1");
+            login("M15750", "VmTF7K9e");
+            //login("K11108", "gifU7TbKk2lq");
+            //login(UsernameBox.Text, PasswordBox.Text);
         }
 
 
-        private void LoginAdmin_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            FormAdmin form = new FormAdmin();
-            form.ShowDialog();
-        }
-
-        private void LoginProf_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            FormProfessor form = new FormProfessor();
-            form.ShowDialog();
-        }
-
-        private void LoginStudent_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            FormStudent form = new FormStudent();
-            form.Show();
-        }
+        
 
         private void FormLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
 			Application.Exit();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Database.GetTeamsProjectFiles("T3");
+        }
+
+        private void LoginAdmin_Click(object sender, EventArgs e)
+        {
+            FormAdmin test = new FormAdmin("dasda");
+            test.Show();
         }
     }
 }
