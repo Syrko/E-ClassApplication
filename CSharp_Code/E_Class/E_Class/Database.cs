@@ -17,16 +17,42 @@ namespace E_Class
         private static string connectionString = "Server=127.0.0.1; User id=postgres; Password=123456789; Database=eclassmirror";
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public static void CreateTeam(string team_id, List<string> students)
+        public static void CreateTeam(List<string> students, string course_id)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
             {
                 try
                 {
                     con.Open();
+					string team_id = RegNum.getNextValue("Team");
 
-                    
-                }
+					string sql = "INSERT INTO teams VALUES(@team_id)";
+					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+					cmd.Parameters.AddWithValue("team_id", team_id);
+					cmd.ExecuteNonQuery();
+
+					foreach(string stu_reg_num in students)
+					{
+						sql = "INSERT INTO StudentsTeams VALUES(@stu_reg_num, @team_id, @course_id)";
+						cmd = new NpgsqlCommand(sql, con);
+						cmd.Parameters.AddWithValue("stu_reg_num", stu_reg_num);
+						cmd.Parameters.AddWithValue("team_id", team_id);
+						cmd.Parameters.AddWithValue("course_id", course_id);
+						cmd.ExecuteNonQuery();
+					}
+					
+					foreach(Project proj in GetProjectsForCourse(course_id))
+					{
+						sql = "INSERT INTO ProjectsOfTeam VALUES(@project_id, @project_file_id, @team_id, @grade)";
+						cmd = new NpgsqlCommand(sql, con);
+						cmd.Parameters.AddWithValue("project_id", proj.getProjectID());
+						cmd.Parameters.AddWithValue("project_file_id", null);
+						cmd.Parameters.AddWithValue("team_id", team_id);
+						cmd.Parameters.AddWithValue("grade", null);
+						cmd.ExecuteNonQuery();
+					}
+
+				}
                 catch (Exception msg)
                 {
                     MessageBox.Show(msg.ToString());
