@@ -138,9 +138,88 @@ namespace E_Class
 			}
 		}
 
+        public static Project GetProject(string projectID)
+        {
+            using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    string sql = "SELECT * FROM Projects WHERE id = @ID";
+                    NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+                    cmd.Parameters.AddWithValue("ID", projectID);
+                    NpgsqlDataReader results = cmd.ExecuteReader();
+                    if (results.Read())
+                    {
+                        string name = results.GetString(results.GetOrdinal("name"));
+                        string description = results.GetString(results.GetOrdinal("description"));
+                        double max_grade = results.GetDouble(results.GetOrdinal("max_grade"));
+                        con.Close();
+                        return new Project(projectID, name, description, max_grade);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No project with id: " + projectID + " found!");
+                        con.Close();
+                        return null;
+                    }
+                    
+                }
+                catch (Exception msg)
+                {
+                    MessageBox.Show(msg.ToString());
+                    MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+                    return null;
+                }
+            }
+        }
 
+        public static void InsertProject(Project proj)
+        {
+            using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    string sql = "INSERT INTO Projects VALUES(@id, @name, @description, @max_grade)";
+                    NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+                    cmd.Parameters.AddWithValue("id", proj.getProjectID());
+                    cmd.Parameters.AddWithValue("name", proj.getname());
+                    cmd.Parameters.AddWithValue("description", proj.getdescription());
+                    cmd.Parameters.AddWithValue("max_grade", proj.getmaxGrade());
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                catch (Exception msg)
+                {
+                    MessageBox.Show(msg.ToString());
+                    MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+                }
+            }
+        }
 
-        public static void GetCourse(string courseID)
+        public static void DeleteProject(Project proj)
+        {
+            using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    string sql = "DELETE FROM Projects WHERE id = @id)";
+                    NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+                    cmd.Parameters.AddWithValue("id", proj.getProjectID());
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                catch (Exception msg)
+                {
+                    MessageBox.Show(msg.ToString());
+                    MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+                }
+            }
+        }
+
+    public static void GetCourse(string courseID)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
             {
