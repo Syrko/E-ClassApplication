@@ -359,6 +359,34 @@ namespace E_Class
             }
         }
 
+        public static List<Project> GetProjectsForCourse(string projectID, Course course)
+        {
+            using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    string sql = "SELECT id FROM Projects WHERE course_id = @ID";
+                    NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+                    cmd.Parameters.AddWithValue("ID", course.getCourseID());
+                    NpgsqlDataReader results = cmd.ExecuteReader();
+                    List<Project> Projects = new List<Project>();
+                    while (results.Read())
+                    {
+                        string id = results.GetString(results.GetOrdinal("course_id"));
+                        Projects.Add(GetProject(id));
+                    }
+                    return Projects;
+                }
+                catch (Exception msg)
+                {
+                    MessageBox.Show(msg.ToString());
+                    MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+                    return null;
+                }
+            }
+        }
+
 		[MethodImpl(MethodImplOptions.Synchronized)]
 		public static void InsertProject(string name, string description, int max_grade)
         {
