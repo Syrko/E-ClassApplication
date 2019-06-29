@@ -26,7 +26,7 @@ namespace E_Class
 
 		
 
-        public FormStudent()
+        public FormStudent(string reg_num)
         {
             InitializeComponent();
 

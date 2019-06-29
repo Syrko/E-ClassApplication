@@ -24,7 +24,7 @@ namespace E_Class
         string[] assignments = new string[2];
 
 
-        public FormAdmin()
+        public FormAdmin(string reg_num)
         {
             InitializeComponent();
 

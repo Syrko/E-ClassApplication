@@ -14,7 +14,7 @@ namespace E_Class
 {
     class Database
     {
-        private static string connectionString = "Server=127.0.0.1; User id=postgres; Password=123456789; Database=eclass";
+        private static string connectionString = "Server=127.0.0.1; User id=postgres; Password=123456789; Database=eclassmirror";
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public static void CreateTeam(string team_id, List<string> students)
@@ -133,8 +133,7 @@ namespace E_Class
 						string surname = results.GetString(results.GetOrdinal("surname"));
 						string password = results.GetString(results.GetOrdinal("password"));
 						Email email = new Email(results.GetString(results.GetOrdinal("email")));
-
-						con.Close();
+                        con.Close();
 						return UserFactory.getInstance().createUser(userType, reg_num, password, name, surname, email);
 
 					}
@@ -359,7 +358,9 @@ namespace E_Class
             }
         }
 
-        public static List<Project> GetProjectsForCourse(string projectID, Course course)
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public static List<Project> GetProjectsForCourse(string courseID)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
             {
@@ -368,7 +369,7 @@ namespace E_Class
                     con.Open();
                     string sql = "SELECT id FROM Projects WHERE course_id = @ID";
                     NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
-                    cmd.Parameters.AddWithValue("ID", course.getCourseID());
+                    cmd.Parameters.AddWithValue("ID", courseID);
                     NpgsqlDataReader results = cmd.ExecuteReader();
                     List<Project> Projects = new List<Project>();
                     while (results.Read())
@@ -434,6 +435,7 @@ namespace E_Class
             }
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public static void GradeProject(ProjectFile projectFile, int grade)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
@@ -455,7 +457,8 @@ namespace E_Class
                 }
             }
         }
-/*
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public static List<Course> GetCoursesForProf(string prof_reg_num)
 
         {
@@ -470,10 +473,10 @@ namespace E_Class
                     NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
                     cmd.Parameters.AddWithValue("reg_num", prof_reg_num);
                     NpgsqlDataReader results = cmd.ExecuteReader();
-                    List<string> courses = new List<string>();
+                    List<Course> courses = new List<Course>();
                     while (results.Read())
                     {
-                        courses.Add(new Course(results[0].ToString(), results[1].ToString()));//0 = course id, 1 = course name
+                        courses.Add(new Course(results[0].ToString(), results[1].ToString(), (Professor)GetUser("Professor", prof_reg_num), GetProjectsForCourse(results[0].ToString()),GetTeams(results[0].ToString())));//0 = course id, 1 = course name
                     }
                     con.Close();
                     return courses;
@@ -488,7 +491,6 @@ namespace E_Class
                 }
             }
         }
-        */
 
 /*
 		[MethodImpl(MethodImplOptions.Synchronized)]
@@ -576,7 +578,7 @@ namespace E_Class
             }
         }
 
-
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public static void InsertTeam(string id)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
@@ -599,9 +601,10 @@ namespace E_Class
                 con.Close();
             }
         }
-
-
-        public static void GetTeams(string courseID) 
+        
+        /*
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public static List<Team> GetTeams(string courseID) 
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
             {
@@ -613,19 +616,128 @@ namespace E_Class
 
                     cmd.Parameters.AddWithValue("courseID", courseID);
                     NpgsqlDataReader results = cmd.ExecuteReader();
+
+                    List<string> teams = new List<string>();
                     while (results.Read())
                     {
-                        MessageBox.Show(results[0].ToString());
+                        teams.Add(new Team(results[0].ToString(), );
                     }
                     con.Close();
                 }
                 catch (Exception msg)
                 {
-                    MessageBox.Show(msg.ToString());
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+                    MessageBox.Show(msg.ToString());
+                    
                 }
                 con.Close();
             }
         }
+        */
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public static Dictionary<Project, ProjectFile> GetTeamsProjectFiles(string teamID)
+        {
+            using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    string sql = "select project_id, project_file_id from ProjectsOfTeam where team_id=@teamID;";
+                    NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+
+                    cmd.Parameters.AddWithValue("teamID", teamID);
+                    NpgsqlDataReader results = cmd.ExecuteReader();
+                    Dictionary<Project, ProjectFile> dict = new Dictionary<Project, ProjectFile>();
+                    while (results.Read())
+                    {
+                        dict.Add(GetProject(results[0].ToString()), GetFileDetails(teamID, results[0].ToString()));
+                    }
+                    con.Close();
+                    return dict;
+                }
+                catch (Exception msg)
+                {
+                    MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+                    MessageBox.Show(msg.ToString());
+                    return null;
+                }
+                con.Close();
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public static ProjectFile GetFileDetails(string teamID, string projectID)
+        {
+            using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    string sql = "select * from projectfiles where id=(select project_file_id from Projectsofteam where team_id=@teamID  and project_id=@projectID);";
+                    NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+
+                    cmd.Parameters.AddWithValue("teamID", teamID);
+                    cmd.Parameters.AddWithValue("projectID", projectID);
+                    NpgsqlDataReader results = cmd.ExecuteReader();
+                    if (results.Read())
+                    {
+                        con.Close();
+                        return new ProjectFile(results[0].ToString(), (byte[])results[1], results[2].ToString(),GetGrade(teamID, projectID), results.GetTimeStamp(3).ToDateTime());
+                    }
+                    else
+                    {
+                        con.Close();
+                        return null;
+                    }
+                    
+                }
+                catch (Exception msg)
+                {
+                    MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+                    MessageBox.Show(msg.ToString());
+                    return null;
+
+                }
+                con.Close();
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public static int GetGrade(string teamID, string projectID)
+        {
+            using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    string sql = "select grade from Projectsofteam where team_id=@teamID  and project_id=@projectID;";
+                    NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+
+                    cmd.Parameters.AddWithValue("teamID", teamID);
+                    cmd.Parameters.AddWithValue("projectID", projectID);
+                    NpgsqlDataReader results = cmd.ExecuteReader();
+                    if (results.Read())
+                    {
+                        return results.GetInt32(3);
+                    }
+                    else
+                    {
+                        return -1;
+                    }
+                    con.Close();
+                }
+                catch (Exception msg)
+                {
+                    MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+                    MessageBox.Show(msg.ToString());
+                    return -1;
+                }
+                con.Close();
+            }
+
+        }
+
+
     }
 }
