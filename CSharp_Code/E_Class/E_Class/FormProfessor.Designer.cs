@@ -67,21 +67,22 @@
             this.GradeList = new System.Windows.Forms.ListView();
             this.GradeGroupBox = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.GradeBox = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.ProjNameBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.TeamIDBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.ChooseCourseMnBtn = new System.Windows.Forms.Button();
             this.CoursesList = new System.Windows.Forms.ListView();
             this.SelectCourseBtn = new System.Windows.Forms.Button();
             this.SelectedCourseLabel = new System.Windows.Forms.Label();
+            this.DownloadProjBtn = new System.Windows.Forms.Button();
             this.ProjectGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MaxGradeBox)).BeginInit();
             this.TeamGroupBox.SuspendLayout();
             this.GradeGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GradeBox)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -525,18 +526,19 @@
             // 
             this.GradeGroupBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.GradeGroupBox.BackColor = System.Drawing.Color.White;
+            this.GradeGroupBox.Controls.Add(this.DownloadProjBtn);
             this.GradeGroupBox.Controls.Add(this.button3);
-            this.GradeGroupBox.Controls.Add(this.numericUpDown2);
+            this.GradeGroupBox.Controls.Add(this.GradeBox);
             this.GradeGroupBox.Controls.Add(this.label5);
-            this.GradeGroupBox.Controls.Add(this.textBox2);
+            this.GradeGroupBox.Controls.Add(this.ProjNameBox);
             this.GradeGroupBox.Controls.Add(this.label4);
-            this.GradeGroupBox.Controls.Add(this.textBox1);
+            this.GradeGroupBox.Controls.Add(this.TeamIDBox);
             this.GradeGroupBox.Controls.Add(this.label8);
             this.GradeGroupBox.Location = new System.Drawing.Point(539, 364);
             this.GradeGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.GradeGroupBox.Name = "GradeGroupBox";
             this.GradeGroupBox.Padding = new System.Windows.Forms.Padding(2);
-            this.GradeGroupBox.Size = new System.Drawing.Size(320, 152);
+            this.GradeGroupBox.Size = new System.Drawing.Size(320, 180);
             this.GradeGroupBox.TabIndex = 33;
             this.GradeGroupBox.TabStop = false;
             this.GradeGroupBox.Text = "GradeTeam";
@@ -553,13 +555,13 @@
             this.button3.Text = "Submit";
             this.button3.UseVisualStyleBackColor = false;
             // 
-            // numericUpDown2
+            // GradeBox
             // 
-            this.numericUpDown2.BackColor = System.Drawing.Color.White;
-            this.numericUpDown2.Location = new System.Drawing.Point(250, 67);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(50, 20);
-            this.numericUpDown2.TabIndex = 6;
+            this.GradeBox.BackColor = System.Drawing.Color.White;
+            this.GradeBox.Location = new System.Drawing.Point(250, 67);
+            this.GradeBox.Name = "GradeBox";
+            this.GradeBox.Size = new System.Drawing.Size(50, 20);
+            this.GradeBox.TabIndex = 6;
             // 
             // label5
             // 
@@ -571,14 +573,15 @@
             this.label5.TabIndex = 5;
             this.label5.Text = "Grade";
             // 
-            // textBox2
+            // ProjNameBox
             // 
-            this.textBox2.BackColor = System.Drawing.Color.White;
-            this.textBox2.Location = new System.Drawing.Point(89, 67);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(143, 20);
-            this.textBox2.TabIndex = 2;
+            this.ProjNameBox.BackColor = System.Drawing.Color.White;
+            this.ProjNameBox.Location = new System.Drawing.Point(89, 66);
+            this.ProjNameBox.Margin = new System.Windows.Forms.Padding(2);
+            this.ProjNameBox.Name = "ProjNameBox";
+            this.ProjNameBox.ReadOnly = true;
+            this.ProjNameBox.Size = new System.Drawing.Size(143, 20);
+            this.ProjNameBox.TabIndex = 2;
             // 
             // label4
             // 
@@ -586,18 +589,19 @@
             this.label4.Location = new System.Drawing.Point(89, 48);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 13);
+            this.label4.Size = new System.Drawing.Size(69, 13);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Project";
+            this.label4.Text = "Project name";
             // 
-            // textBox1
+            // TeamIDBox
             // 
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(20, 67);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(48, 20);
-            this.textBox1.TabIndex = 0;
+            this.TeamIDBox.BackColor = System.Drawing.Color.White;
+            this.TeamIDBox.Location = new System.Drawing.Point(20, 67);
+            this.TeamIDBox.Margin = new System.Windows.Forms.Padding(2);
+            this.TeamIDBox.Name = "TeamIDBox";
+            this.TeamIDBox.ReadOnly = true;
+            this.TeamIDBox.Size = new System.Drawing.Size(48, 20);
+            this.TeamIDBox.TabIndex = 0;
             // 
             // label8
             // 
@@ -653,12 +657,24 @@
             this.SelectedCourseLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.SelectedCourseLabel.BackColor = System.Drawing.Color.Transparent;
             this.SelectedCourseLabel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SelectedCourseLabel.Location = new System.Drawing.Point(326, 496);
+            this.SelectedCourseLabel.Location = new System.Drawing.Point(314, 497);
             this.SelectedCourseLabel.Name = "SelectedCourseLabel";
             this.SelectedCourseLabel.Size = new System.Drawing.Size(220, 20);
             this.SelectedCourseLabel.TabIndex = 41;
             this.SelectedCourseLabel.Text = "No selected course";
             this.SelectedCourseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // DownloadProjBtn
+            // 
+            this.DownloadProjBtn.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.DownloadProjBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.DownloadProjBtn.Location = new System.Drawing.Point(108, 144);
+            this.DownloadProjBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.DownloadProjBtn.Name = "DownloadProjBtn";
+            this.DownloadProjBtn.Size = new System.Drawing.Size(107, 26);
+            this.DownloadProjBtn.TabIndex = 33;
+            this.DownloadProjBtn.Text = "Download Project";
+            this.DownloadProjBtn.UseVisualStyleBackColor = false;
             // 
             // FormProfessor
             // 
@@ -699,7 +715,7 @@
             this.TeamGroupBox.PerformLayout();
             this.GradeGroupBox.ResumeLayout(false);
             this.GradeGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GradeBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -734,11 +750,11 @@
         private System.Windows.Forms.ListView GradeList;
         private System.Windows.Forms.GroupBox GradeGroupBox;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown GradeBox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox ProjNameBox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TeamIDBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button ChooseCourseMnBtn;
         private System.Windows.Forms.ListView CoursesList;
@@ -755,5 +771,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox DescriptionBox;
+        private System.Windows.Forms.Button DownloadProjBtn;
     }
 }
