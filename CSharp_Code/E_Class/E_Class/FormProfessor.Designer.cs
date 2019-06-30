@@ -38,7 +38,7 @@
             this.DescriptionBox = new System.Windows.Forms.TextBox();
             this.MaxGradeBox = new System.Windows.Forms.NumericUpDown();
             this.CreateEditUserLabel = new System.Windows.Forms.Label();
-            this.CancelUsersBtn = new System.Windows.Forms.Button();
+            this.CancelProjectBtn = new System.Windows.Forms.Button();
             this.RegMsgLabel = new System.Windows.Forms.Label();
             this.ProjectNameBox = new System.Windows.Forms.TextBox();
             this.CreateEditProjectBtn = new System.Windows.Forms.Button();
@@ -59,7 +59,7 @@
             this.Student2Box = new System.Windows.Forms.TextBox();
             this.Student1Box = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.CancelTeamBtn = new System.Windows.Forms.Button();
             this.CreateEditTeamBtn = new System.Windows.Forms.Button();
             this.TeamList = new System.Windows.Forms.ListView();
             this.ProjectList = new System.Windows.Forms.ListView();
@@ -77,6 +77,13 @@
             this.CoursesList = new System.Windows.Forms.ListView();
             this.SelectCourseBtn = new System.Windows.Forms.Button();
             this.SelectedCourseLabel = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.DescriptionErrorLabel = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.ProjectGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MaxGradeBox)).BeginInit();
             this.TeamGroupBox.SuspendLayout();
@@ -150,12 +157,13 @@
             // 
             this.ProjectGroupBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ProjectGroupBox.BackColor = System.Drawing.Color.White;
+            this.ProjectGroupBox.Controls.Add(this.label12);
             this.ProjectGroupBox.Controls.Add(this.dateTimePicker1);
             this.ProjectGroupBox.Controls.Add(this.label11);
             this.ProjectGroupBox.Controls.Add(this.DescriptionBox);
             this.ProjectGroupBox.Controls.Add(this.MaxGradeBox);
             this.ProjectGroupBox.Controls.Add(this.CreateEditUserLabel);
-            this.ProjectGroupBox.Controls.Add(this.CancelUsersBtn);
+            this.ProjectGroupBox.Controls.Add(this.CancelProjectBtn);
             this.ProjectGroupBox.Controls.Add(this.RegMsgLabel);
             this.ProjectGroupBox.Controls.Add(this.ProjectNameBox);
             this.ProjectGroupBox.Controls.Add(this.CreateEditProjectBtn);
@@ -163,6 +171,7 @@
             this.ProjectGroupBox.Controls.Add(this.MaxGradeLabel);
             this.ProjectGroupBox.Controls.Add(this.DescriptionLabel);
             this.ProjectGroupBox.Controls.Add(this.RegNumErrorLabel);
+            this.ProjectGroupBox.Controls.Add(this.DescriptionErrorLabel);
             this.ProjectGroupBox.Location = new System.Drawing.Point(148, 5);
             this.ProjectGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.ProjectGroupBox.Name = "ProjectGroupBox";
@@ -218,18 +227,18 @@
             this.CreateEditUserLabel.Text = "label";
             this.CreateEditUserLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // CancelUsersBtn
+            // CancelProjectBtn
             // 
-            this.CancelUsersBtn.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.CancelUsersBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CancelUsersBtn.Location = new System.Drawing.Point(138, 318);
-            this.CancelUsersBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.CancelUsersBtn.Name = "CancelUsersBtn";
-            this.CancelUsersBtn.Size = new System.Drawing.Size(56, 22);
-            this.CancelUsersBtn.TabIndex = 31;
-            this.CancelUsersBtn.Text = "Cancel";
-            this.CancelUsersBtn.UseVisualStyleBackColor = false;
-            this.CancelUsersBtn.Click += new System.EventHandler(this.CancelUsersBtn_Click);
+            this.CancelProjectBtn.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.CancelProjectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CancelProjectBtn.Location = new System.Drawing.Point(138, 318);
+            this.CancelProjectBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.CancelProjectBtn.Name = "CancelProjectBtn";
+            this.CancelProjectBtn.Size = new System.Drawing.Size(56, 22);
+            this.CancelProjectBtn.TabIndex = 31;
+            this.CancelProjectBtn.Text = "Cancel";
+            this.CancelProjectBtn.UseVisualStyleBackColor = false;
+            this.CancelProjectBtn.Click += new System.EventHandler(this.CancelProjectBtn_Click);
             // 
             // RegMsgLabel
             // 
@@ -335,8 +344,13 @@
             this.TeamGroupBox.Controls.Add(this.Student2Box);
             this.TeamGroupBox.Controls.Add(this.Student1Box);
             this.TeamGroupBox.Controls.Add(this.label2);
-            this.TeamGroupBox.Controls.Add(this.button1);
+            this.TeamGroupBox.Controls.Add(this.CancelTeamBtn);
             this.TeamGroupBox.Controls.Add(this.CreateEditTeamBtn);
+            this.TeamGroupBox.Controls.Add(this.label13);
+            this.TeamGroupBox.Controls.Add(this.label14);
+            this.TeamGroupBox.Controls.Add(this.label15);
+            this.TeamGroupBox.Controls.Add(this.label16);
+            this.TeamGroupBox.Controls.Add(this.label17);
             this.TeamGroupBox.Location = new System.Drawing.Point(478, 5);
             this.TeamGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.TeamGroupBox.Name = "TeamGroupBox";
@@ -412,7 +426,7 @@
             // 
             this.Student4Box.Location = new System.Drawing.Point(205, 145);
             this.Student4Box.Name = "Student4Box";
-            this.Student4Box.Size = new System.Drawing.Size(156, 20);
+            this.Student4Box.Size = new System.Drawing.Size(152, 20);
             this.Student4Box.TabIndex = 35;
             // 
             // Student3Box
@@ -424,9 +438,9 @@
             // 
             // Student2Box
             // 
-            this.Student2Box.Location = new System.Drawing.Point(205, 74);
+            this.Student2Box.Location = new System.Drawing.Point(205, 73);
             this.Student2Box.Name = "Student2Box";
-            this.Student2Box.Size = new System.Drawing.Size(156, 20);
+            this.Student2Box.Size = new System.Drawing.Size(152, 20);
             this.Student2Box.TabIndex = 33;
             // 
             // Student1Box
@@ -446,17 +460,18 @@
             this.label2.Text = "label";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // button1
+            // CancelTeamBtn
             // 
-            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(163, 318);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(56, 22);
-            this.button1.TabIndex = 31;
-            this.button1.Text = "Cancel";
-            this.button1.UseVisualStyleBackColor = false;
+            this.CancelTeamBtn.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.CancelTeamBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CancelTeamBtn.Location = new System.Drawing.Point(163, 318);
+            this.CancelTeamBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.CancelTeamBtn.Name = "CancelTeamBtn";
+            this.CancelTeamBtn.Size = new System.Drawing.Size(56, 22);
+            this.CancelTeamBtn.TabIndex = 31;
+            this.CancelTeamBtn.Text = "Cancel";
+            this.CancelTeamBtn.UseVisualStyleBackColor = false;
+            this.CancelTeamBtn.Click += new System.EventHandler(this.CancelTeamBtn_Click);
             // 
             // CreateEditTeamBtn
             // 
@@ -659,6 +674,72 @@
             this.SelectedCourseLabel.Text = "No selected course";
             this.SelectedCourseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.White;
+            this.label12.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label12.Location = new System.Drawing.Point(84, 156);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(19, 13);
+            this.label12.TabIndex = 36;
+            this.label12.Text = "no";
+            // 
+            // DescriptionErrorLabel
+            // 
+            this.DescriptionErrorLabel.BackColor = System.Drawing.Color.Red;
+            this.DescriptionErrorLabel.Location = new System.Drawing.Point(22, 171);
+            this.DescriptionErrorLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.DescriptionErrorLabel.Name = "DescriptionErrorLabel";
+            this.DescriptionErrorLabel.Size = new System.Drawing.Size(278, 98);
+            this.DescriptionErrorLabel.TabIndex = 37;
+            // 
+            // label13
+            // 
+            this.label13.BackColor = System.Drawing.Color.Red;
+            this.label13.Location = new System.Drawing.Point(18, 73);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(154, 22);
+            this.label13.TabIndex = 38;
+            // 
+            // label14
+            // 
+            this.label14.BackColor = System.Drawing.Color.Red;
+            this.label14.Location = new System.Drawing.Point(204, 72);
+            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(154, 22);
+            this.label14.TabIndex = 42;
+            // 
+            // label15
+            // 
+            this.label15.BackColor = System.Drawing.Color.Red;
+            this.label15.Location = new System.Drawing.Point(18, 144);
+            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(154, 23);
+            this.label15.TabIndex = 43;
+            // 
+            // label16
+            // 
+            this.label16.BackColor = System.Drawing.Color.Red;
+            this.label16.Location = new System.Drawing.Point(205, 141);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(157, 28);
+            this.label16.TabIndex = 44;
+            // 
+            // label17
+            // 
+            this.label17.BackColor = System.Drawing.Color.Red;
+            this.label17.Location = new System.Drawing.Point(16, 212);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(157, 24);
+            this.label17.TabIndex = 45;
+            // 
             // FormProfessor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -708,7 +789,7 @@
         private System.Windows.Forms.Button ModifyTeamMnBtn;
         private System.Windows.Forms.GroupBox ProjectGroupBox;
         private System.Windows.Forms.Label CreateEditUserLabel;
-        private System.Windows.Forms.Button CancelUsersBtn;
+        private System.Windows.Forms.Button CancelProjectBtn;
         private System.Windows.Forms.Label RegMsgLabel;
         private System.Windows.Forms.TextBox ProjectNameBox;
         private System.Windows.Forms.Button CreateEditProjectBtn;
@@ -720,7 +801,7 @@
         private System.Windows.Forms.Button GradeProjectsMnBtn;
         private System.Windows.Forms.GroupBox TeamGroupBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button CancelTeamBtn;
         private System.Windows.Forms.Button CreateEditTeamBtn;
         private System.Windows.Forms.ListView TeamList;
         private System.Windows.Forms.ListView ProjectList;
@@ -751,5 +832,12 @@
         private System.Windows.Forms.Button DownloadProjBtn;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label DescriptionErrorLabel;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
     }
 }

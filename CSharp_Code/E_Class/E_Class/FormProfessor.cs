@@ -379,7 +379,6 @@ namespace E_Class
             list.Add(Student3Box);
             list.Add(Student4Box);
             list.Add(Student5Box);
-
             foreach (Team team in selCourse.getTeamList())
             {
                 if(team.getTeamID() == TeamList.SelectedItems[0].Text)
@@ -390,6 +389,7 @@ namespace E_Class
                     }
                 }
             }
+            TeamList.Enabled = false;
         }
 
 
@@ -412,7 +412,7 @@ namespace E_Class
                     dateTimePicker1.Value = proj.getDueDate();
                 }
             }
-
+            ProjectList.Enabled = false;
         }
 
 
@@ -475,8 +475,14 @@ namespace E_Class
                     stuIDs.Add(Student5Box.Text);
                 }
 
+
+                ClearAllBoxes();
+                TeamList.Enabled = true;
                 user.editTeam(TeamList.SelectedItems[0].Text, selectedCourse, stuIDs);
                 CreateEditTeamBtn.Text = "Create";
+
+
+
             }
             else
             {
@@ -506,6 +512,8 @@ namespace E_Class
                     stuIDs.Add(Student5Box.Text);
                 }
                 user.createTeam(stuIDs, selectedCourse);
+                ClearAllBoxes();
+                TeamList.Enabled = true;
             }
         }
 
@@ -523,22 +531,57 @@ namespace E_Class
         private void CreateEditProjectBtn_Click(object sender, EventArgs e)
         {
             if(CreateEditProjectBtn.Text == "Submit")
-            {
+            { 
+                user.editProject()
 
 
-
+                ClearAllBoxes();
+                ProjectList.Enabled = true;
                 CreateEditTeamBtn.Text = "Create";
             }
             else
             {
-                
+                ClearAllBoxes();
+                ProjectList.Enabled = true;
                 user.createProject(ProjectNameBox.Text, DescriptionBox.Text, (int)MaxGradeBox.Value, selectedCourse, DateTime.Parse(dateTimePicker1.Value.Date.ToString("yyyy-MM-dd")+" 23:59:59"));
             }
         }
 
-        private void CancelUsersBtn_Click(object sender, EventArgs e)
+
+        private void CancelProjectBtn_Click(object sender, EventArgs e)
         {
-            
+            ClearAllBoxes();
+            ProjectList.Enabled = true;
         }
+
+        private void CancelTeamBtn_Click(object sender, EventArgs e)
+        {
+            ClearAllBoxes();
+            TeamList.Enabled = true;
+        }
+
+
+
+
+
+
+        private void ClearAllBoxes()
+        {
+            Student1Box.Text = "";
+            Student2Box.Text = "";
+            Student3Box.Text = "";
+            Student4Box.Text = "";
+            Student5Box.Text = "";
+
+            ProjectNameBox.Text = "";
+            GradeBox.Value = 0;
+            DescriptionBox.Text = "";
+
+            TeamIDBox.Text = "";
+            ProjNameBox.Text = "";
+            GradeBox.Value = 0;
+        }
+
+
     }
 }
