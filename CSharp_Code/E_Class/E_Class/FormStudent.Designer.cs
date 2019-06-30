@@ -34,7 +34,7 @@
             this.BrowseBtn = new System.Windows.Forms.Button();
             this.UploadBtn = new System.Windows.Forms.Button();
             this.UploadGroupBox = new System.Windows.Forms.GroupBox();
-            this.label11 = new System.Windows.Forms.Label();
+            this.DescriptionBox = new System.Windows.Forms.TextBox();
             this.FileNameLabel = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.DueDateLabel = new System.Windows.Forms.Label();
@@ -44,6 +44,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.SelectCourseMnBtn = new System.Windows.Forms.Button();
             this.ProjectsMnBtn = new System.Windows.Forms.Button();
@@ -51,7 +52,7 @@
             this.SelectedCourseLabel = new System.Windows.Forms.Label();
             this.SelectCourseBtn = new System.Windows.Forms.Button();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.DescriptionBox = new System.Windows.Forms.TextBox();
+            this.MsgLabel = new System.Windows.Forms.Label();
             this.UploadGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -122,6 +123,7 @@
             // 
             this.UploadGroupBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.UploadGroupBox.BackColor = System.Drawing.Color.White;
+            this.UploadGroupBox.Controls.Add(this.MsgLabel);
             this.UploadGroupBox.Controls.Add(this.DescriptionBox);
             this.UploadGroupBox.Controls.Add(this.FileNameLabel);
             this.UploadGroupBox.Controls.Add(this.label8);
@@ -142,17 +144,14 @@
             this.UploadGroupBox.TabIndex = 33;
             this.UploadGroupBox.TabStop = false;
             // 
-            // label11
+            // DescriptionBox
             // 
-            this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(103)))), ((int)(((byte)(178)))));
-            this.label11.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
-            this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(-5, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(148, 64);
-            this.label11.TabIndex = 43;
-            this.label11.Text = "TestTitle";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.DescriptionBox.Location = new System.Drawing.Point(22, 84);
+            this.DescriptionBox.Multiline = true;
+            this.DescriptionBox.Name = "DescriptionBox";
+            this.DescriptionBox.ReadOnly = true;
+            this.DescriptionBox.Size = new System.Drawing.Size(424, 81);
+            this.DescriptionBox.TabIndex = 43;
             // 
             // FileNameLabel
             // 
@@ -188,7 +187,7 @@
             // 
             this.ProjectNameLabel.AutoSize = true;
             this.ProjectNameLabel.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ProjectNameLabel.Location = new System.Drawing.Point(92, 26);
+            this.ProjectNameLabel.Location = new System.Drawing.Point(92, 40);
             this.ProjectNameLabel.Name = "ProjectNameLabel";
             this.ProjectNameLabel.Size = new System.Drawing.Size(48, 13);
             this.ProjectNameLabel.TabIndex = 36;
@@ -208,7 +207,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label3.Location = new System.Drawing.Point(19, 53);
+            this.label3.Location = new System.Drawing.Point(19, 67);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 13);
             this.label3.TabIndex = 34;
@@ -218,7 +217,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label2.Location = new System.Drawing.Point(19, 26);
+            this.label2.Location = new System.Drawing.Point(19, 40);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 13);
             this.label2.TabIndex = 33;
@@ -239,6 +238,18 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(473, 95);
             this.label10.TabIndex = 41;
+            // 
+            // label11
+            // 
+            this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(103)))), ((int)(((byte)(178)))));
+            this.label11.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(-5, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(148, 64);
+            this.label11.TabIndex = 43;
+            this.label11.Text = "TestTitle";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // openFileDialog
             // 
@@ -310,14 +321,14 @@
             this.SelectCourseBtn.UseVisualStyleBackColor = false;
             this.SelectCourseBtn.Click += new System.EventHandler(this.SelectCourseBtn_Click);
             // 
-            // DescriptionBox
+            // MsgLabel
             // 
-            this.DescriptionBox.Location = new System.Drawing.Point(22, 70);
-            this.DescriptionBox.Multiline = true;
-            this.DescriptionBox.Name = "DescriptionBox";
-            this.DescriptionBox.ReadOnly = true;
-            this.DescriptionBox.Size = new System.Drawing.Size(424, 81);
-            this.DescriptionBox.TabIndex = 43;
+            this.MsgLabel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.MsgLabel.Location = new System.Drawing.Point(152, 15);
+            this.MsgLabel.Name = "MsgLabel";
+            this.MsgLabel.Size = new System.Drawing.Size(161, 24);
+            this.MsgLabel.TabIndex = 44;
+            this.MsgLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormStudent
             // 
@@ -372,5 +383,6 @@
         private System.Windows.Forms.Button SelectCourseBtn;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.TextBox DescriptionBox;
+        private System.Windows.Forms.Label MsgLabel;
     }
 }

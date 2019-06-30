@@ -151,11 +151,26 @@ namespace E_Class
             openFileDialog.CheckFileExists = true;
             openFileDialog.CheckPathExists = true;
             openFileDialog.Multiselect = false;
+            openFileDialog.Filter = "Zip files (*.zip) | *.zip";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                FileNameLabel.Text = openFileDialog.FileName;
+                string temp = openFileDialog.FileName;
+                for(int i =temp.Length-1; i>=0; i--)
+                {
+                    if (temp[i] == '\\')
+                    {
+                        temp = temp.Substring(i+1);
+                        break;
+                    }
+                }
+                
+                FileNameLabel.Text = temp;
                 FileInBytes = System.IO.File.ReadAllBytes(openFileDialog.FileName);
             }
+            MessageBox.Show(DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"));
+
+
+
         }
 
 
@@ -289,7 +304,9 @@ namespace E_Class
         {
             try
             {
-                //Database.UploadProject();
+                Team team = Database.GetTeamOfStudent(user, SelectedCourse);
+                user.uploadProjectFile(FileInBytes, FileNameLabel.Text, DateTime.Now, team.getTeamID(), ProjectsList.SelectedItems[0].Text);
+                MsgLabel.Text = "File uploaded Successfully";
             }
             catch(Exception msg)
             {
@@ -297,6 +314,12 @@ namespace E_Class
             }
 
         }
+
+        private static DateTime Trims(DateTime date, long roundTicks)
+        {
+            return new DateTime(date.Ticks - date.Ticks % roundTicks, date.Kind);
+        }
+
 
 
         private void ProjectsList_MouseClick(object sender, MouseEventArgs e)
