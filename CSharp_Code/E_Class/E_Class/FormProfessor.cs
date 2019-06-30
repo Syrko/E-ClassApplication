@@ -10,7 +10,7 @@ namespace E_Class
     {
 
         //TODO Clear lists on every menu click
-        //Refresh List, Max grade limit, selection NOT null
+        //Refresh List, Max grade limit, selection NOT null, label in groupBoxes
 
 
 
@@ -117,7 +117,7 @@ namespace E_Class
             TeamRightClickMenuDelete.Click += new EventHandler(TeamDelete_RightClick);
             TeamRightClickMenuEdit.Click += new EventHandler(TeamEdit_RightClick);
             TeamRightClickMenu.Items.AddRange(new ToolStripItem[] { TeamRightClickMenuEdit, TeamRightClickMenuDelete });
-            //===================================================================================
+            //==========================================================================================================
 
             //Projects Right Click menu creation
             ToolStripMenuItem ProjectRightClickMenuEdit = new ToolStripMenuItem("Edit");
@@ -125,7 +125,7 @@ namespace E_Class
             ProjectRightClickMenuDelete.Click += new EventHandler(ProjectDelete_RightClick);
             ProjectRightClickMenuEdit.Click += new EventHandler(ProjectEdit_RightClick);
             ProjectRightClickMenu.Items.AddRange(new ToolStripItem[] { ProjectRightClickMenuEdit, ProjectRightClickMenuDelete });
-            //===================================================================================
+            //===================================================================================================================
 
 
 
@@ -394,7 +394,7 @@ namespace E_Class
 
         private void TeamDelete_RightClick(object sender, System.EventArgs e)
         {
-            Database.DeleteTeam(TeamList.SelectedItems[0].Text);
+            user.deleteTeam(TeamList.SelectedItems[0].Text);
         }
 
         private void TeamEdit_RightClick(object sender, System.EventArgs e)
@@ -422,13 +422,13 @@ namespace E_Class
 
         private void ProjectDelete_RightClick(object sender, System.EventArgs e)
         {
-
+            user.deleteProject(ProjectList.SelectedItems[0].Text);
         }
 
         
         private void ProjectEdit_RightClick(object sender, System.EventArgs e)
         {
-            CreateEditTeamBtn.Text = "Submit";
+            CreateEditProjectBtn.Text = "Submit";
             foreach (Project proj in selCourse.getProjectList())
             {
                 if (proj.getProjectID() == ProjectList.SelectedItems[0].Text)
@@ -502,7 +502,7 @@ namespace E_Class
                     stuIDs.Add(Student5Box.Text);
                 }
 
-                Database.EditTeam(TeamList.SelectedItems[0].Text, selectedCourse, stuIDs);
+                user.editTeam(TeamList.SelectedItems[0].Text, selectedCourse, stuIDs);
                 CreateEditTeamBtn.Text = "Create";
             }
             else
@@ -532,9 +532,7 @@ namespace E_Class
                 {
                     stuIDs.Add(Student5Box.Text);
                 }
-                Database.CreateTeam(stuIDs, selectedCourse);
-
-
+                user.createTeam(stuIDs, selectedCourse);
             }
         }
 
@@ -547,6 +545,19 @@ namespace E_Class
                     ProjectRightClickMenu.Show(Cursor.Position);
                 }
             }
+        }
+
+        private void CreateEditProjectBtn_Click(object sender, EventArgs e)
+        {
+            if(CreateEditProjectBtn.Text == "Submit")
+            {
+                CreateEditTeamBtn.Text = "Submit";
+            }
+            else
+            {
+                Database.InsertProject(ProjectNameBox.Text, DescriptionBox.Text, (int)MaxGradeBox.Value, selectedCourse);
+            }
+
         }
     }
 }

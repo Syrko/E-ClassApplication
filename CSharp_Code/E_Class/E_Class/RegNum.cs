@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Types;
+using System.Windows.Forms;
+
+
 
 namespace E_Class
 {
@@ -56,6 +59,7 @@ namespace E_Class
 					case UserTypes.PROFESSOR:
 						return "K" + id.ToString();
 					case "Project":
+                        MessageBox.Show(id.ToString());
 						return "P" + id.ToString();
 					case "Team":
 						return "T" + id.ToString();

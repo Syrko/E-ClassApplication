@@ -331,10 +331,7 @@ namespace E_Class
 					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
 
 					cmd.Parameters.AddWithValue("reg_num", professor.registrationNumber.getRegNumString());
-
 					cmd.ExecuteNonQuery();
-
-					 
 				}
 				catch (Exception msg)
 				{
@@ -362,8 +359,9 @@ namespace E_Class
                         string name = results.GetString(results.GetOrdinal("name"));
                         string description = results.GetString(results.GetOrdinal("description"));
                         int max_grade = results.GetInt32(results.GetOrdinal("max_grade"));
-                         
-                        return new Project(projectID, name, description, max_grade);
+                        DateTime due_date = results.GetTimeStamp(results.GetOrdinal("due_date")).ToDateTime();
+
+                        return new Project(projectID, name, description, max_grade, due_date);
                     }
                     else
                     {
@@ -413,19 +411,20 @@ namespace E_Class
         }
 
 		[MethodImpl(MethodImplOptions.Synchronized)]
-		public static void InsertProject(string name, string description, int max_grade)
+		public static void InsertProject(string name, string description, int max_grade, string course_id)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
             {
                 try
                 {
                     con.Open();
-                    string sql = "INSERT INTO Projects VALUES(@id, @name, @description, @max_grade)";
+                    string sql = "INSERT INTO Projects VALUES(@id, @name, @description, @max_grade, @course_id)";
                     NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
-                    cmd.Parameters.AddWithValue("id", RegNum.getNextValue("project"));
+                    cmd.Parameters.AddWithValue("id", RegNum.getNextValue("Project"));
                     cmd.Parameters.AddWithValue("name", name);
                     cmd.Parameters.AddWithValue("description", description);
                     cmd.Parameters.AddWithValue("max_grade", max_grade);
+                    cmd.Parameters.AddWithValue("course_id", course_id);
                     cmd.ExecuteNonQuery();
                      
                 }
@@ -438,7 +437,7 @@ namespace E_Class
         }
 
 		[MethodImpl(MethodImplOptions.Synchronized)]
-		public static void DeleteProject(Project proj)
+		public static void DeleteProject(string project_id)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
             {
@@ -447,7 +446,7 @@ namespace E_Class
                     con.Open();
                     string sql = "DELETE FROM Projects WHERE id = @id)";
                     NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
-                    cmd.Parameters.AddWithValue("id", proj.getProjectID());
+                    cmd.Parameters.AddWithValue("id", project_id);
                     cmd.ExecuteNonQuery();
                      
                 }
@@ -868,5 +867,33 @@ namespace E_Class
 			}
 		}
 
-	}
+
+        public static Dictionary<string, string> getAllCourses()
+        {
+            using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    string sql = "SELECT * FROM Courses";
+                    NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+                    NpgsqlDataReader results = cmd.ExecuteReader();
+                    Dictionary<string, string> courses = new Dictionary<string, string>();
+                    while (results.Read())
+                    {
+                        courses.Add(results[0].ToString(), results[1].ToString());
+                    }
+                    return courses;
+                }
+                catch (Exception msg)
+                {
+                    MessageBox.Show(msg.ToString());
+                    MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+
+                    return null;
+                }
+            }
+        }
+
+    }
 }

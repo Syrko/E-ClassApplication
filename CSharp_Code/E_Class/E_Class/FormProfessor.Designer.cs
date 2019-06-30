@@ -258,6 +258,7 @@
             this.CreateEditProjectBtn.TabIndex = 12;
             this.CreateEditProjectBtn.Text = "Create";
             this.CreateEditProjectBtn.UseVisualStyleBackColor = false;
+            this.CreateEditProjectBtn.Click += new System.EventHandler(this.CreateEditProjectBtn_Click);
             // 
             // ProjectNameLabel
             // 
