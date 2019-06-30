@@ -24,6 +24,7 @@ namespace E_Class
         Professor user;
         Course selCourse = null;
         FormLogin login;
+        string projIDForEditGrade;
 
 
 
@@ -40,7 +41,7 @@ namespace E_Class
             GradeProjectsMnBtn.BackColor = Color.FromArgb(100, 10, 10, 10);
             label1.BackColor = Color.FromArgb(100, 10, 10, 10);
             LogoutBtn.BackColor = Color.FromArgb(100, 10, 10, 10);
-            dateTimePicker1.MinDate = DateTime.Now;//Date limiter
+            
             TeamGroupBox.Paint += Paint;
             ProjectGroupBox.Paint += Paint;
             GradeGroupBox.Paint += Paint;
@@ -106,9 +107,11 @@ namespace E_Class
             GradeList.FullRowSelect = true;
             GradeList.GridLines = true;
             GradeList.Sorting = SortOrder.Ascending;
+            
             GradeList.Columns.Add("Team", -2, HorizontalAlignment.Left);
             GradeList.Columns.Add("Project ID", -2, HorizontalAlignment.Left);            
             GradeList.Columns.Add("Project name", -2, HorizontalAlignment.Left);
+            GradeList.Columns.Add("Project Uploaded", -2, HorizontalAlignment.Left);
             GradeList.Columns.Add("Grade", -2, HorizontalAlignment.Left);
             //==============================================================================
 
@@ -348,23 +351,39 @@ namespace E_Class
             {
                 foreach(KeyValuePair<Project, ProjectFile> pair in team.getProjectAssignmentsD())
                 {
-                    if (DateTime.Compare(pair.Key.getDueDate(),DateTime.Now) > 0)
+                    if (DateTime.Compare(pair.Key.getDueDate(),DateTime.Now) < 0)
                     {
                         listViewItem = new ListViewItem();
                         listViewItem.Text = team.getTeamID();
                         listViewItem.SubItems.Add(pair.Key.getProjectID());
                         listViewItem.SubItems.Add(pair.Key.getname());
-
-                        if (!(pair.Value.getGrade() < 0))
+                        if(pair.Value == null)
                         {
-                            listViewItem.SubItems.Add(pair.Value.getGrade().ToString());
+                            listViewItem.SubItems.Add("No");
                         }
                         else
                         {
+                            listViewItem.SubItems.Add("Yes");
+                        }
+                        try
+                        {
+                            if (!(pair.Value.getGrade() < 0))
+                            {
+                                listViewItem.SubItems.Add(pair.Value.getGrade().ToString());
+                            }
+                            else
+                            {
+                                listViewItem.SubItems.Add("-");
+                            }
+                            
+                        }
+                        catch(NullReferenceException ex)
+                        {
                             listViewItem.SubItems.Add("-");
                         }
+                        GradeList.Items.Add(listViewItem);                       
                     }
-                    GradeList.Items.Add(listViewItem);
+                    
                 }
                 
             }
@@ -570,7 +589,7 @@ namespace E_Class
                 CreateEditTeamBtn.Text = "Create";
             }
             else
-            {
+            { 
                 ProjectList.Enabled = true;
                 user.createProject(ProjectNameBox.Text, DescriptionBox.Text, (int)MaxGradeBox.Value, selectedCourse, DateTime.Parse(dateTimePicker1.Value.Date.ToString("yyyy-MM-dd") + " 23:59:59"));
                 ClearAllBoxes();
@@ -617,22 +636,21 @@ namespace E_Class
 
         private void GradeList_MouseClick(object sender, MouseEventArgs e)
         {
-                TeamIDBox.Text = GradeList.SelectedItems[0].Text;
-                ProjNameBox.Text = GradeList.SelectedItems[0].SubItems[2].Text;
-                GradeBox.Value = Decimal.Parse(GradeList.SelectedItems[0].SubItems[3].Text);
+            TeamIDBox.Text = GradeList.SelectedItems[0].Text;
+            projIDForEditGrade = GradeList.SelectedItems[0].SubItems[1].Text;
+            ProjNameBox.Text = GradeList.SelectedItems[0].SubItems[2].Text;
+            GradeBox.Value = Decimal.Parse(GradeList.SelectedItems[0].SubItems[3].Text);
         }
 
         private void SubmitGradeBtn_Click(object sender, EventArgs e)
         {
             try
             {
-                TeamIDBox.Text = GradeList.SelectedItems[0].Text;
-                ProjNameBox.Text = GradeList.SelectedItems[0].SubItems[2].Text;
-                GradeBox.Value = Decimal.Parse(GradeList.SelectedItems[0].SubItems[3].Text);
+                user.gradeProject(TeamIDBox.Text, projIDForEditGrade, (int)GradeBox.Value);
             }
             catch (Exception msg)
             {
-                MessageBox.Show("Please first select an item from the list");
+                MessageBox.Show(msg.ToString());//"Please first select an item from the list");
             }
         }
     }

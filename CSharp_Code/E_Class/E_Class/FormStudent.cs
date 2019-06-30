@@ -38,8 +38,8 @@ namespace E_Class
             CoursesList.FullRowSelect = true;
             CoursesList.GridLines = true;
             CoursesList.Sorting = SortOrder.Ascending;
-            CoursesList.Columns.Add("Select a course to continue", -2, HorizontalAlignment.Center);
-            CoursesList.Columns.Add("Course ID", -2, HorizontalAlignment.Center);
+            CoursesList.Columns.Add("Courses", -2, HorizontalAlignment.Center);
+            CoursesList.Columns.Add("ID", -2, HorizontalAlignment.Center);
 
             Dictionary<string, string> Courses = Database.getAllCourses();
             foreach (KeyValuePair<string, string> course in Courses)
@@ -66,11 +66,6 @@ namespace E_Class
             ProjectsList.Columns.Add("Project", -2, HorizontalAlignment.Left);
             ProjectsList.Columns.Add("Sent", -2, HorizontalAlignment.Left);
             ProjectsList.Columns.Add("Grade", -2, HorizontalAlignment.Left);
-
-
-            
-
-
             //==============================================================
 
             ProjectsList.Hide();
@@ -184,27 +179,22 @@ namespace E_Class
 
             label11.Text = CoursesList.SelectedItems[0].Text;
 
-            UpdateProjectList();
-
             ProjectsList.Show();
             UploadGroupBox.Show();
-        }
 
-        public void UpdateProjectList()
-        {
 
             List<Project> res = Database.GetProjectsForCourse(CoursesList.SelectedItems[0].SubItems[1].Text);
 
             foreach (Project proj in res)
             {
                 string sent = "Yes";
-                if(Database.GetFileDetails("T4", proj.getProjectID()) == null)
+                if (Database.GetFileDetails("T4", proj.getProjectID()) == null)
                 {
                     sent = "-";
                 }
                 string grade = Database.GetGrade("T4", proj.getProjectID()).ToString();
 
-                if(int.Parse(grade) == -1)
+                if (int.Parse(grade) == -1)
                 {
                     grade = "-";
                 }
@@ -222,6 +212,7 @@ namespace E_Class
             /*Project proj = Database.GetProject("P1");
             label6.Text = proj.getDueDate().ToString();
             DescriptionArea.Text = proj.getdescription();*/
+
 
         }
 
@@ -241,12 +232,15 @@ namespace E_Class
 
         private void UploadBtn_Click(object sender, EventArgs e)
         {
-
+            //Database.UploadProject()
         }
 
 
+        private void ProjectsList_MouseClick(object sender, MouseEventArgs e)
+        {
+            
+        }
 
-        
 
         private void FormStudent_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -257,6 +251,7 @@ namespace E_Class
         {
 			logout();
         }
-           
+
+
     }
 }
