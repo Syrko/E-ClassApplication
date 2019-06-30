@@ -17,13 +17,13 @@ namespace E_Class
 			formFactory = new UserFormFactory();
         }
 
-        private void login(string username, string password)
+        private void login(string username, string password, FormLogin login)
         {
             string user = Database.ValidateCredentials(username, password);
             if (user != null)
             {
                 this.Hide();
-                formFactory.createForm(user, username).Show();
+                formFactory.createForm(user, username, login).Show();
             }
         }
 
@@ -39,8 +39,8 @@ namespace E_Class
 
         private void LogInBtn_Click(object sender, EventArgs e)
         {
-            login("M15750", "VmTF7K9e");
-            //login("K11108", "gifU7TbKk2lq");
+            //login("M15750", "VmTF7K9e");
+            login("K11108", "gifU7TbKk2lq", this);
             //login(UsernameBox.Text, PasswordBox.Text);
         }
 
@@ -59,8 +59,8 @@ namespace E_Class
 
         private void LoginAdmin_Click(object sender, EventArgs e)
         {
-            FormAdmin test = new FormAdmin("dasda");
-            test.Show();
+            /*FormAdmin test = new FormAdmin("dasda");
+            test.Show();*/
         }
     }
 }

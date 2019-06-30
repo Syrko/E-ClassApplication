@@ -15,21 +15,23 @@ namespace E_Class
     {
 
         private byte[] FileInBytes;
+        FormLogin login;
 
         // Inherited properties
         protected override User currentUser { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 		// Inherited methods
 		public override void logout()
 		{
-			this.Dispose();
+			this.Close();
 		}
 
 		
 
-        public FormStudent(string reg_num)
+        public FormStudent(string reg_num, FormLogin login)
         {
             InitializeComponent();
 
+            this.login = login;
             //Courses List: A list that displays professor's courses
             CoursesList.Bounds = new Rectangle(new Point(450, 50), new Size(275, 400));
             CoursesList.View = View.Details;
@@ -251,7 +253,6 @@ namespace E_Class
 
         private void FormStudent_FormClosed(object sender, FormClosedEventArgs e)
         {
-			FormLogin login = new FormLogin();
 			login.Show();
 		}
 

@@ -86,8 +86,8 @@ namespace E_Class
 		}
 
 		// Methods
-		public void createProject(string name, string description, int max_grade, string course_id) { Database.InsertProject(name, description, max_grade, course_id); }
-		public void editProject(Project project) { throw new NotImplementedException(); }
+		public void createProject(string name, string description, int max_grade, string course_id, DateTime due_date) { Database.InsertProject(name, description, max_grade, course_id, due_date); }
+		public void editProject(string project_id, string name, string description, int max_grade, DateTime due_time) { Database.EditProject(project_id, name, description, max_grade, due_time); }
 		public void deleteProject(string project_id) { Database.DeleteProject(project_id); }
 		public void createTeam(List<string> students, string newTeam) { Database.CreateTeam(students, newTeam); }
 		public void editTeam( string team_id, string course_id, List<string> teamStudents) { Database.EditTeam(team_id, course_id, teamStudents); }

@@ -30,14 +30,16 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.LogoutBtn = new System.Windows.Forms.Button();
-            this.AssignProjectMnBtn = new System.Windows.Forms.Button();
             this.ModifyProjectMnBtn = new System.Windows.Forms.Button();
             this.ModifyTeamMnBtn = new System.Windows.Forms.Button();
             this.ProjectGroupBox = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label11 = new System.Windows.Forms.Label();
             this.DescriptionBox = new System.Windows.Forms.TextBox();
             this.MaxGradeBox = new System.Windows.Forms.NumericUpDown();
             this.CreateEditUserLabel = new System.Windows.Forms.Label();
-            this.CancelUsersBtn = new System.Windows.Forms.Button();
+            this.CancelProjectBtn = new System.Windows.Forms.Button();
             this.RegMsgLabel = new System.Windows.Forms.Label();
             this.ProjectNameBox = new System.Windows.Forms.TextBox();
             this.CreateEditProjectBtn = new System.Windows.Forms.Button();
@@ -45,6 +47,7 @@
             this.MaxGradeLabel = new System.Windows.Forms.Label();
             this.DescriptionLabel = new System.Windows.Forms.Label();
             this.RegNumErrorLabel = new System.Windows.Forms.Label();
+            this.DescriptionErrorLabel = new System.Windows.Forms.Label();
             this.GradeProjectsMnBtn = new System.Windows.Forms.Button();
             this.TeamGroupBox = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -58,20 +61,24 @@
             this.Student2Box = new System.Windows.Forms.TextBox();
             this.Student1Box = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.CancelTeamBtn = new System.Windows.Forms.Button();
             this.CreateEditTeamBtn = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.TeamList = new System.Windows.Forms.ListView();
             this.ProjectList = new System.Windows.Forms.ListView();
-            this.AssignProjectBtn = new System.Windows.Forms.Button();
-            this.AssignToWhomLabel = new System.Windows.Forms.Label();
             this.GradeList = new System.Windows.Forms.ListView();
             this.GradeGroupBox = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.DownloadProjBtn = new System.Windows.Forms.Button();
+            this.SubmitGradeBtn = new System.Windows.Forms.Button();
+            this.GradeBox = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.ProjNameBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.TeamIDBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.ChooseCourseMnBtn = new System.Windows.Forms.Button();
             this.CoursesList = new System.Windows.Forms.ListView();
@@ -81,7 +88,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.MaxGradeBox)).BeginInit();
             this.TeamGroupBox.SuspendLayout();
             this.GradeGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GradeBox)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -113,22 +120,6 @@
             this.LogoutBtn.Text = "Logout";
             this.LogoutBtn.UseVisualStyleBackColor = false;
             this.LogoutBtn.Click += new System.EventHandler(this.LogoutBtn_Click);
-            // 
-            // AssignProjectMnBtn
-            // 
-            this.AssignProjectMnBtn.BackColor = System.Drawing.Color.Transparent;
-            this.AssignProjectMnBtn.FlatAppearance.BorderSize = 0;
-            this.AssignProjectMnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AssignProjectMnBtn.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AssignProjectMnBtn.ForeColor = System.Drawing.Color.White;
-            this.AssignProjectMnBtn.Location = new System.Drawing.Point(-5, 177);
-            this.AssignProjectMnBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.AssignProjectMnBtn.Name = "AssignProjectMnBtn";
-            this.AssignProjectMnBtn.Size = new System.Drawing.Size(147, 64);
-            this.AssignProjectMnBtn.TabIndex = 24;
-            this.AssignProjectMnBtn.Text = "Assign Project";
-            this.AssignProjectMnBtn.UseVisualStyleBackColor = false;
-            this.AssignProjectMnBtn.Click += new System.EventHandler(this.AssignProjectMnBtn_Click);
             // 
             // ModifyProjectMnBtn
             // 
@@ -166,10 +157,13 @@
             // 
             this.ProjectGroupBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ProjectGroupBox.BackColor = System.Drawing.Color.White;
+            this.ProjectGroupBox.Controls.Add(this.label12);
+            this.ProjectGroupBox.Controls.Add(this.dateTimePicker1);
+            this.ProjectGroupBox.Controls.Add(this.label11);
             this.ProjectGroupBox.Controls.Add(this.DescriptionBox);
             this.ProjectGroupBox.Controls.Add(this.MaxGradeBox);
             this.ProjectGroupBox.Controls.Add(this.CreateEditUserLabel);
-            this.ProjectGroupBox.Controls.Add(this.CancelUsersBtn);
+            this.ProjectGroupBox.Controls.Add(this.CancelProjectBtn);
             this.ProjectGroupBox.Controls.Add(this.RegMsgLabel);
             this.ProjectGroupBox.Controls.Add(this.ProjectNameBox);
             this.ProjectGroupBox.Controls.Add(this.CreateEditProjectBtn);
@@ -177,21 +171,52 @@
             this.ProjectGroupBox.Controls.Add(this.MaxGradeLabel);
             this.ProjectGroupBox.Controls.Add(this.DescriptionLabel);
             this.ProjectGroupBox.Controls.Add(this.RegNumErrorLabel);
+            this.ProjectGroupBox.Controls.Add(this.DescriptionErrorLabel);
             this.ProjectGroupBox.Location = new System.Drawing.Point(148, 5);
             this.ProjectGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.ProjectGroupBox.Name = "ProjectGroupBox";
             this.ProjectGroupBox.Padding = new System.Windows.Forms.Padding(2);
-            this.ProjectGroupBox.Size = new System.Drawing.Size(326, 324);
+            this.ProjectGroupBox.Size = new System.Drawing.Size(326, 354);
             this.ProjectGroupBox.TabIndex = 28;
             this.ProjectGroupBox.TabStop = false;
             this.ProjectGroupBox.Text = "CreateEditProject";
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.White;
+            this.label12.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label12.Location = new System.Drawing.Point(84, 156);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(19, 13);
+            this.label12.TabIndex = 36;
+            this.label12.Text = "no";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "yyyy-mm-dd";
+            this.dateTimePicker1.Location = new System.Drawing.Point(23, 121);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 35;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(20, 102);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(51, 13);
+            this.label11.TabIndex = 34;
+            this.label11.Text = "Due date";
+            // 
             // DescriptionBox
             // 
-            this.DescriptionBox.Location = new System.Drawing.Point(23, 121);
+            this.DescriptionBox.Location = new System.Drawing.Point(23, 172);
             this.DescriptionBox.Multiline = true;
             this.DescriptionBox.Name = "DescriptionBox";
-            this.DescriptionBox.Size = new System.Drawing.Size(276, 123);
+            this.DescriptionBox.Size = new System.Drawing.Size(276, 96);
             this.DescriptionBox.TabIndex = 32;
             // 
             // MaxGradeBox
@@ -214,17 +239,18 @@
             this.CreateEditUserLabel.Text = "label";
             this.CreateEditUserLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // CancelUsersBtn
+            // CancelProjectBtn
             // 
-            this.CancelUsersBtn.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.CancelUsersBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CancelUsersBtn.Location = new System.Drawing.Point(138, 291);
-            this.CancelUsersBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.CancelUsersBtn.Name = "CancelUsersBtn";
-            this.CancelUsersBtn.Size = new System.Drawing.Size(56, 22);
-            this.CancelUsersBtn.TabIndex = 31;
-            this.CancelUsersBtn.Text = "Cancel";
-            this.CancelUsersBtn.UseVisualStyleBackColor = false;
+            this.CancelProjectBtn.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.CancelProjectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CancelProjectBtn.Location = new System.Drawing.Point(138, 318);
+            this.CancelProjectBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.CancelProjectBtn.Name = "CancelProjectBtn";
+            this.CancelProjectBtn.Size = new System.Drawing.Size(56, 22);
+            this.CancelProjectBtn.TabIndex = 31;
+            this.CancelProjectBtn.Text = "Cancel";
+            this.CancelProjectBtn.UseVisualStyleBackColor = false;
+            this.CancelProjectBtn.Click += new System.EventHandler(this.CancelProjectBtn_Click);
             // 
             // RegMsgLabel
             // 
@@ -251,7 +277,7 @@
             // 
             this.CreateEditProjectBtn.BackColor = System.Drawing.Color.WhiteSmoke;
             this.CreateEditProjectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.CreateEditProjectBtn.Location = new System.Drawing.Point(100, 249);
+            this.CreateEditProjectBtn.Location = new System.Drawing.Point(100, 276);
             this.CreateEditProjectBtn.Margin = new System.Windows.Forms.Padding(2);
             this.CreateEditProjectBtn.Name = "CreateEditProjectBtn";
             this.CreateEditProjectBtn.Size = new System.Drawing.Size(130, 37);
@@ -283,7 +309,7 @@
             // DescriptionLabel
             // 
             this.DescriptionLabel.AutoSize = true;
-            this.DescriptionLabel.Location = new System.Drawing.Point(20, 102);
+            this.DescriptionLabel.Location = new System.Drawing.Point(20, 152);
             this.DescriptionLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.DescriptionLabel.Name = "DescriptionLabel";
             this.DescriptionLabel.Size = new System.Drawing.Size(60, 13);
@@ -299,6 +325,15 @@
             this.RegNumErrorLabel.Size = new System.Drawing.Size(174, 22);
             this.RegNumErrorLabel.TabIndex = 13;
             // 
+            // DescriptionErrorLabel
+            // 
+            this.DescriptionErrorLabel.BackColor = System.Drawing.Color.Red;
+            this.DescriptionErrorLabel.Location = new System.Drawing.Point(22, 171);
+            this.DescriptionErrorLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.DescriptionErrorLabel.Name = "DescriptionErrorLabel";
+            this.DescriptionErrorLabel.Size = new System.Drawing.Size(278, 98);
+            this.DescriptionErrorLabel.TabIndex = 37;
+            // 
             // GradeProjectsMnBtn
             // 
             this.GradeProjectsMnBtn.BackColor = System.Drawing.Color.Transparent;
@@ -306,7 +341,7 @@
             this.GradeProjectsMnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.GradeProjectsMnBtn.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GradeProjectsMnBtn.ForeColor = System.Drawing.Color.White;
-            this.GradeProjectsMnBtn.Location = new System.Drawing.Point(-5, 240);
+            this.GradeProjectsMnBtn.Location = new System.Drawing.Point(-5, 184);
             this.GradeProjectsMnBtn.Margin = new System.Windows.Forms.Padding(2);
             this.GradeProjectsMnBtn.Name = "GradeProjectsMnBtn";
             this.GradeProjectsMnBtn.Size = new System.Drawing.Size(147, 64);
@@ -330,8 +365,13 @@
             this.TeamGroupBox.Controls.Add(this.Student2Box);
             this.TeamGroupBox.Controls.Add(this.Student1Box);
             this.TeamGroupBox.Controls.Add(this.label2);
-            this.TeamGroupBox.Controls.Add(this.button1);
+            this.TeamGroupBox.Controls.Add(this.CancelTeamBtn);
             this.TeamGroupBox.Controls.Add(this.CreateEditTeamBtn);
+            this.TeamGroupBox.Controls.Add(this.label13);
+            this.TeamGroupBox.Controls.Add(this.label14);
+            this.TeamGroupBox.Controls.Add(this.label15);
+            this.TeamGroupBox.Controls.Add(this.label16);
+            this.TeamGroupBox.Controls.Add(this.label17);
             this.TeamGroupBox.Location = new System.Drawing.Point(478, 5);
             this.TeamGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.TeamGroupBox.Name = "TeamGroupBox";
@@ -407,7 +447,7 @@
             // 
             this.Student4Box.Location = new System.Drawing.Point(205, 145);
             this.Student4Box.Name = "Student4Box";
-            this.Student4Box.Size = new System.Drawing.Size(156, 20);
+            this.Student4Box.Size = new System.Drawing.Size(152, 20);
             this.Student4Box.TabIndex = 35;
             // 
             // Student3Box
@@ -419,9 +459,9 @@
             // 
             // Student2Box
             // 
-            this.Student2Box.Location = new System.Drawing.Point(205, 74);
+            this.Student2Box.Location = new System.Drawing.Point(205, 73);
             this.Student2Box.Name = "Student2Box";
-            this.Student2Box.Size = new System.Drawing.Size(156, 20);
+            this.Student2Box.Size = new System.Drawing.Size(152, 20);
             this.Student2Box.TabIndex = 33;
             // 
             // Student1Box
@@ -441,17 +481,18 @@
             this.label2.Text = "label";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // button1
+            // CancelTeamBtn
             // 
-            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(163, 318);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(56, 22);
-            this.button1.TabIndex = 31;
-            this.button1.Text = "Cancel";
-            this.button1.UseVisualStyleBackColor = false;
+            this.CancelTeamBtn.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.CancelTeamBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CancelTeamBtn.Location = new System.Drawing.Point(163, 318);
+            this.CancelTeamBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.CancelTeamBtn.Name = "CancelTeamBtn";
+            this.CancelTeamBtn.Size = new System.Drawing.Size(56, 22);
+            this.CancelTeamBtn.TabIndex = 31;
+            this.CancelTeamBtn.Text = "Cancel";
+            this.CancelTeamBtn.UseVisualStyleBackColor = false;
+            this.CancelTeamBtn.Click += new System.EventHandler(this.CancelTeamBtn_Click);
             // 
             // CreateEditTeamBtn
             // 
@@ -465,6 +506,51 @@
             this.CreateEditTeamBtn.Text = "Create team";
             this.CreateEditTeamBtn.UseVisualStyleBackColor = false;
             this.CreateEditTeamBtn.Click += new System.EventHandler(this.CreateEditTeamBtn_Click);
+            // 
+            // label13
+            // 
+            this.label13.BackColor = System.Drawing.Color.Red;
+            this.label13.Location = new System.Drawing.Point(18, 73);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(154, 22);
+            this.label13.TabIndex = 38;
+            // 
+            // label14
+            // 
+            this.label14.BackColor = System.Drawing.Color.Red;
+            this.label14.Location = new System.Drawing.Point(204, 72);
+            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(154, 22);
+            this.label14.TabIndex = 42;
+            // 
+            // label15
+            // 
+            this.label15.BackColor = System.Drawing.Color.Red;
+            this.label15.Location = new System.Drawing.Point(18, 144);
+            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(154, 22);
+            this.label15.TabIndex = 43;
+            // 
+            // label16
+            // 
+            this.label16.BackColor = System.Drawing.Color.Red;
+            this.label16.Location = new System.Drawing.Point(204, 142);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(153, 24);
+            this.label16.TabIndex = 44;
+            // 
+            // label17
+            // 
+            this.label17.BackColor = System.Drawing.Color.Red;
+            this.label17.Location = new System.Drawing.Point(18, 215);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(154, 22);
+            this.label17.TabIndex = 45;
             // 
             // TeamList
             // 
@@ -490,27 +576,6 @@
             this.ProjectList.UseCompatibleStateImageBehavior = false;
             this.ProjectList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ProjectList_MouseClick);
             // 
-            // AssignProjectBtn
-            // 
-            this.AssignProjectBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.AssignProjectBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.AssignProjectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AssignProjectBtn.Location = new System.Drawing.Point(213, 497);
-            this.AssignProjectBtn.Name = "AssignProjectBtn";
-            this.AssignProjectBtn.Size = new System.Drawing.Size(90, 40);
-            this.AssignProjectBtn.TabIndex = 35;
-            this.AssignProjectBtn.Text = "Assign";
-            this.AssignProjectBtn.UseVisualStyleBackColor = false;
-            // 
-            // AssignToWhomLabel
-            // 
-            this.AssignToWhomLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.AssignToWhomLabel.BackColor = System.Drawing.Color.Transparent;
-            this.AssignToWhomLabel.Location = new System.Drawing.Point(145, 454);
-            this.AssignToWhomLabel.Name = "AssignToWhomLabel";
-            this.AssignToWhomLabel.Size = new System.Drawing.Size(220, 40);
-            this.AssignToWhomLabel.TabIndex = 36;
-            // 
             // GradeList
             // 
             this.GradeList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -525,41 +590,55 @@
             // 
             this.GradeGroupBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.GradeGroupBox.BackColor = System.Drawing.Color.White;
-            this.GradeGroupBox.Controls.Add(this.button3);
-            this.GradeGroupBox.Controls.Add(this.numericUpDown2);
+            this.GradeGroupBox.Controls.Add(this.DownloadProjBtn);
+            this.GradeGroupBox.Controls.Add(this.SubmitGradeBtn);
+            this.GradeGroupBox.Controls.Add(this.GradeBox);
             this.GradeGroupBox.Controls.Add(this.label5);
-            this.GradeGroupBox.Controls.Add(this.textBox2);
+            this.GradeGroupBox.Controls.Add(this.ProjNameBox);
             this.GradeGroupBox.Controls.Add(this.label4);
-            this.GradeGroupBox.Controls.Add(this.textBox1);
+            this.GradeGroupBox.Controls.Add(this.TeamIDBox);
             this.GradeGroupBox.Controls.Add(this.label8);
             this.GradeGroupBox.Location = new System.Drawing.Point(539, 364);
             this.GradeGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.GradeGroupBox.Name = "GradeGroupBox";
             this.GradeGroupBox.Padding = new System.Windows.Forms.Padding(2);
-            this.GradeGroupBox.Size = new System.Drawing.Size(320, 152);
+            this.GradeGroupBox.Size = new System.Drawing.Size(320, 180);
             this.GradeGroupBox.TabIndex = 33;
             this.GradeGroupBox.TabStop = false;
             this.GradeGroupBox.Text = "GradeTeam";
             // 
-            // button3
+            // DownloadProjBtn
             // 
-            this.button3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.Location = new System.Drawing.Point(92, 106);
-            this.button3.Margin = new System.Windows.Forms.Padding(2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(140, 34);
-            this.button3.TabIndex = 32;
-            this.button3.Text = "Submit";
-            this.button3.UseVisualStyleBackColor = false;
+            this.DownloadProjBtn.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.DownloadProjBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.DownloadProjBtn.Location = new System.Drawing.Point(108, 144);
+            this.DownloadProjBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.DownloadProjBtn.Name = "DownloadProjBtn";
+            this.DownloadProjBtn.Size = new System.Drawing.Size(107, 26);
+            this.DownloadProjBtn.TabIndex = 33;
+            this.DownloadProjBtn.Text = "Download Project";
+            this.DownloadProjBtn.UseVisualStyleBackColor = false;
+            this.DownloadProjBtn.Click += new System.EventHandler(this.DownloadProjBtn_Click);
             // 
-            // numericUpDown2
+            // SubmitGradeBtn
             // 
-            this.numericUpDown2.BackColor = System.Drawing.Color.White;
-            this.numericUpDown2.Location = new System.Drawing.Point(250, 67);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(50, 20);
-            this.numericUpDown2.TabIndex = 6;
+            this.SubmitGradeBtn.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.SubmitGradeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.SubmitGradeBtn.Location = new System.Drawing.Point(92, 106);
+            this.SubmitGradeBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.SubmitGradeBtn.Name = "SubmitGradeBtn";
+            this.SubmitGradeBtn.Size = new System.Drawing.Size(140, 34);
+            this.SubmitGradeBtn.TabIndex = 32;
+            this.SubmitGradeBtn.Text = "Submit";
+            this.SubmitGradeBtn.UseVisualStyleBackColor = false;
+            // 
+            // GradeBox
+            // 
+            this.GradeBox.BackColor = System.Drawing.Color.White;
+            this.GradeBox.Location = new System.Drawing.Point(250, 67);
+            this.GradeBox.Name = "GradeBox";
+            this.GradeBox.Size = new System.Drawing.Size(50, 20);
+            this.GradeBox.TabIndex = 6;
             // 
             // label5
             // 
@@ -571,14 +650,15 @@
             this.label5.TabIndex = 5;
             this.label5.Text = "Grade";
             // 
-            // textBox2
+            // ProjNameBox
             // 
-            this.textBox2.BackColor = System.Drawing.Color.White;
-            this.textBox2.Location = new System.Drawing.Point(89, 67);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(143, 20);
-            this.textBox2.TabIndex = 2;
+            this.ProjNameBox.BackColor = System.Drawing.Color.White;
+            this.ProjNameBox.Location = new System.Drawing.Point(89, 66);
+            this.ProjNameBox.Margin = new System.Windows.Forms.Padding(2);
+            this.ProjNameBox.Name = "ProjNameBox";
+            this.ProjNameBox.ReadOnly = true;
+            this.ProjNameBox.Size = new System.Drawing.Size(143, 20);
+            this.ProjNameBox.TabIndex = 2;
             // 
             // label4
             // 
@@ -586,18 +666,19 @@
             this.label4.Location = new System.Drawing.Point(89, 48);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 13);
+            this.label4.Size = new System.Drawing.Size(69, 13);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Project";
+            this.label4.Text = "Project name";
             // 
-            // textBox1
+            // TeamIDBox
             // 
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(20, 67);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(48, 20);
-            this.textBox1.TabIndex = 0;
+            this.TeamIDBox.BackColor = System.Drawing.Color.White;
+            this.TeamIDBox.Location = new System.Drawing.Point(20, 67);
+            this.TeamIDBox.Margin = new System.Windows.Forms.Padding(2);
+            this.TeamIDBox.Name = "TeamIDBox";
+            this.TeamIDBox.ReadOnly = true;
+            this.TeamIDBox.Size = new System.Drawing.Size(48, 20);
+            this.TeamIDBox.TabIndex = 0;
             // 
             // label8
             // 
@@ -653,7 +734,7 @@
             this.SelectedCourseLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.SelectedCourseLabel.BackColor = System.Drawing.Color.Transparent;
             this.SelectedCourseLabel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SelectedCourseLabel.Location = new System.Drawing.Point(326, 496);
+            this.SelectedCourseLabel.Location = new System.Drawing.Point(314, 497);
             this.SelectedCourseLabel.Name = "SelectedCourseLabel";
             this.SelectedCourseLabel.Size = new System.Drawing.Size(220, 20);
             this.SelectedCourseLabel.TabIndex = 41;
@@ -674,15 +755,12 @@
             this.Controls.Add(this.ChooseCourseMnBtn);
             this.Controls.Add(this.GradeGroupBox);
             this.Controls.Add(this.GradeList);
-            this.Controls.Add(this.AssignToWhomLabel);
-            this.Controls.Add(this.AssignProjectBtn);
             this.Controls.Add(this.ProjectList);
             this.Controls.Add(this.TeamList);
             this.Controls.Add(this.TeamGroupBox);
             this.Controls.Add(this.GradeProjectsMnBtn);
             this.Controls.Add(this.ProjectGroupBox);
             this.Controls.Add(this.LogoutBtn);
-            this.Controls.Add(this.AssignProjectMnBtn);
             this.Controls.Add(this.ModifyProjectMnBtn);
             this.Controls.Add(this.ModifyTeamMnBtn);
             this.Controls.Add(this.label1);
@@ -699,7 +777,7 @@
             this.TeamGroupBox.PerformLayout();
             this.GradeGroupBox.ResumeLayout(false);
             this.GradeGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GradeBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -708,12 +786,11 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button LogoutBtn;
-        private System.Windows.Forms.Button AssignProjectMnBtn;
         private System.Windows.Forms.Button ModifyProjectMnBtn;
         private System.Windows.Forms.Button ModifyTeamMnBtn;
         private System.Windows.Forms.GroupBox ProjectGroupBox;
         private System.Windows.Forms.Label CreateEditUserLabel;
-        private System.Windows.Forms.Button CancelUsersBtn;
+        private System.Windows.Forms.Button CancelProjectBtn;
         private System.Windows.Forms.Label RegMsgLabel;
         private System.Windows.Forms.TextBox ProjectNameBox;
         private System.Windows.Forms.Button CreateEditProjectBtn;
@@ -725,20 +802,18 @@
         private System.Windows.Forms.Button GradeProjectsMnBtn;
         private System.Windows.Forms.GroupBox TeamGroupBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button CancelTeamBtn;
         private System.Windows.Forms.Button CreateEditTeamBtn;
         private System.Windows.Forms.ListView TeamList;
         private System.Windows.Forms.ListView ProjectList;
-        private System.Windows.Forms.Button AssignProjectBtn;
-        private System.Windows.Forms.Label AssignToWhomLabel;
         private System.Windows.Forms.ListView GradeList;
         private System.Windows.Forms.GroupBox GradeGroupBox;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.Button SubmitGradeBtn;
+        private System.Windows.Forms.NumericUpDown GradeBox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox ProjNameBox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TeamIDBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button ChooseCourseMnBtn;
         private System.Windows.Forms.ListView CoursesList;
@@ -755,5 +830,15 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox DescriptionBox;
+        private System.Windows.Forms.Button DownloadProjBtn;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label DescriptionErrorLabel;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
     }
 }

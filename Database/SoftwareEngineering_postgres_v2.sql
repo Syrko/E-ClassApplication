@@ -1,5 +1,5 @@
 CREATE TABLE Users (
-	"reg_num" varchar(6) NOT NULL,
+	"reg_num" varchar(6) NOT NULL UNIQUE,
 	"name" varchar(32) NOT NULL,
 	"password" varchar(32) NOT NULL,
 	"surname" varchar(32) NOT NULL,
@@ -78,7 +78,9 @@ CREATE TABLE Projects (
 	"name" varchar(32) NOT NULL,
 	"description" varchar(100) NOT NULL,
 	"max_grade" integer NOT NULL,
-	"course_id" varchar(6) NOT NULL
+	"course_id" varchar(6) NOT NULL,
+	"due_date" timestamp NOT NULL,
+	CONSTRAINT "Project_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
 );
@@ -99,7 +101,7 @@ CREATE TABLE ProjectFiles (
 
 CREATE TABLE ProjectsOfTeam (
 	"project_id" varchar(6) NOT NULL,
-	"project_file_id" varchar NOT NULL,
+	"project_file_id" varchar(6),
 	"team_id" varchar(6) NOT NULL,
 	"grade" integer
 ) WITH (

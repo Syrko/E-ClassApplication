@@ -59,7 +59,6 @@ namespace E_Class
 					case UserTypes.PROFESSOR:
 						return "K" + id.ToString();
 					case "Project":
-                        MessageBox.Show(id.ToString());
 						return "P" + id.ToString();
 					case "Team":
 						return "T" + id.ToString();
