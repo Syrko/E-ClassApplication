@@ -594,21 +594,57 @@ namespace E_Class
 
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public static void UploadProject(string id, byte[] file, string name, string date)
+        public static void UploadProject(byte[] file, string name, string date, string team_id, string project_id)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
             {
                 try
                 {
                     con.Open();
-                    string sql = "INSERT INTO files VALUES(@id, @file, @name, @date)";
-                    NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
 
-                    cmd.Parameters.AddWithValue("id", id);
-                    cmd.Parameters.AddWithValue("file", file);
-                    cmd.Parameters.AddWithValue("name", name);
-                    cmd.Parameters.AddWithValue("date", date);
-                    cmd.ExecuteNonQuery();
+					string sql = "SELECT project_file_id FROM Projectsofteam WHERE team_id=@team_id AND project_id=@project_id";
+					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+					cmd.Parameters.AddWithValue("team_id", team_id);
+					cmd.Parameters.AddWithValue("project_id", project_id);
+					NpgsqlDataReader results = cmd.ExecuteReader();
+					if (results.Read())
+					{
+						if(results.IsDBNull(0))
+						{
+							string id = RegNum.getNextValue("projectfile");
+
+							sql = "INSERT INTO projectfiles VALUES(@id, @file, @name, @date)";
+							cmd = new NpgsqlCommand(sql, con);
+
+							cmd.Parameters.AddWithValue("id", id);
+							cmd.Parameters.AddWithValue("file", file);
+							cmd.Parameters.AddWithValue("name", name);
+							cmd.Parameters.AddWithValue("date", date);
+							cmd.ExecuteNonQuery();
+
+							sql = "UPDATE projectsofteam SET project_file_id=@project_file_id WHERE team_id=@team_id AND project_id=@project_id";
+							cmd = new NpgsqlCommand(sql, con);
+							cmd.Parameters.AddWithValue("project_file_id", id);
+							cmd.Parameters.AddWithValue("team_id", team_id);
+							cmd.Parameters.AddWithValue("project_id", project_id);
+							cmd.ExecuteNonQuery();
+						}
+						else
+						{ 
+							sql = "UPDATE projectfiles SET (file, name, date)=(@file, @name, @date) WHERE id=@id";
+							cmd = new NpgsqlCommand(sql, con);
+
+							cmd.Parameters.AddWithValue("file", file);
+							cmd.Parameters.AddWithValue("name", name);
+							cmd.Parameters.AddWithValue("date", date);
+							cmd.Parameters.AddWithValue("id", results.GetString(0));
+							cmd.ExecuteNonQuery();
+						}
+					}
+					else
+					{
+						MessageBox.Show("Couldn't upload file");
+					}
 
                 }
                 catch (Exception msg)
