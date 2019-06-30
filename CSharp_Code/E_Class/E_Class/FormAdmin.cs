@@ -10,10 +10,12 @@ namespace E_Class
     {
 		// Inherited properties
 		protected override User currentUser { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-		// Inherited methods
-		public override void logout()
+        // Inherited methods
+
+        FormLogin login;
+        public override void logout()
 		{
-			this.Dispose();
+			this.Close();
 		}
 
 		private ListViewItem itm;
@@ -24,10 +26,11 @@ namespace E_Class
         string[] assignments = new string[2];
 
 
-        public FormAdmin(string reg_num)
+        public FormAdmin(string reg_num, FormLogin login)
         {
             InitializeComponent();
 
+            this.login = login;
             UserGroupBox.Controls.Add(NameBox);
             UserGroupBox.Controls.Add(RegNumBox);
             UserGroupBox.Controls.Add(SurnameBox);
@@ -701,7 +704,6 @@ namespace E_Class
 
         private void FormAdmin_FormClosed(object sender, FormClosedEventArgs e)
         {
-            FormLogin login = new FormLogin();
             login.Show();
         }
     }

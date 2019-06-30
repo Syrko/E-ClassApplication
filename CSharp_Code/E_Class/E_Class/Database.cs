@@ -15,7 +15,7 @@ namespace E_Class
 {
     class Database
     {
-        private static string connectionString = "Server=127.0.0.1; User id=postgres; Password=123456789; Database=eclassmirror";
+        private static string connectionString = "Server=127.0.0.1; User id=postgres; Password=123456789; Database=eclass2";
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public static void CreateTeam(List<string> students, string course_id)
@@ -412,20 +412,21 @@ namespace E_Class
         }
 
 		[MethodImpl(MethodImplOptions.Synchronized)]
-		public static void InsertProject(string name, string description, int max_grade, string course_id)
+		public static void InsertProject(string name, string description, int max_grade, string course_id, DateTime due_date)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
             {
                 try
                 {
                     con.Open();
-                    string sql = "INSERT INTO Projects VALUES(@id, @name, @description, @max_grade, @course_id)";
+                    string sql = "INSERT INTO Projects VALUES(@id, @name, @description, @max_grade, @course_id, @due_date)";
                     NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
                     cmd.Parameters.AddWithValue("id", RegNum.getNextValue("Project"));
                     cmd.Parameters.AddWithValue("name", name);
                     cmd.Parameters.AddWithValue("description", description);
                     cmd.Parameters.AddWithValue("max_grade", max_grade);
                     cmd.Parameters.AddWithValue("course_id", course_id);
+                    cmd.Parameters.AddWithValue("due_date", due_date);
                     cmd.ExecuteNonQuery();
                      
                 }
@@ -445,11 +446,10 @@ namespace E_Class
                 try
                 {
                     con.Open();
-                    string sql = "DELETE FROM Projects WHERE id = @id)";
+                    string sql = "DELETE FROM Projects WHERE id = @id";
                     NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
                     cmd.Parameters.AddWithValue("id", project_id);
                     cmd.ExecuteNonQuery();
-                     
                 }
                 catch (Exception msg)
                 {

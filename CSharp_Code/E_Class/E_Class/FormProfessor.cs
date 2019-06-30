@@ -23,19 +23,24 @@ namespace E_Class
         private string selectedCourse;
         Professor user;
         Course selCourse = null;
+        FormLogin login;
 
 
-        public FormProfessor(string reg_num)
+
+
+        public FormProfessor(string reg_num, FormLogin login)
         {
             InitializeComponent();
+
+            this.login = login;
+
             ChooseCourseMnBtn.BackColor = Color.FromArgb(100, 10, 10, 10);
             ModifyProjectMnBtn.BackColor = Color.FromArgb(100, 10, 10, 10);
             ModifyTeamMnBtn.BackColor = Color.FromArgb(100, 10, 10, 10);
-            AssignProjectMnBtn.BackColor = Color.FromArgb(100, 10, 10, 10);
             GradeProjectsMnBtn.BackColor = Color.FromArgb(100, 10, 10, 10);
             label1.BackColor = Color.FromArgb(100, 10, 10, 10);
             LogoutBtn.BackColor = Color.FromArgb(100, 10, 10, 10);
-            
+            dateTimePicker1.MinDate = DateTime.Now;//Date limiter
             TeamGroupBox.Paint += Paint;
             ProjectGroupBox.Paint += Paint;
             GradeGroupBox.Paint += Paint;
@@ -156,15 +161,12 @@ namespace E_Class
             TeamList.Hide();
             GradeList.Hide();
             GradeGroupBox.Hide();
-            AssignToWhomLabel.Hide();
-            AssignProjectBtn.Hide();
             ProjectGroupBox.Hide();
             ProjectList.Hide();
 
             
             ModifyProjectMnBtn.Enabled = false;
             ModifyTeamMnBtn.Enabled = false;
-            AssignProjectMnBtn.Enabled = false;
             GradeProjectsMnBtn.Enabled = false;
             
         }
@@ -236,8 +238,6 @@ namespace E_Class
             ProjectGroupBox.Hide();
             ProjectList.Hide();
             GradeList.Hide();
-            AssignToWhomLabel.Hide();
-            AssignProjectBtn.Hide();
             GradeGroupBox.Hide();
             TeamGroupBox.Hide();
             TeamList.Hide();
@@ -259,8 +259,6 @@ namespace E_Class
             ProjectGroupBox.Hide();
             ProjectList.Hide();
             GradeList.Hide();
-            AssignToWhomLabel.Hide();
-            AssignProjectBtn.Hide();
             GradeGroupBox.Hide();
 
 
@@ -303,8 +301,6 @@ namespace E_Class
             SelectCourseBtn.Hide();
             TeamList.Hide();
             TeamGroupBox.Hide();
-            AssignToWhomLabel.Hide();
-            AssignProjectBtn.Hide();
             GradeList.Hide();
             GradeGroupBox.Hide();
 
@@ -326,27 +322,7 @@ namespace E_Class
         }
 
 
-        private void AssignProjectMnBtn_Click(object sender, EventArgs e)
-        {
-            YouAreHere(AssignProjectMnBtn);
-
-            SelectedCourseLabel.Hide();
-            CoursesList.Hide();
-            SelectCourseBtn.Hide();
-            ProjectGroupBox.Hide();
-            TeamGroupBox.Hide();
-            GradeList.Hide();
-            GradeGroupBox.Hide();
-
-            TeamList.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right | AnchorStyles.Top);
-            AssignToWhomLabel.Show();
-            AssignProjectBtn.Show();
-            ProjectList.Show();
-            TeamList.Show();
-            TeamList.Location = new Point(635, 12);
-            AssignProjectBtn.Location = new Point(467, 100);
-            AssignToWhomLabel.Location = new Point(407, 50);
-        }
+      
 
 
         private void GradeProjectsMnBtn_Click(object sender, EventArgs e)
@@ -360,8 +336,6 @@ namespace E_Class
             ProjectGroupBox.Hide();
             TeamGroupBox.Hide();
             TeamList.Hide();
-            AssignToWhomLabel.Hide();
-            AssignProjectBtn.Hide();
 
             GradeGroupBox.Show();
             GradeList.Show();
@@ -383,7 +357,6 @@ namespace E_Class
                 SelectedCourseLabel.Text = CoursesList.SelectedItems[0].Text + " is selected";
                 ModifyProjectMnBtn.Enabled = true;
                 ModifyTeamMnBtn.Enabled = true;
-                AssignProjectMnBtn.Enabled = true;
                 GradeProjectsMnBtn.Enabled = true;
                 ModifyTeamMnBtn.PerformClick();
             }
@@ -436,6 +409,7 @@ namespace E_Class
                     ProjectNameBox.Text = proj.getname();
                     MaxGradeBox.Value = proj.getmaxGrade();
                     DescriptionBox.Text = proj.getdescription();
+                    dateTimePicker1.Value = proj.getDueDate();
                 }
             }
 
@@ -451,13 +425,12 @@ namespace E_Class
 
         public override void logout()
         {
-            this.Dispose();
+            this.Close();
         }
 
 
         private void FormProfessor_FormClosed(object sender, FormClosedEventArgs e)
         {
-            FormLogin login = new FormLogin();
             login.Show();
         }
 
@@ -551,13 +524,21 @@ namespace E_Class
         {
             if(CreateEditProjectBtn.Text == "Submit")
             {
-                CreateEditTeamBtn.Text = "Submit";
+
+
+
+                CreateEditTeamBtn.Text = "Create";
             }
             else
             {
-                Database.InsertProject(ProjectNameBox.Text, DescriptionBox.Text, (int)MaxGradeBox.Value, selectedCourse);
+                
+                user.createProject(ProjectNameBox.Text, DescriptionBox.Text, (int)MaxGradeBox.Value, selectedCourse, DateTime.Parse(dateTimePicker1.Value.Date.ToString("yyyy-MM-dd")+" 23:59:59"));
             }
+        }
 
+        private void CancelUsersBtn_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

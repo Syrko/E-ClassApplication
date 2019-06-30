@@ -30,10 +30,11 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.LogoutBtn = new System.Windows.Forms.Button();
-            this.AssignProjectMnBtn = new System.Windows.Forms.Button();
             this.ModifyProjectMnBtn = new System.Windows.Forms.Button();
             this.ModifyTeamMnBtn = new System.Windows.Forms.Button();
             this.ProjectGroupBox = new System.Windows.Forms.GroupBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label11 = new System.Windows.Forms.Label();
             this.DescriptionBox = new System.Windows.Forms.TextBox();
             this.MaxGradeBox = new System.Windows.Forms.NumericUpDown();
             this.CreateEditUserLabel = new System.Windows.Forms.Label();
@@ -62,10 +63,9 @@
             this.CreateEditTeamBtn = new System.Windows.Forms.Button();
             this.TeamList = new System.Windows.Forms.ListView();
             this.ProjectList = new System.Windows.Forms.ListView();
-            this.AssignProjectBtn = new System.Windows.Forms.Button();
-            this.AssignToWhomLabel = new System.Windows.Forms.Label();
             this.GradeList = new System.Windows.Forms.ListView();
             this.GradeGroupBox = new System.Windows.Forms.GroupBox();
+            this.DownloadProjBtn = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.GradeBox = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
@@ -77,7 +77,6 @@
             this.CoursesList = new System.Windows.Forms.ListView();
             this.SelectCourseBtn = new System.Windows.Forms.Button();
             this.SelectedCourseLabel = new System.Windows.Forms.Label();
-            this.DownloadProjBtn = new System.Windows.Forms.Button();
             this.ProjectGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MaxGradeBox)).BeginInit();
             this.TeamGroupBox.SuspendLayout();
@@ -115,22 +114,6 @@
             this.LogoutBtn.UseVisualStyleBackColor = false;
             this.LogoutBtn.Click += new System.EventHandler(this.LogoutBtn_Click);
             // 
-            // AssignProjectMnBtn
-            // 
-            this.AssignProjectMnBtn.BackColor = System.Drawing.Color.Transparent;
-            this.AssignProjectMnBtn.FlatAppearance.BorderSize = 0;
-            this.AssignProjectMnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AssignProjectMnBtn.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AssignProjectMnBtn.ForeColor = System.Drawing.Color.White;
-            this.AssignProjectMnBtn.Location = new System.Drawing.Point(-5, 177);
-            this.AssignProjectMnBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.AssignProjectMnBtn.Name = "AssignProjectMnBtn";
-            this.AssignProjectMnBtn.Size = new System.Drawing.Size(147, 64);
-            this.AssignProjectMnBtn.TabIndex = 24;
-            this.AssignProjectMnBtn.Text = "Assign Project";
-            this.AssignProjectMnBtn.UseVisualStyleBackColor = false;
-            this.AssignProjectMnBtn.Click += new System.EventHandler(this.AssignProjectMnBtn_Click);
-            // 
             // ModifyProjectMnBtn
             // 
             this.ModifyProjectMnBtn.BackColor = System.Drawing.Color.Transparent;
@@ -167,6 +150,8 @@
             // 
             this.ProjectGroupBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ProjectGroupBox.BackColor = System.Drawing.Color.White;
+            this.ProjectGroupBox.Controls.Add(this.dateTimePicker1);
+            this.ProjectGroupBox.Controls.Add(this.label11);
             this.ProjectGroupBox.Controls.Add(this.DescriptionBox);
             this.ProjectGroupBox.Controls.Add(this.MaxGradeBox);
             this.ProjectGroupBox.Controls.Add(this.CreateEditUserLabel);
@@ -182,17 +167,35 @@
             this.ProjectGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this.ProjectGroupBox.Name = "ProjectGroupBox";
             this.ProjectGroupBox.Padding = new System.Windows.Forms.Padding(2);
-            this.ProjectGroupBox.Size = new System.Drawing.Size(326, 324);
+            this.ProjectGroupBox.Size = new System.Drawing.Size(326, 354);
             this.ProjectGroupBox.TabIndex = 28;
             this.ProjectGroupBox.TabStop = false;
             this.ProjectGroupBox.Text = "CreateEditProject";
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "yyyy-mm-dd";
+            this.dateTimePicker1.Location = new System.Drawing.Point(23, 121);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 35;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(20, 102);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(51, 13);
+            this.label11.TabIndex = 34;
+            this.label11.Text = "Due date";
+            // 
             // DescriptionBox
             // 
-            this.DescriptionBox.Location = new System.Drawing.Point(23, 121);
+            this.DescriptionBox.Location = new System.Drawing.Point(23, 172);
             this.DescriptionBox.Multiline = true;
             this.DescriptionBox.Name = "DescriptionBox";
-            this.DescriptionBox.Size = new System.Drawing.Size(276, 123);
+            this.DescriptionBox.Size = new System.Drawing.Size(276, 96);
             this.DescriptionBox.TabIndex = 32;
             // 
             // MaxGradeBox
@@ -219,13 +222,14 @@
             // 
             this.CancelUsersBtn.BackColor = System.Drawing.Color.WhiteSmoke;
             this.CancelUsersBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CancelUsersBtn.Location = new System.Drawing.Point(138, 291);
+            this.CancelUsersBtn.Location = new System.Drawing.Point(138, 318);
             this.CancelUsersBtn.Margin = new System.Windows.Forms.Padding(2);
             this.CancelUsersBtn.Name = "CancelUsersBtn";
             this.CancelUsersBtn.Size = new System.Drawing.Size(56, 22);
             this.CancelUsersBtn.TabIndex = 31;
             this.CancelUsersBtn.Text = "Cancel";
             this.CancelUsersBtn.UseVisualStyleBackColor = false;
+            this.CancelUsersBtn.Click += new System.EventHandler(this.CancelUsersBtn_Click);
             // 
             // RegMsgLabel
             // 
@@ -252,7 +256,7 @@
             // 
             this.CreateEditProjectBtn.BackColor = System.Drawing.Color.WhiteSmoke;
             this.CreateEditProjectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.CreateEditProjectBtn.Location = new System.Drawing.Point(100, 249);
+            this.CreateEditProjectBtn.Location = new System.Drawing.Point(100, 276);
             this.CreateEditProjectBtn.Margin = new System.Windows.Forms.Padding(2);
             this.CreateEditProjectBtn.Name = "CreateEditProjectBtn";
             this.CreateEditProjectBtn.Size = new System.Drawing.Size(130, 37);
@@ -284,7 +288,7 @@
             // DescriptionLabel
             // 
             this.DescriptionLabel.AutoSize = true;
-            this.DescriptionLabel.Location = new System.Drawing.Point(20, 102);
+            this.DescriptionLabel.Location = new System.Drawing.Point(20, 152);
             this.DescriptionLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.DescriptionLabel.Name = "DescriptionLabel";
             this.DescriptionLabel.Size = new System.Drawing.Size(60, 13);
@@ -307,7 +311,7 @@
             this.GradeProjectsMnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.GradeProjectsMnBtn.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GradeProjectsMnBtn.ForeColor = System.Drawing.Color.White;
-            this.GradeProjectsMnBtn.Location = new System.Drawing.Point(-5, 240);
+            this.GradeProjectsMnBtn.Location = new System.Drawing.Point(-5, 184);
             this.GradeProjectsMnBtn.Margin = new System.Windows.Forms.Padding(2);
             this.GradeProjectsMnBtn.Name = "GradeProjectsMnBtn";
             this.GradeProjectsMnBtn.Size = new System.Drawing.Size(147, 64);
@@ -491,27 +495,6 @@
             this.ProjectList.UseCompatibleStateImageBehavior = false;
             this.ProjectList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ProjectList_MouseClick);
             // 
-            // AssignProjectBtn
-            // 
-            this.AssignProjectBtn.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.AssignProjectBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.AssignProjectBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AssignProjectBtn.Location = new System.Drawing.Point(213, 497);
-            this.AssignProjectBtn.Name = "AssignProjectBtn";
-            this.AssignProjectBtn.Size = new System.Drawing.Size(90, 40);
-            this.AssignProjectBtn.TabIndex = 35;
-            this.AssignProjectBtn.Text = "Assign";
-            this.AssignProjectBtn.UseVisualStyleBackColor = false;
-            // 
-            // AssignToWhomLabel
-            // 
-            this.AssignToWhomLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.AssignToWhomLabel.BackColor = System.Drawing.Color.Transparent;
-            this.AssignToWhomLabel.Location = new System.Drawing.Point(145, 454);
-            this.AssignToWhomLabel.Name = "AssignToWhomLabel";
-            this.AssignToWhomLabel.Size = new System.Drawing.Size(220, 40);
-            this.AssignToWhomLabel.TabIndex = 36;
-            // 
             // GradeList
             // 
             this.GradeList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -542,6 +525,18 @@
             this.GradeGroupBox.TabIndex = 33;
             this.GradeGroupBox.TabStop = false;
             this.GradeGroupBox.Text = "GradeTeam";
+            // 
+            // DownloadProjBtn
+            // 
+            this.DownloadProjBtn.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.DownloadProjBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.DownloadProjBtn.Location = new System.Drawing.Point(108, 144);
+            this.DownloadProjBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.DownloadProjBtn.Name = "DownloadProjBtn";
+            this.DownloadProjBtn.Size = new System.Drawing.Size(107, 26);
+            this.DownloadProjBtn.TabIndex = 33;
+            this.DownloadProjBtn.Text = "Download Project";
+            this.DownloadProjBtn.UseVisualStyleBackColor = false;
             // 
             // button3
             // 
@@ -664,18 +659,6 @@
             this.SelectedCourseLabel.Text = "No selected course";
             this.SelectedCourseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // DownloadProjBtn
-            // 
-            this.DownloadProjBtn.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.DownloadProjBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.DownloadProjBtn.Location = new System.Drawing.Point(108, 144);
-            this.DownloadProjBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.DownloadProjBtn.Name = "DownloadProjBtn";
-            this.DownloadProjBtn.Size = new System.Drawing.Size(107, 26);
-            this.DownloadProjBtn.TabIndex = 33;
-            this.DownloadProjBtn.Text = "Download Project";
-            this.DownloadProjBtn.UseVisualStyleBackColor = false;
-            // 
             // FormProfessor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -690,15 +673,12 @@
             this.Controls.Add(this.ChooseCourseMnBtn);
             this.Controls.Add(this.GradeGroupBox);
             this.Controls.Add(this.GradeList);
-            this.Controls.Add(this.AssignToWhomLabel);
-            this.Controls.Add(this.AssignProjectBtn);
             this.Controls.Add(this.ProjectList);
             this.Controls.Add(this.TeamList);
             this.Controls.Add(this.TeamGroupBox);
             this.Controls.Add(this.GradeProjectsMnBtn);
             this.Controls.Add(this.ProjectGroupBox);
             this.Controls.Add(this.LogoutBtn);
-            this.Controls.Add(this.AssignProjectMnBtn);
             this.Controls.Add(this.ModifyProjectMnBtn);
             this.Controls.Add(this.ModifyTeamMnBtn);
             this.Controls.Add(this.label1);
@@ -724,7 +704,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button LogoutBtn;
-        private System.Windows.Forms.Button AssignProjectMnBtn;
         private System.Windows.Forms.Button ModifyProjectMnBtn;
         private System.Windows.Forms.Button ModifyTeamMnBtn;
         private System.Windows.Forms.GroupBox ProjectGroupBox;
@@ -745,8 +724,6 @@
         private System.Windows.Forms.Button CreateEditTeamBtn;
         private System.Windows.Forms.ListView TeamList;
         private System.Windows.Forms.ListView ProjectList;
-        private System.Windows.Forms.Button AssignProjectBtn;
-        private System.Windows.Forms.Label AssignToWhomLabel;
         private System.Windows.Forms.ListView GradeList;
         private System.Windows.Forms.GroupBox GradeGroupBox;
         private System.Windows.Forms.Button button3;
@@ -772,5 +749,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox DescriptionBox;
         private System.Windows.Forms.Button DownloadProjBtn;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label11;
     }
 }

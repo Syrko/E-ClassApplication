@@ -7,6 +7,6 @@ namespace E_Class
 	abstract class AbstractFormFactory
 	{
 		// TODO Make createForm abstract in class diagram
-		public abstract Form createForm(string type, string reg_num);
+		public abstract Form createForm(string type, string reg_num, FormLogin login);
 	}
 }
