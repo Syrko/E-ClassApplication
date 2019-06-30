@@ -61,10 +61,10 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(103)))), ((int)(((byte)(178)))));
-            this.label1.Location = new System.Drawing.Point(-8, -47);
+            this.label1.Location = new System.Drawing.Point(-4, -2);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(151, 588);
+            this.label1.Size = new System.Drawing.Size(151, 543);
             this.label1.TabIndex = 15;
             // 
             // LogoutBtn
@@ -91,6 +91,7 @@
             this.ProjectsList.Size = new System.Drawing.Size(121, 97);
             this.ProjectsList.TabIndex = 24;
             this.ProjectsList.UseCompatibleStateImageBehavior = false;
+            this.ProjectsList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ProjectsList_MouseClick);
             // 
             // BrowseBtn
             // 
@@ -131,7 +132,6 @@
             // 
             this.UploadGroupBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.UploadGroupBox.BackColor = System.Drawing.Color.White;
-            this.UploadGroupBox.Controls.Add(this.label11);
             this.UploadGroupBox.Controls.Add(this.label12);
             this.UploadGroupBox.Controls.Add(this.FileNameLabel);
             this.UploadGroupBox.Controls.Add(this.label8);
@@ -155,13 +155,15 @@
             // 
             // label11
             // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label11.Location = new System.Drawing.Point(92, 26);
+            this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(103)))), ((int)(((byte)(178)))));
+            this.label11.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(-5, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(48, 13);
+            this.label11.Size = new System.Drawing.Size(148, 64);
             this.label11.TabIndex = 43;
             this.label11.Text = "TestTitle";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label12
             // 
@@ -265,13 +267,12 @@
             // 
             // SelectCourseMnBtn
             // 
-            this.SelectCourseMnBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.SelectCourseMnBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(103)))), ((int)(((byte)(178)))));
             this.SelectCourseMnBtn.FlatAppearance.BorderSize = 0;
             this.SelectCourseMnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SelectCourseMnBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SelectCourseMnBtn.ForeColor = System.Drawing.Color.White;
-            this.SelectCourseMnBtn.Location = new System.Drawing.Point(-5, 0);
+            this.SelectCourseMnBtn.Location = new System.Drawing.Point(-5, 78);
             this.SelectCourseMnBtn.Margin = new System.Windows.Forms.Padding(2);
             this.SelectCourseMnBtn.Name = "SelectCourseMnBtn";
             this.SelectCourseMnBtn.Size = new System.Drawing.Size(148, 64);
@@ -282,13 +283,12 @@
             // 
             // ProjectsMnBtn
             // 
-            this.ProjectsMnBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ProjectsMnBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(103)))), ((int)(((byte)(178)))));
             this.ProjectsMnBtn.FlatAppearance.BorderSize = 0;
             this.ProjectsMnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ProjectsMnBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ProjectsMnBtn.ForeColor = System.Drawing.Color.White;
-            this.ProjectsMnBtn.Location = new System.Drawing.Point(-5, 60);
+            this.ProjectsMnBtn.Location = new System.Drawing.Point(-5, 138);
             this.ProjectsMnBtn.Margin = new System.Windows.Forms.Padding(2);
             this.ProjectsMnBtn.Name = "ProjectsMnBtn";
             this.ProjectsMnBtn.Size = new System.Drawing.Size(148, 64);
@@ -299,6 +299,7 @@
             // 
             // CoursesList
             // 
+            this.CoursesList.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.CoursesList.Location = new System.Drawing.Point(337, 423);
             this.CoursesList.Name = "CoursesList";
             this.CoursesList.Size = new System.Drawing.Size(121, 97);
@@ -336,6 +337,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(1024, 532);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.SelectedCourseLabel);
             this.Controls.Add(this.SelectCourseBtn);
             this.Controls.Add(this.CoursesList);

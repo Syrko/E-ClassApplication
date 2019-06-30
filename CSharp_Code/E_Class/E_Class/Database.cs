@@ -420,14 +420,7 @@ namespace E_Class
                 {
                     con.Open();
 					string project_id = RegNum.getNextValue("Project");
-					foreach (Team team in GetTeams(course_id))
-					{
-						string sql_temp = "INSERT INTO ProjectsOfTeam VALUES(@project_id, null, @team_id, null)";
-						NpgsqlCommand cmd_temp = new NpgsqlCommand(sql_temp, con);
-						cmd_temp.Parameters.AddWithValue("project_id", project_id);
-						cmd_temp.Parameters.AddWithValue("team_id", team.getTeamID());
-						cmd_temp.ExecuteNonQuery();
-					}
+					
 
                     string sql = "INSERT INTO Projects VALUES(@id, @name, @description, @max_grade, @course_id, @due_date)";
                     NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
@@ -438,6 +431,15 @@ namespace E_Class
                     cmd.Parameters.AddWithValue("course_id", course_id);
                     cmd.Parameters.AddWithValue("due_date", due_date);
                     cmd.ExecuteNonQuery();
+
+                    foreach (Team team in GetTeams(course_id))
+                    {
+                        string sql_temp = "INSERT INTO ProjectsOfTeam VALUES(@project_id, null, @team_id, null)";
+                        NpgsqlCommand cmd_temp = new NpgsqlCommand(sql_temp, con);
+                        cmd_temp.Parameters.AddWithValue("project_id", project_id);
+                        cmd_temp.Parameters.AddWithValue("team_id", team.getTeamID());
+                        cmd_temp.ExecuteNonQuery();
+                    }
 
                 }
                 catch (Exception msg)
