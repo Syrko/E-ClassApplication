@@ -191,7 +191,6 @@ namespace E_Class
             foreach (Project proj in res)
             {
                 Team team = Database.GetTeamOfStudent(user, SelectedCourse);
-                MessageBox.Show(team.getTeamID());
                 string sent = "-";
                 string grade = "-";
                 
