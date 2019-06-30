@@ -926,7 +926,5 @@ namespace E_Class
 			}
 		}
 	}
-
-
 }
 }
