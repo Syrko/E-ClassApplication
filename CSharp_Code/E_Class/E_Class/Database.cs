@@ -15,7 +15,7 @@ namespace E_Class
 {
     class Database
     {
-        private static string connectionString = "Server=127.0.0.1; User id=postgres; Password=AWgrKOS1; Database=E-Class";
+        private static string connectionString = "Server=127.0.0.1; User id=postgres; Password=123456789; Database=eclass2";
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public static void CreateTeam(List<string> students, string course_id)
@@ -618,18 +618,16 @@ namespace E_Class
                         return;
                     }
                     results.Close();
-
 					if(file_id == null)
 					{
 						string id = RegNum.getNextValue("projectfile");
 
-						sql = "INSERT INTO projectfiles VALUES(@id, @file, @name, @date)";
+						sql = "INSERT INTO projectfiles VALUES(@id, @file, @name, now())";
                         NpgsqlCommand cmd2 = new NpgsqlCommand(sql, con);
 
 						cmd2.Parameters.AddWithValue("id", id);
 						cmd2.Parameters.AddWithValue("file", file);
 						cmd2.Parameters.AddWithValue("name", name);
-						cmd2.Parameters.AddWithValue("date", date);
 						cmd2.ExecuteNonQuery();
 
 						sql = "UPDATE projectsofteam SET project_file_id=@project_file_id WHERE team_id=@team_id AND project_id=@project_id";
@@ -642,12 +640,11 @@ namespace E_Class
 					}
 					else
 					{ 
-						sql = "UPDATE projectfiles SET (file, name, date)=(@file, @name, @date) WHERE id=@id";
+						sql = "UPDATE projectfiles SET (file, name, date)=(@file, @name, now()) WHERE id=@id";
                         NpgsqlCommand cmd4 = new NpgsqlCommand(sql, con);
 
 						cmd4.Parameters.AddWithValue("file", file);
 						cmd4.Parameters.AddWithValue("name", name);
-						cmd4.Parameters.AddWithValue("date", date);
 						cmd4.Parameters.AddWithValue("id", file_id);
 						cmd4.ExecuteNonQuery();
 					}
