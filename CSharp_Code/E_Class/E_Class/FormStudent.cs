@@ -39,8 +39,8 @@ namespace E_Class
             CoursesList.FullRowSelect = true;
             CoursesList.GridLines = true;
             CoursesList.Sorting = SortOrder.Ascending;
-            CoursesList.Columns.Add("Select a course to continue", -2, HorizontalAlignment.Center);
-            CoursesList.Columns.Add("Course ID", -2, HorizontalAlignment.Center);
+            CoursesList.Columns.Add("Courses", -2, HorizontalAlignment.Center);
+            CoursesList.Columns.Add("ID", -2, HorizontalAlignment.Center);
 
             currentUser = Database.GetUser("student", reg_num);
             user = (Student)currentUser;
@@ -70,11 +70,6 @@ namespace E_Class
             ProjectsList.Columns.Add("Project", -2, HorizontalAlignment.Left);
             ProjectsList.Columns.Add("Sent", -2, HorizontalAlignment.Left);
             ProjectsList.Columns.Add("Grade", -2, HorizontalAlignment.Left);
-
-
-            
-
-
             //==============================================================
 
             ProjectsList.Hide();
@@ -188,14 +183,9 @@ namespace E_Class
 
             label11.Text = CoursesList.SelectedItems[0].Text;
 
-            UpdateProjectList();
-
             ProjectsList.Show();
             UploadGroupBox.Show();
-        }
 
-        public void UpdateProjectList()
-        {
 
             List<Project> res = Database.GetProjectsForCourse(SelectedCourse);
             foreach (Project proj in res)
@@ -235,6 +225,7 @@ namespace E_Class
             label6.Text = proj.getDueDate().ToString();
             DescriptionArea.Text = proj.getdescription();*/
 
+
         }
 
         private void SelectCourseBtn_Click(object sender, EventArgs e)
@@ -254,12 +245,15 @@ namespace E_Class
 
         private void UploadBtn_Click(object sender, EventArgs e)
         {
-
+            //Database.UploadProject()
         }
 
 
+        private void ProjectsList_MouseClick(object sender, MouseEventArgs e)
+        {
+            
+        }
 
-        
 
         private void FormStudent_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -270,6 +264,7 @@ namespace E_Class
         {
 			logout();
         }
-           
+
+
     }
 }

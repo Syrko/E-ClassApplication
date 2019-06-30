@@ -92,7 +92,7 @@ namespace E_Class
 		public void createTeam(List<string> students, string newTeam) { Database.CreateTeam(students, newTeam); }
 		public void editTeam( string team_id, string course_id, List<string> teamStudents) { Database.EditTeam(team_id, course_id, teamStudents); }
 		public void deleteTeam(string team_id) { Database.DeleteTeam(team_id); }
-		public void gradeProject(Project project) { throw new NotImplementedException(); }
+		public void gradeProject(string teamID, string projectID, int grade) { Database.GradeProject(Database.GetFileDetails(teamID, projectID), grade); }
 
 
 		// Setters - Getters
