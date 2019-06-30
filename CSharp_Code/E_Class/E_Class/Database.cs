@@ -54,7 +54,7 @@ namespace E_Class
 				}
                 catch (Exception msg)
                 {
-                    MessageBox.Show(msg.ToString());
+                     
                     MessageBox.Show("There was a problem connecting to the server.");
                 }
             }
@@ -85,7 +85,7 @@ namespace E_Class
                 }
                 catch (Exception msg)
                 {
-                    MessageBox.Show(msg.ToString());
+                     
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
 					return null;
                 }
@@ -131,7 +131,7 @@ namespace E_Class
 				}
 				catch (Exception msg)
 				{
-					MessageBox.Show(msg.ToString());
+					 
 					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
 					return null;
 				}
@@ -172,7 +172,7 @@ namespace E_Class
 				}
 				catch (Exception msg)
 				{
-					MessageBox.Show(msg.ToString());
+					 
 					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
 					return null;
 				}
@@ -209,7 +209,7 @@ namespace E_Class
 				}
 				catch (Exception msg)
 				{
-					MessageBox.Show(msg.ToString());
+					 
 					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
 					return;
 				}
@@ -256,7 +256,7 @@ namespace E_Class
 				}
 				catch (Exception msg)
 				{
-					MessageBox.Show(msg.ToString());
+					 
 					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
 					return;
 				}
@@ -284,7 +284,7 @@ namespace E_Class
 				}
 				catch (Exception msg)
 				{
-					MessageBox.Show(msg.ToString());
+					 
 					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
 					return;
 				}
@@ -312,7 +312,7 @@ namespace E_Class
 				}
 				catch (Exception msg)
 				{
-					MessageBox.Show(msg.ToString());
+					 
 					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
 					return;
 				}
@@ -336,7 +336,7 @@ namespace E_Class
 				}
 				catch (Exception msg)
 				{
-					MessageBox.Show(msg.ToString());
+					 
 					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
 					return;
 				}
@@ -374,7 +374,7 @@ namespace E_Class
                 }
                 catch (Exception msg)
                 {
-                    MessageBox.Show(msg.ToString());
+                     
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
                     return null;
                 }
@@ -404,7 +404,7 @@ namespace E_Class
                 }
                 catch (Exception msg)
                 {
-                    MessageBox.Show(msg.ToString());
+                     
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
                     return null;
                 }
@@ -444,7 +444,7 @@ namespace E_Class
                 }
                 catch (Exception msg)
                 {
-                    MessageBox.Show(msg.ToString());
+                     
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
                 }
             }
@@ -471,7 +471,7 @@ namespace E_Class
                 }
                 catch (Exception msg)
                 {
-                    MessageBox.Show(msg.ToString());
+                     
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
                 }
             }
@@ -494,7 +494,7 @@ namespace E_Class
                 }
                 catch (Exception msg)
                 {
-                    MessageBox.Show(msg.ToString());
+                     
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
                 }
             }
@@ -526,7 +526,7 @@ namespace E_Class
                 }
                 catch (Exception msg)
                 {
-                    MessageBox.Show(msg.ToString());
+                     
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
 
                     return null;
@@ -559,7 +559,7 @@ namespace E_Class
                 }
                 catch (Exception msg)
                 {
-                    MessageBox.Show(msg.ToString());
+                     
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
 
                     return;
@@ -586,7 +586,7 @@ namespace E_Class
 				}
 				catch (Exception msg)
 				{
-					MessageBox.Show(msg.ToString());
+					 
 					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
 				}
 			}
@@ -658,7 +658,7 @@ namespace E_Class
                 }
                 catch (Exception msg)
                 {
-                    MessageBox.Show(msg.ToString());
+                     
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
                 }
 
@@ -682,7 +682,7 @@ namespace E_Class
                 }
                 catch (Exception msg)
                 {
-                    MessageBox.Show(msg.ToString());
+                     
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
                 }
 
@@ -716,7 +716,7 @@ namespace E_Class
                 catch (Exception msg)
                 {
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
-                    MessageBox.Show(msg.ToString());
+                    // 
                     return null;
                 }
 
@@ -748,7 +748,7 @@ namespace E_Class
                 catch (Exception msg)
                 {
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
-                    MessageBox.Show(msg.ToString());
+                    // 
                     return null;
                 }
             }
@@ -791,7 +791,7 @@ namespace E_Class
                 catch (Exception msg)
                 {
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
-                    MessageBox.Show(msg.ToString());
+                    // 
 
                     return null;
 
@@ -834,7 +834,7 @@ namespace E_Class
                 catch (Exception msg)
                 {
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
-                    MessageBox.Show(msg.ToString());
+                   //  
 
                     return -1;
                 }
@@ -867,7 +867,7 @@ namespace E_Class
 				catch (Exception msg)
 				{
 					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
-					MessageBox.Show(msg.ToString());
+					// 
 					return null;
 				}
 
@@ -899,7 +899,7 @@ namespace E_Class
 				catch (Exception msg)
 				{
 					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
-					MessageBox.Show(msg.ToString());
+					// 
 				}
 
 
@@ -931,8 +931,8 @@ namespace E_Class
 				}
 				catch (Exception msg)
 				{
-					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
-					MessageBox.Show(msg.ToString());
+					//MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+					 
 				}
 
 			}
@@ -958,7 +958,7 @@ namespace E_Class
                 }
                 catch (Exception msg)
                 {
-                    MessageBox.Show(msg.ToString());
+                    // 
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
 
                     return null;
@@ -990,8 +990,7 @@ namespace E_Class
 					
 				}
 				catch (Exception msg)
-				{
-					MessageBox.Show(msg.ToString());
+                { 
 					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
 				}
 			}
@@ -1017,7 +1016,7 @@ namespace E_Class
 				}
 				catch (Exception msg)
 				{
-					MessageBox.Show(msg.ToString());
+					// 
 					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
 				}
 			}
@@ -1042,7 +1041,7 @@ namespace E_Class
 				}
 				catch (Exception msg)
 				{
-					MessageBox.Show(msg.ToString());
+					// 
 					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
 					return null;
 				}
@@ -1066,7 +1065,7 @@ namespace E_Class
 				}
 				catch(Exception msg)
 				{
-					MessageBox.Show(msg.ToString());
+					 
 					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
 					return true;
 				}

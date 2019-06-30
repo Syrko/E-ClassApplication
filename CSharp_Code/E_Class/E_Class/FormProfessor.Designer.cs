@@ -227,6 +227,11 @@
             this.MaxGradeBox.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaxGradeBox.Location = new System.Drawing.Point(230, 64);
             this.MaxGradeBox.Margin = new System.Windows.Forms.Padding(2);
+            this.MaxGradeBox.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             this.MaxGradeBox.Name = "MaxGradeBox";
             this.MaxGradeBox.Size = new System.Drawing.Size(69, 22);
             this.MaxGradeBox.TabIndex = 29;

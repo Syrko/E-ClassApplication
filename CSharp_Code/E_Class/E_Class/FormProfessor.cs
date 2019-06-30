@@ -492,14 +492,42 @@ namespace E_Class
                 }
 
 
+                if (stuIDs.Count > 0)
+                {
+                    bool flag = true;
+                    foreach(string item in stuIDs)
+                    {
+                        int temp;
+                        if(item[0] != 'M' || !int.TryParse(item.Substring(1), out temp))
+                        {
+                            MessageBox.Show(item+" not a valid student registration number", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            flag = false;
+                            break;
+                        }
+                    }
+
+                    if (flag)
+                    {
+                        user.editTeam(TeamList.SelectedItems[0].Text, selectedCourse, stuIDs);
+                        ClearAllBoxes();
+                        EnableViewLists();
+                        ChangeBtnNames();
+                        RefreshList("TeamList");
+                        label13.Visible = false;
+                        label14.Visible = false;
+                        label15.Visible = false;
+                        label16.Visible = false;
+                        label17.Visible = false;
+                    }
+                    
+                }
+                else
+                {
+                    MessageBox.Show("You need at least one valid student", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 
-                user.editTeam(TeamList.SelectedItems[0].Text, selectedCourse, stuIDs);
 
-                ClearAllBoxes();
-                EnableViewLists();
-                ChangeBtnNames();
-                RefreshList("");
-
+                
 
 
             }
@@ -508,33 +536,79 @@ namespace E_Class
                 List<string> stuIDs = new List<string>();
                 if (Student1Box.Text.Trim() != "")
                 {
-                    stuIDs.Add(Student1Box.Text);
+                    if (!Database.isStudentInTeamAlready(selCourse.getCourseID(), Student1Box.Text.Trim()))
+                        stuIDs.Add(Student1Box.Text);
+                    else
+                        label13.Visible = true;
                 }
 
                 if (Student2Box.Text.Trim() != "")
                 {
-                    stuIDs.Add(Student2Box.Text);
+                    if (!Database.isStudentInTeamAlready(selCourse.getCourseID(), Student2Box.Text.Trim()))
+                        stuIDs.Add(Student2Box.Text);
+                    else
+                        label14.Visible = true;
                 }
 
                 if (Student3Box.Text.Trim() != "")
                 {
-                    stuIDs.Add(Student3Box.Text);
+                    if (!Database.isStudentInTeamAlready(selCourse.getCourseID(), Student3Box.Text.Trim()))
+                        stuIDs.Add(Student3Box.Text);
+                    else
+                        label15.Visible = true;
                 }
 
                 if (Student4Box.Text.Trim() != "")
                 {
-                    stuIDs.Add(Student4Box.Text);
+                    if (!Database.isStudentInTeamAlready(selCourse.getCourseID(), Student4Box.Text.Trim()))
+                        stuIDs.Add(Student4Box.Text);
+                    else
+                        label16.Visible = true;
                 }
 
                 if (Student5Box.Text.Trim() != "")
                 {
-                    stuIDs.Add(Student5Box.Text);
+                    if (!Database.isStudentInTeamAlready(selCourse.getCourseID(), Student5Box.Text.Trim()))
+                        stuIDs.Add(Student5Box.Text);
+                    else
+                        label17.Visible = true;
                 }
-                user.createTeam(stuIDs, selectedCourse);
 
-                ClearAllBoxes();
-                EnableViewLists();
-                ChangeBtnNames();
+                if(stuIDs.Count > 0)
+                {
+                    bool flag = true;
+                    foreach (string item in stuIDs)
+                    {
+                        int temp;
+                        if (item[0] != 'M' || !int.TryParse(item.Substring(1), out temp))
+                        {
+                            MessageBox.Show(item + " not a valid student registration number", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            flag = false;
+                            break;
+                        }
+                    }
+
+                    if (flag)
+                    {
+                        user.createTeam(stuIDs, selectedCourse);
+                        ClearAllBoxes();
+                        EnableViewLists();
+                        ChangeBtnNames();
+                        RefreshList("TeamList");
+                        label13.Visible = false;
+                        label14.Visible = false;
+                        label15.Visible = false;
+                        label16.Visible = false;
+                        label17.Visible = false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("You need at least one valid student","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
+
+                
             }
         }
 
@@ -553,17 +627,50 @@ namespace E_Class
         {
             if(CreateEditProjectBtn.Text == "Submit")
             {
-                user.editProject(ProjectList.SelectedItems[0].Text, ProjectNameBox.Text, DescriptionBox.Text, (int)MaxGradeBox.Value, DateTime.Parse(dateTimePicker1.Value.Date.ToString("yyyy-MM-dd") + " 23:59:59"));
-                ClearAllBoxes();
-                EnableViewLists();
-                ChangeBtnNames();
+                try
+                {
+                    if (!(ProjectNameBox.Text.Length == 0 || DescriptionBox.Text.Length == 0 || DateTime.Compare(dateTimePicker1.Value, DateTime.Now) < 0))
+                    {
+                        user.editProject(ProjectList.SelectedItems[0].Text, ProjectNameBox.Text, DescriptionBox.Text, (int)MaxGradeBox.Value, DateTime.Parse(dateTimePicker1.Value.Date.ToString("yyyy-MM-dd") + " 23:59:59"));
+                        ClearAllBoxes();
+                        EnableViewLists();
+                        ChangeBtnNames();
+                        RefreshList("ProjectList");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please check again the fields", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+                }
+                catch(Exception msg)
+                {
+                    MessageBox.Show("Please select an item from the list", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                
             }
             else
             {
-                user.createProject(ProjectNameBox.Text, DescriptionBox.Text, (int)MaxGradeBox.Value, selectedCourse, DateTime.Parse(dateTimePicker1.Value.Date.ToString("yyyy-MM-dd") + " 23:59:59"));
-                ClearAllBoxes();
-                EnableViewLists();
-                ChangeBtnNames();
+                try
+                {
+                    if(!(ProjectNameBox.Text.Length == 0 || DescriptionBox.Text.Length == 0 || DateTime.Compare(dateTimePicker1.Value, DateTime.Now)<0))
+                    {
+                        user.createProject(ProjectNameBox.Text, DescriptionBox.Text, (int)MaxGradeBox.Value, selectedCourse, DateTime.Parse(dateTimePicker1.Value.Date.ToString("yyyy-MM-dd") + " 23:59:59"));
+                        ClearAllBoxes();
+                        EnableViewLists();
+                        ChangeBtnNames();
+                        RefreshList("ProjectList");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please check again the fields", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    
+                }
+                catch(Exception msg)
+                {
+                    MessageBox.Show("Please select an item from the list", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
 
@@ -617,7 +724,15 @@ namespace E_Class
 
         private void DownloadProjBtn_Click(object sender, EventArgs e)
         {
-            Database.DownloadProject(GradeList.SelectedItems[0].SubItems[1].Text, GradeList.SelectedItems[0].Text);
+            try
+            {
+                Database.DownloadProject(GradeList.SelectedItems[0].SubItems[1].Text, GradeList.SelectedItems[0].Text);
+            }
+            catch(Exception msg)
+            {
+                MessageBox.Show("Please select an item", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            
         }
 
         private void GradeList_MouseClick(object sender, MouseEventArgs e)
@@ -632,6 +747,7 @@ namespace E_Class
         {
             try
             {
+                
                 user.gradeProject(TeamIDBox.Text, projIDForEditGrade, (int)GradeBox.Value);
                 ClearAllBoxes();
                 EnableViewLists();
@@ -647,7 +763,9 @@ namespace E_Class
 
         private void RefreshList(string table)
         {
-            if(table == "TeamList")
+            currentUser = Database.GetUser(UserTypes.PROFESSOR, currentUser.registrationNumber.getRegNumString());
+            user = (Professor)currentUser;
+            if (table == "TeamList")
             {
                 TeamList.Items.Clear();
                 var listViewItem = new ListViewItem();
@@ -728,5 +846,16 @@ namespace E_Class
                 }
             }
         }
+
+        private void HideErrorLabels()
+        {
+            label13.Visible = false;
+            label14.Visible = false;
+            label15.Visible = false;
+            label16.Visible = false;
+            label17.Visible = false;
+            DescriptionErrorLabel.Visible = false;
+        }
+
     }
 }
