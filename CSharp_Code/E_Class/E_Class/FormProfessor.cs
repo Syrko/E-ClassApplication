@@ -27,7 +27,7 @@ namespace E_Class
         string projIDForEditGrade;
 
 
-
+        
 
         public FormProfessor(string reg_num, FormLogin login)
         {

@@ -7,7 +7,7 @@ namespace E_Class
 {
     public partial class FormLogin : Form
     {
-    
+
 
 		private AbstractFormFactory formFactory;
 
@@ -45,7 +45,7 @@ namespace E_Class
         }
 
 
-        
+
 
         private void FormLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
