@@ -455,8 +455,8 @@ namespace E_Class
 
 					sql = "DELETE FROM Projects WHERE id = @id)";
                     cmd = new NpgsqlCommand(sql, con);
-                    string sql = "DELETE FROM Projects WHERE id = @id";
-                    NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+                    sql = "DELETE FROM Projects WHERE id = @id";
+                    cmd = new NpgsqlCommand(sql, con);
                     cmd.Parameters.AddWithValue("id", project_id);
                     cmd.ExecuteNonQuery();
                 }
