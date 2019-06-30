@@ -305,8 +305,8 @@ namespace E_Class
             {
                 
                 Team team = Database.GetTeamOfStudent(user, SelectedCourse);
-                //MessageBox.Show(DateTime.Parse(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), IFormatProvider).ToString());
-                //user.uploadProjectFile(FileInBytes, FileNameLabel.Text, DateTime.Parse(DateTime.Now.Date.ToString("yyyy-MM-dd hh:mm:ss")), team.getTeamID(), ProjectsList.SelectedItems[0].Text);
+                
+                user.uploadProjectFile(FileInBytes, FileNameLabel.Text, DateTime.Now, team.getTeamID(), ProjectsList.SelectedItems[0].Text);
                 MsgLabel.Text = "File uploaded Successfully";
             }
             catch(Exception msg)

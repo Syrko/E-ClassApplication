@@ -365,6 +365,7 @@ namespace E_Class
         private void TeamDelete_RightClick(object sender, System.EventArgs e)
         {
             user.deleteTeam(TeamList.SelectedItems[0].Text);
+            RefreshList("TeamList");
         }
 
         private void TeamEdit_RightClick(object sender, System.EventArgs e)
@@ -393,6 +394,7 @@ namespace E_Class
         private void ProjectDelete_RightClick(object sender, System.EventArgs e)
         {
             user.deleteProject(ProjectList.SelectedItems[0].Text);
+            RefreshList("ProjectList");
         }
 
         
@@ -451,27 +453,42 @@ namespace E_Class
                 List<string> stuIDs = new List<string>();
                 if (Student1Box.Text.Trim() != "")
                 {
-                    stuIDs.Add(Student1Box.Text);
+                    if (!Database.isStudentInTeamAlready(selCourse.getCourseID(), Student1Box.Text.Trim()))
+                        stuIDs.Add(Student1Box.Text);
+                    else
+                        label13.Visible = true;
                 }
 
                 if (Student2Box.Text.Trim() != "")
                 {
-                    stuIDs.Add(Student2Box.Text);
+                    if (!Database.isStudentInTeamAlready(selCourse.getCourseID(), Student2Box.Text.Trim()))
+                        stuIDs.Add(Student2Box.Text);
+                    else
+                        label14.Visible = true;
                 }
 
                 if (Student3Box.Text.Trim() != "")
                 {
-                    stuIDs.Add(Student3Box.Text);
+                    if (!Database.isStudentInTeamAlready(selCourse.getCourseID(), Student3Box.Text.Trim()))
+                        stuIDs.Add(Student3Box.Text);
+                    else
+                        label15.Visible = true;
                 }
 
                 if (Student4Box.Text.Trim() != "")
                 {
-                    stuIDs.Add(Student4Box.Text);
+                    if (!Database.isStudentInTeamAlready(selCourse.getCourseID(), Student4Box.Text.Trim()))
+                        stuIDs.Add(Student4Box.Text);
+                    else
+                        label16.Visible = true;
                 }
 
                 if (Student5Box.Text.Trim() != "")
                 {
-                    stuIDs.Add(Student5Box.Text);
+                    if (!Database.isStudentInTeamAlready(selCourse.getCourseID(), Student5Box.Text.Trim()))
+                        stuIDs.Add(Student5Box.Text);
+                    else
+                        label17.Visible = true;
                 }
 
 
@@ -481,6 +498,7 @@ namespace E_Class
                 ClearAllBoxes();
                 EnableViewLists();
                 ChangeBtnNames();
+                RefreshList("");
 
 
 
