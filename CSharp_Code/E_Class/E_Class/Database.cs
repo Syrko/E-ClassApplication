@@ -419,9 +419,19 @@ namespace E_Class
                 try
                 {
                     con.Open();
+					string project_id = RegNum.getNextValue("Project");
+					foreach (Team team in GetTeams(course_id))
+					{
+						string sql_temp = "INSERT INTO ProjectsOfTeam VALUES(@project_id, null, @team_id, null)";
+						NpgsqlCommand cmd_temp = new NpgsqlCommand(sql_temp, con);
+						cmd_temp.Parameters.AddWithValue("project_id", project_id);
+						cmd_temp.Parameters.AddWithValue("team_id", team.getTeamID());
+						cmd_temp.ExecuteNonQuery();
+					}
+
                     string sql = "INSERT INTO Projects VALUES(@id, @name, @description, @max_grade, @course_id, @due_date)";
                     NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
-                    cmd.Parameters.AddWithValue("id", RegNum.getNextValue("Project"));
+                    cmd.Parameters.AddWithValue("id", project_id);
                     cmd.Parameters.AddWithValue("name", name);
                     cmd.Parameters.AddWithValue("description", description);
                     cmd.Parameters.AddWithValue("max_grade", max_grade);
