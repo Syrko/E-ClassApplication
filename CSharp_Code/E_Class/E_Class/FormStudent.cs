@@ -303,8 +303,9 @@ namespace E_Class
         {
             try
             {
+                
                 Team team = Database.GetTeamOfStudent(user, SelectedCourse);
-                //user.uploadProjectFile(FileInBytes, FileNameLabel.Text, DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss"), team.getTeamID(), ProjectsList.SelectedItems[0].Text);
+                user.uploadProjectFile(FileInBytes, FileNameLabel.Text, DateTime.Now, team.getTeamID(), ProjectsList.SelectedItems[0].Text);
                 MsgLabel.Text = "File uploaded Successfully";
             }
             catch(Exception msg)
@@ -312,11 +313,6 @@ namespace E_Class
                 MessageBox.Show("Please select a file");
             }
 
-        }
-
-        private static DateTime Trims(DateTime date, long roundTicks)
-        {
-            return new DateTime(date.Ticks - date.Ticks % roundTicks, date.Kind);
         }
 
 

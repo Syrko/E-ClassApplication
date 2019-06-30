@@ -710,7 +710,5 @@ namespace E_Class
                 }
             }
         }
-
-       
     }
 }
