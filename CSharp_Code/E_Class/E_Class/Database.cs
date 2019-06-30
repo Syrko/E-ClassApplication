@@ -770,8 +770,15 @@ namespace E_Class
                     NpgsqlDataReader results = cmd.ExecuteReader();
                     if (results.Read())
                     {
-
-                        return (int)results[0];
+                        if (results[0] is null)
+                        {
+                            return -1;
+                        }
+                        else
+                        {
+                            return int.Parse(results[0].ToString());
+                        }
+                        
                     }
                     else
                     {

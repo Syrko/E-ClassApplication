@@ -250,6 +250,8 @@ namespace E_Class
             CoursesList.Show();
             SelectCourseBtn.Show();
 
+
+
         }
 
 
@@ -273,26 +275,13 @@ namespace E_Class
             TeamList.Location = new Point(150, 12);
 
 
-            //StudentsList.Clear();
-            var listViewItem = new ListViewItem();
-            foreach (Course course in user.getCourseList())
-            {
-                if (course.getCourseID() == selectedCourse)
-                {
-                    selCourse = course;
-                    break;
-                }
-            }
-            foreach(Team team in selCourse.getTeamList())
-            {
-                listViewItem = new ListViewItem();
-                listViewItem.Text = team.getTeamID();
-                foreach(Student stu in team.getStudentList())
-                {
-                    listViewItem.SubItems.Add(stu.registrationNumber.getRegNumString());
-                }
-                TeamList.Items.Add(listViewItem);
-            }
+
+
+
+            RefreshList("TeamList");
+            ClearAllBoxes();
+            EnableViewLists();
+            ChangeBtnNames();
         }
 
 
@@ -312,17 +301,13 @@ namespace E_Class
             ProjectGroupBox.Show();
             ProjectGroupBox.Location = new Point(450, 12);
 
-            
-            
-            foreach (Project proj in selCourse.getProjectList())
-            {
-                var listViewItem = new ListViewItem();
-                listViewItem.Text = proj.getProjectID();
-                listViewItem.SubItems.Add(proj.getname());
-                listViewItem.SubItems.Add(proj.getmaxGrade().ToString());
-                ProjectList.Items.Add(listViewItem);
-            }
-               
+
+
+
+            RefreshList("ProjectList");
+            ClearAllBoxes();
+            EnableViewLists();
+            ChangeBtnNames();
         }
 
 
@@ -346,47 +331,11 @@ namespace E_Class
             GradeGroupBox.Location = new Point(450, 12);
 
 
-            var listViewItem = new ListViewItem();
-            foreach(Team team in selCourse.getTeamList())
-            {
-                foreach(KeyValuePair<Project, ProjectFile> pair in team.getProjectAssignmentsD())
-                {
-                    if (DateTime.Compare(pair.Key.getDueDate(),DateTime.Now) < 0)
-                    {
-                        listViewItem = new ListViewItem();
-                        listViewItem.Text = team.getTeamID();
-                        listViewItem.SubItems.Add(pair.Key.getProjectID());
-                        listViewItem.SubItems.Add(pair.Key.getname());
-                        if(pair.Value == null)
-                        {
-                            listViewItem.SubItems.Add("No");
-                        }
-                        else
-                        {
-                            listViewItem.SubItems.Add("Yes");
-                        }
-                        try
-                        {
-                            if (!(pair.Value.getGrade() < 0))
-                            {
-                                listViewItem.SubItems.Add(pair.Value.getGrade().ToString());
-                            }
-                            else
-                            {
-                                listViewItem.SubItems.Add("-");
-                            }
-                            
-                        }
-                        catch(NullReferenceException ex)
-                        {
-                            listViewItem.SubItems.Add("-");
-                        }
-                        GradeList.Items.Add(listViewItem);                       
-                    }
-                    
-                }
-                
-            }
+
+            RefreshList("GradeList");
+            ClearAllBoxes();
+            EnableViewLists();
+            ChangeBtnNames();
         }
 
 
@@ -528,9 +477,10 @@ namespace E_Class
 
                 
                 user.editTeam(TeamList.SelectedItems[0].Text, selectedCourse, stuIDs);
-                CreateEditTeamBtn.Text = "Create";
+
                 ClearAllBoxes();
-                TeamList.Enabled = true;
+                EnableViewLists();
+                ChangeBtnNames();
 
 
 
@@ -563,8 +513,10 @@ namespace E_Class
                     stuIDs.Add(Student5Box.Text);
                 }
                 user.createTeam(stuIDs, selectedCourse);
+
                 ClearAllBoxes();
-                TeamList.Enabled = true;
+                EnableViewLists();
+                ChangeBtnNames();
             }
         }
 
@@ -585,14 +537,15 @@ namespace E_Class
             {
                 user.editProject(ProjectList.SelectedItems[0].Text, ProjectNameBox.Text, DescriptionBox.Text, (int)MaxGradeBox.Value, DateTime.Parse(dateTimePicker1.Value.Date.ToString("yyyy-MM-dd") + " 23:59:59"));
                 ClearAllBoxes();
-                ProjectList.Enabled = true;
-                CreateEditTeamBtn.Text = "Create";
+                EnableViewLists();
+                ChangeBtnNames();
             }
             else
-            { 
-                ProjectList.Enabled = true;
+            {
                 user.createProject(ProjectNameBox.Text, DescriptionBox.Text, (int)MaxGradeBox.Value, selectedCourse, DateTime.Parse(dateTimePicker1.Value.Date.ToString("yyyy-MM-dd") + " 23:59:59"));
                 ClearAllBoxes();
+                EnableViewLists();
+                ChangeBtnNames();
             }
         }
 
@@ -600,16 +553,31 @@ namespace E_Class
         private void CancelProjectBtn_Click(object sender, EventArgs e)
         {
             ClearAllBoxes();
-            ProjectList.Enabled = true;
+            EnableViewLists();
+            ChangeBtnNames();
         }
 
         private void CancelTeamBtn_Click(object sender, EventArgs e)
         {
             ClearAllBoxes();
-            TeamList.Enabled = true;
+            EnableViewLists();
+            ChangeBtnNames();
         }
 
 
+
+        private void EnableViewLists()
+        {
+            TeamList.Enabled = true;
+            ProjectList.Enabled = true;
+            GradeList.Enabled = true;
+        }
+
+        private void ChangeBtnNames()
+        {
+            CreateEditProjectBtn.Text = "Create";
+            CreateEditTeamBtn.Text = "Create";
+        }
 
 
         private void ClearAllBoxes()
@@ -647,10 +615,99 @@ namespace E_Class
             try
             {
                 user.gradeProject(TeamIDBox.Text, projIDForEditGrade, (int)GradeBox.Value);
+                ClearAllBoxes();
+                EnableViewLists();
+                ChangeBtnNames();
             }
             catch (Exception msg)
             {
-                MessageBox.Show(msg.ToString());//"Please first select an item from the list");
+                MessageBox.Show("Please first select an item from the list");
+            }
+        }
+
+
+
+        private void RefreshList(string table)
+        {
+            if(table == "TeamList")
+            {
+                TeamList.Items.Clear();
+                var listViewItem = new ListViewItem();
+                foreach (Course course in user.getCourseList())
+                {
+                    if (course.getCourseID() == selectedCourse)
+                    {
+                        selCourse = course;
+                        break;
+                    }
+                }
+                foreach (Team team in selCourse.getTeamList())
+                {
+                    listViewItem = new ListViewItem();
+                    listViewItem.Text = team.getTeamID();
+                    foreach (Student stu in team.getStudentList())
+                    {
+                        listViewItem.SubItems.Add(stu.registrationNumber.getRegNumString());
+                    }
+                    TeamList.Items.Add(listViewItem);
+                }
+            }
+            else if(table == "ProjectList")
+            {
+                ProjectList.Items.Clear();
+                foreach (Project proj in selCourse.getProjectList())
+                {
+                    var listViewItem = new ListViewItem();
+                    listViewItem.Text = proj.getProjectID();
+                    listViewItem.SubItems.Add(proj.getname());
+                    listViewItem.SubItems.Add(proj.getmaxGrade().ToString());
+                    ProjectList.Items.Add(listViewItem);
+                }
+            }
+            else
+            {
+                GradeList.Items.Clear();
+                var listViewItem = new ListViewItem();
+                foreach (Team team in selCourse.getTeamList())
+                {
+                    foreach (KeyValuePair<Project, ProjectFile> pair in team.getProjectAssignmentsD())
+                    {
+                        if (DateTime.Compare(pair.Key.getDueDate(), DateTime.Now) < 0)
+                        {
+                            listViewItem = new ListViewItem();
+                            listViewItem.Text = team.getTeamID();
+                            listViewItem.SubItems.Add(pair.Key.getProjectID());
+                            listViewItem.SubItems.Add(pair.Key.getname());
+                            if (pair.Value == null)
+                            {
+                                listViewItem.SubItems.Add("No");
+                            }
+                            else
+                            {
+                                listViewItem.SubItems.Add("Yes");
+                            }
+                            try
+                            {
+                                if (!(pair.Value.getGrade() < 0))
+                                {
+                                    listViewItem.SubItems.Add(pair.Value.getGrade().ToString());
+                                }
+                                else
+                                {
+                                    listViewItem.SubItems.Add("-");
+                                }
+
+                            }
+                            catch (NullReferenceException ex)
+                            {
+                                listViewItem.SubItems.Add("-");
+                            }
+                            GradeList.Items.Add(listViewItem);
+                        }
+
+                    }
+
+                }
             }
         }
     }

@@ -19,11 +19,11 @@ namespace E_Class
 
         // Inherited properties
         protected override User currentUser { get; set; }
-		// Inherited methods
-		public override void logout()
-		{
-			this.Close();
-		}
+        // Inherited methods
+        public override void logout()
+        {
+            this.Close();
+        }
 
         string SelectedCourse;
         Student user;
@@ -67,6 +67,7 @@ namespace E_Class
             ProjectsList.FullRowSelect = true;
             ProjectsList.GridLines = true;
             ProjectsList.Sorting = SortOrder.Ascending;
+            ProjectsList.Columns.Add("Project ID", -2, HorizontalAlignment.Left);
             ProjectsList.Columns.Add("Project", -2, HorizontalAlignment.Left);
             ProjectsList.Columns.Add("Sent", -2, HorizontalAlignment.Left);
             ProjectsList.Columns.Add("Grade", -2, HorizontalAlignment.Left);
@@ -186,47 +187,87 @@ namespace E_Class
             ProjectsList.Show();
             UploadGroupBox.Show();
 
-
-            List<Project> res = Database.GetProjectsForCourse(SelectedCourse);
-            foreach (Project proj in res)
+            ProjectsList.Items.Clear();
+            try
             {
                 Team team = Database.GetTeamOfStudent(user, SelectedCourse);
-                MessageBox.Show(team.getTeamID());
-                string sent = "-";
-                string grade = "-";
-                
+                var listViewItem = new ListViewItem();
 
-                if(team != null)
+                foreach (KeyValuePair<Project, ProjectFile> pair in team.getProjectAssignmentsD())
                 {
-                    if (Database.GetFileDetails(team.getTeamID(), proj.getProjectID()) != null)
+                    if (DateTime.Compare(pair.Key.getDueDate(), DateTime.Now) > 0)
                     {
-                        MessageBox.Show(Database.GetFileDetails(team.getTeamID(), proj.getProjectID()).getName());
-                        sent = "Yes";
-                    }
-                    grade = Database.GetGrade(team.getTeamID(), proj.getProjectID()).ToString();
-                    if (int.Parse(grade) == -1)
-                    {
-                        grade = "-";
+                        listViewItem = new ListViewItem();
+                        listViewItem.Text = pair.Key.getProjectID();
+                        listViewItem.SubItems.Add(pair.Key.getname());
+                        if (pair.Value == null)
+                        {
+                            listViewItem.SubItems.Add("No");
+                        }
+                        else
+                        {
+                            listViewItem.SubItems.Add("Yes");
+                        }
+                        try
+                        {
+                            if (!(pair.Value.getGrade() < 0))
+                            {
+                                listViewItem.SubItems.Add(pair.Value.getGrade().ToString());
+                            }
+                            else
+                            {
+                                listViewItem.SubItems.Add("-");
+                            }
+
+                        }
+                        catch (NullReferenceException ex)
+                        {
+                            listViewItem.SubItems.Add("-");
+                        }
+                        ProjectsList.Items.Add(listViewItem);
                     }
                 }
-                
-
-                var row = new String[]
-                {
-                proj.getname()
-                , sent
-                , grade
-                };
-                var ProjectlistViewItem = new ListViewItem(row);
-                ProjectsList.Items.Add(ProjectlistViewItem);
+            }
+            catch (Exception msg)
+            {
+                MessageBox.Show("you have no team");
             }
 
-            /*Project proj = Database.GetProject("P1");
-            label6.Text = proj.getDueDate().ToString();
-            DescriptionArea.Text = proj.getdescription();*/
-
-
         }
+        /*
+        string sent = "-";
+        string grade = "-";
+
+
+       if(team != null)
+        {
+            if (Database.GetFileDetails(team.getTeamID(), proj.getProjectID()) != null)
+            {
+                sent = "Yes";
+            }
+            grade = Database.GetGrade(team.getTeamID(), proj.getProjectID()).ToString();
+            if (int.Parse(grade) == -1)
+            {
+                grade = "-";
+            }
+        }
+
+
+        var row = new String[]
+        {
+        proj.getProjectID(),
+        proj.getname()
+        , sent
+        , grade
+        };
+        var ProjectlistViewItem = new ListViewItem(row);
+        ProjectsList.Items.Add(ProjectlistViewItem);
+    }
+
+    Project proj = Database.GetProject("P1");
+    label6.Text = proj.getDueDate().ToString();
+    DescriptionArea.Text = proj.getdescription();
+    */
 
         private void SelectCourseBtn_Click(object sender, EventArgs e)
         {
@@ -236,6 +277,7 @@ namespace E_Class
             }
             else
             {
+                
                 SelectedCourse = CoursesList.SelectedItems[0].SubItems[1].Text;
                 SelectedCourseLabel.Text = CoursesList.SelectedItems[0].Text + " is selected";
                 ProjectsMnBtn.Enabled = true;
@@ -245,13 +287,38 @@ namespace E_Class
 
         private void UploadBtn_Click(object sender, EventArgs e)
         {
-            //Database.UploadProject()
+            try
+            {
+                //Database.UploadProject();
+            }
+            catch(Exception msg)
+            {
+                MessageBox.Show("Please select a file");
+            }
+
         }
 
 
         private void ProjectsList_MouseClick(object sender, MouseEventArgs e)
         {
-            
+            Team team = Database.GetTeamOfStudent(user, SelectedCourse);
+            Project proj = Database.GetProject(ProjectsList.SelectedItems[0].Text);
+            ProjectFile file = Database.GetFileDetails(team.getTeamID(), ProjectsList.SelectedItems[0].Text);
+
+
+
+            ProjectNameLabel.Text = ProjectsList.SelectedItems[0].SubItems[1].Text;
+            DescriptionBox.Text = proj.getdescription();
+            DueDateLabel.Text = proj.getDueDate().ToString();
+
+            if (file.getName() != null)
+            {
+                FileNameLabel.Text = file.getName();
+            }
+            else
+            {
+                FileNameLabel.Text = "No files found";
+            }
         }
 
 

@@ -80,11 +80,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.TeamIDBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.ChooseCourseMnBtn = new System.Windows.Forms.Button();
             this.CoursesList = new System.Windows.Forms.ListView();
             this.SelectCourseBtn = new System.Windows.Forms.Button();
             this.SelectedCourseLabel = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
             this.CourseHolderLabel = new System.Windows.Forms.Label();
             this.ProjectGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MaxGradeBox)).BeginInit();
@@ -130,7 +130,7 @@
             this.ModifyProjectMnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ModifyProjectMnBtn.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ModifyProjectMnBtn.ForeColor = System.Drawing.Color.White;
-            this.ModifyProjectMnBtn.Location = new System.Drawing.Point(-5, 194);
+            this.ModifyProjectMnBtn.Location = new System.Drawing.Point(-6, 200);
             this.ModifyProjectMnBtn.Margin = new System.Windows.Forms.Padding(2);
             this.ModifyProjectMnBtn.Name = "ModifyProjectMnBtn";
             this.ModifyProjectMnBtn.Size = new System.Drawing.Size(147, 64);
@@ -146,7 +146,7 @@
             this.ModifyTeamMnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ModifyTeamMnBtn.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ModifyTeamMnBtn.ForeColor = System.Drawing.Color.White;
-            this.ModifyTeamMnBtn.Location = new System.Drawing.Point(-4, 134);
+            this.ModifyTeamMnBtn.Location = new System.Drawing.Point(-5, 132);
             this.ModifyTeamMnBtn.Margin = new System.Windows.Forms.Padding(2);
             this.ModifyTeamMnBtn.Name = "ModifyTeamMnBtn";
             this.ModifyTeamMnBtn.Size = new System.Drawing.Size(146, 64);
@@ -343,7 +343,7 @@
             this.GradeProjectsMnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.GradeProjectsMnBtn.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GradeProjectsMnBtn.ForeColor = System.Drawing.Color.White;
-            this.GradeProjectsMnBtn.Location = new System.Drawing.Point(-5, 262);
+            this.GradeProjectsMnBtn.Location = new System.Drawing.Point(-6, 268);
             this.GradeProjectsMnBtn.Margin = new System.Windows.Forms.Padding(2);
             this.GradeProjectsMnBtn.Name = "GradeProjectsMnBtn";
             this.GradeProjectsMnBtn.Size = new System.Drawing.Size(147, 64);
@@ -695,6 +695,15 @@
             this.label8.TabIndex = 1;
             this.label8.Text = "Team ID";
             // 
+            // label18
+            // 
+            this.label18.BackColor = System.Drawing.Color.Red;
+            this.label18.Location = new System.Drawing.Point(88, 65);
+            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(153, 22);
+            this.label18.TabIndex = 46;
+            // 
             // ChooseCourseMnBtn
             // 
             this.ChooseCourseMnBtn.BackColor = System.Drawing.Color.Transparent;
@@ -702,7 +711,7 @@
             this.ChooseCourseMnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ChooseCourseMnBtn.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ChooseCourseMnBtn.ForeColor = System.Drawing.Color.White;
-            this.ChooseCourseMnBtn.Location = new System.Drawing.Point(-4, 75);
+            this.ChooseCourseMnBtn.Location = new System.Drawing.Point(-4, 64);
             this.ChooseCourseMnBtn.Margin = new System.Windows.Forms.Padding(2);
             this.ChooseCourseMnBtn.Name = "ChooseCourseMnBtn";
             this.ChooseCourseMnBtn.Size = new System.Drawing.Size(146, 64);
@@ -745,15 +754,6 @@
             this.SelectedCourseLabel.TabIndex = 41;
             this.SelectedCourseLabel.Text = "Select a course to continue";
             this.SelectedCourseLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label18
-            // 
-            this.label18.BackColor = System.Drawing.Color.Red;
-            this.label18.Location = new System.Drawing.Point(88, 65);
-            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(153, 22);
-            this.label18.TabIndex = 46;
             // 
             // CourseHolderLabel
             // 
