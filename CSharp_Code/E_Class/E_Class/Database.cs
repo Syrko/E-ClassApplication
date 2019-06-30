@@ -1046,5 +1046,28 @@ namespace E_Class
 			}
 		}
 
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		public static bool isStudentInTeamAlready(string course_id, string student_id)
+		{
+			using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+			{
+				try
+				{
+					con.Open();
+					string sql = "SELECT * FROM StudentsTeams WHERE stu_reg_num=@stu_reg_num AND course_id=@course_id";
+					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+					cmd.Parameters.AddWithValue("stu_reg_num", student_id);
+					cmd.Parameters.AddWithValue("course_id", course_id);
+					NpgsqlDataReader results = cmd.ExecuteReader();
+					return results.Read();
+				}
+				catch(Exception msg)
+				{
+					MessageBox.Show(msg.ToString());
+					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+					return true;
+				}
+			}
+		}
 	}
 }
