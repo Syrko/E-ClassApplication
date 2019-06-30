@@ -18,14 +18,15 @@ namespace E_Class
         FormLogin login;
 
         // Inherited properties
-        protected override User currentUser { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        protected override User currentUser { get; set; }
 		// Inherited methods
 		public override void logout()
 		{
 			this.Close();
 		}
 
-		
+        string SelectedCourse;
+        Student user;
 
         public FormStudent(string reg_num, FormLogin login)
         {
@@ -40,6 +41,9 @@ namespace E_Class
             CoursesList.Sorting = SortOrder.Ascending;
             CoursesList.Columns.Add("Select a course to continue", -2, HorizontalAlignment.Center);
             CoursesList.Columns.Add("Course ID", -2, HorizontalAlignment.Center);
+
+            currentUser = Database.GetUser("student", reg_num);
+            user = (Student)currentUser;
 
             Dictionary<string, string> Courses = Database.getAllCourses();
             foreach (KeyValuePair<string, string> course in Courses)
@@ -196,21 +200,29 @@ namespace E_Class
         public void UpdateProjectList()
         {
 
-            List<Project> res = Database.GetProjectsForCourse(CoursesList.SelectedItems[0].SubItems[1].Text);
-
+            List<Project> res = Database.GetProjectsForCourse(SelectedCourse);
             foreach (Project proj in res)
             {
-                string sent = "Yes";
-                if(Database.GetFileDetails("T4", proj.getProjectID()) == null)
-                {
-                    sent = "-";
-                }
-                string grade = Database.GetGrade("T4", proj.getProjectID()).ToString();
+                Team team = Database.GetTeamOfStudent(user, SelectedCourse);
+                MessageBox.Show(team.getTeamID());
+                string sent = "-";
+                string grade = "-";
+                
 
-                if(int.Parse(grade) == -1)
+                if(team != null)
                 {
-                    grade = "-";
+                    if (Database.GetFileDetails(team.getTeamID(), proj.getProjectID()) != null)
+                    {
+                        MessageBox.Show(Database.GetFileDetails(team.getTeamID(), proj.getProjectID()).getName());
+                        sent = "Yes";
+                    }
+                    grade = Database.GetGrade(team.getTeamID(), proj.getProjectID()).ToString();
+                    if (int.Parse(grade) == -1)
+                    {
+                        grade = "-";
+                    }
                 }
+                
 
                 var row = new String[]
                 {
@@ -236,6 +248,7 @@ namespace E_Class
             }
             else
             {
+                SelectedCourse = CoursesList.SelectedItems[0].SubItems[1].Text;
                 SelectedCourseLabel.Text = CoursesList.SelectedItems[0].Text + " is selected";
                 ProjectsMnBtn.Enabled = true;
                 ProjectsMnBtn.PerformClick();

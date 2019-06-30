@@ -26,7 +26,7 @@ namespace E_Class
         FormLogin login;
 
 
-
+        
 
         public FormProfessor(string reg_num, FormLogin login)
         {
