@@ -447,14 +447,11 @@ namespace E_Class
                 {
                     con.Open();
 
-
-					string sql = "DELETE FROM PrjectsOfTeam WHERE project_id = @projetc_id)";
+					string sql = "DELETE FROM ProjectsOfTeam WHERE project_id = @project_id";
 					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
 					cmd.Parameters.AddWithValue("project_id", project_id);
 					cmd.ExecuteNonQuery();
 
-					sql = "DELETE FROM Projects WHERE id = @id)";
-                    cmd = new NpgsqlCommand(sql, con);
                     sql = "DELETE FROM Projects WHERE id = @id";
                     cmd = new NpgsqlCommand(sql, con);
                     cmd.Parameters.AddWithValue("id", project_id);
@@ -925,7 +922,7 @@ namespace E_Class
 						downloadedFile = (byte[])results["file"];
 					}
 
-					System.IO.File.WriteAllBytes(@path + "//" + results["name"], downloadedFile);
+					File.WriteAllBytes(@path + "//" + results["name"], downloadedFile);
 				}
 				catch (Exception msg)
 				{

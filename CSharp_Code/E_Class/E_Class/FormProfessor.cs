@@ -68,7 +68,6 @@ namespace E_Class
             }
 
 
-            
             SelectedCourseLabel.Location = new Point(475, 20);
             SelectCourseBtn.Location = new Point(551, 458);
             //==============================================================================
@@ -108,7 +107,8 @@ namespace E_Class
             GradeList.GridLines = true;
             GradeList.Sorting = SortOrder.Ascending;
             GradeList.Columns.Add("Team", -2, HorizontalAlignment.Left);
-            GradeList.Columns.Add("Project", -2, HorizontalAlignment.Left);
+            GradeList.Columns.Add("Project ID", -2, HorizontalAlignment.Left);            
+            GradeList.Columns.Add("Project name", -2, HorizontalAlignment.Left);
             GradeList.Columns.Add("Grade", -2, HorizontalAlignment.Left);
             //==============================================================================
 
@@ -340,6 +340,33 @@ namespace E_Class
             GradeGroupBox.Show();
             GradeList.Show();
             GradeGroupBox.Location = new Point(450, 12);
+
+
+            var listViewItem = new ListViewItem();
+            foreach(Team team in selCourse.getTeamList())
+            {
+                foreach(KeyValuePair<Project, ProjectFile> pair in team.getProjectAssignmentsD())
+                {
+                    if (DateTime.Compare(pair.Key.getDueDate(),DateTime.Now) > 0)
+                    {
+                        listViewItem = new ListViewItem();
+                        listViewItem.Text = team.getTeamID();
+                        listViewItem.SubItems.Add(pair.Key.getProjectID());
+                        listViewItem.SubItems.Add(pair.Key.getname());
+
+                        if (!(pair.Value.getGrade() < 0))
+                        {
+                            listViewItem.SubItems.Add(pair.Value.getGrade().ToString());
+                        }
+                        else
+                        {
+                            listViewItem.SubItems.Add("-");
+                        }
+                    }
+                    GradeList.Items.Add(listViewItem);
+                }
+                
+            }
         }
 
 
@@ -476,10 +503,11 @@ namespace E_Class
                 }
 
 
-                ClearAllBoxes();
-                TeamList.Enabled = true;
+                
                 user.editTeam(TeamList.SelectedItems[0].Text, selectedCourse, stuIDs);
                 CreateEditTeamBtn.Text = "Create";
+                ClearAllBoxes();
+                TeamList.Enabled = true;
 
 
 
@@ -531,19 +559,17 @@ namespace E_Class
         private void CreateEditProjectBtn_Click(object sender, EventArgs e)
         {
             if(CreateEditProjectBtn.Text == "Submit")
-            { 
-                user.editProject()
-
-
+            {
+                user.editProject(ProjectList.SelectedItems[0].Text, ProjectNameBox.Text, DescriptionBox.Text, (int)MaxGradeBox.Value, DateTime.Parse(dateTimePicker1.Value.Date.ToString("yyyy-MM-dd") + " 23:59:59"));
                 ClearAllBoxes();
                 ProjectList.Enabled = true;
                 CreateEditTeamBtn.Text = "Create";
             }
             else
             {
-                ClearAllBoxes();
                 ProjectList.Enabled = true;
-                user.createProject(ProjectNameBox.Text, DescriptionBox.Text, (int)MaxGradeBox.Value, selectedCourse, DateTime.Parse(dateTimePicker1.Value.Date.ToString("yyyy-MM-dd")+" 23:59:59"));
+                user.createProject(ProjectNameBox.Text, DescriptionBox.Text, (int)MaxGradeBox.Value, selectedCourse, DateTime.Parse(dateTimePicker1.Value.Date.ToString("yyyy-MM-dd") + " 23:59:59"));
+                ClearAllBoxes();
             }
         }
 
@@ -582,6 +608,9 @@ namespace E_Class
             GradeBox.Value = 0;
         }
 
-
+        private void DownloadProjBtn_Click(object sender, EventArgs e)
+        {
+            Database.DownloadProject(GradeList.SelectedItems[0].SubItems[1].Text, GradeList.SelectedItems[0].Text);
+        }
     }
 }
