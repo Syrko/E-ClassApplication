@@ -895,5 +895,38 @@ namespace E_Class
             }
         }
 
-    }
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		public static void DownloadProject(string project_id, string team_id)
+		{
+			using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+			{
+				try
+				{
+					byte[] downloadedFile = null;
+					string path = Path.GetDirectoryName(Application.ExecutablePath);
+					con.Open();
+					string sql = "SELECT * FROM ProjectFiles WHERE id=(SELECT project_file_id FROM ProjectsOfTeam WHERE project_id=@project_id AND team_id=@team_id)";
+					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+					cmd.Parameters.AddWithValue("project_id", project_id);
+					cmd.Parameters.AddWithValue("team_id", team_id);
+					NpgsqlDataReader results = cmd.ExecuteReader();
+					while (results.Read())
+					{
+						downloadedFile = (byte[])results["file"];
+					}
+
+					System.IO.File.WriteAllBytes(@path + "//" + results["name"], downloadedFile);
+					con.Close();
+				}
+				catch (Exception msg)
+				{
+					MessageBox.Show(msg.ToString());
+					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+				}
+			}
+		}
+	}
+
+
+}
 }
