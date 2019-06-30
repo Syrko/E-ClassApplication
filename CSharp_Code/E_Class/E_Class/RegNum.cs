@@ -62,6 +62,8 @@ namespace E_Class
 						return "P" + id.ToString();
 					case "Team":
 						return "T" + id.ToString();
+					case "projectfile":
+						return "F" + id.ToString();
 					default:
 						return null;
 				}
