@@ -9,13 +9,13 @@ namespace E_Class
     public partial class FormProfessor : UserForm
     {
 
-        //TODO Clear lists on every menu click
-        //Refresh List, Max grade limit, selection NOT null, label in groupBoxes
+        //TODO: Clear lists on every menu click. On delete create a confirmation message box 
+        //TODO: Refresh List, Max grade limit, selection NOT null, label in groupBoxes, listview.Items.Clear();
 
 
 
-		// Inherited properties
-		protected override User currentUser { get; set; }
+        // Inherited properties
+        protected override User currentUser { get; set; }
         // Inherited methods
 
         private ContextMenuStrip TeamRightClickMenu = new ContextMenuStrip();
@@ -143,6 +143,7 @@ namespace E_Class
 
 
 
+            CourseHolderLabel.BackColor = Color.FromArgb(100, 10, 10, 10);
 
 
 
@@ -381,7 +382,8 @@ namespace E_Class
             else
             {
                 selectedCourse = CoursesList.SelectedItems[0].SubItems[1].Text;
-                SelectedCourseLabel.Text = CoursesList.SelectedItems[0].Text + " is selected";
+                SelectedCourseLabel.Text = "course " + CoursesList.SelectedItems[0].Text + " is selected";
+                CourseHolderLabel.Text = CoursesList.SelectedItems[0].Text;
                 ModifyProjectMnBtn.Enabled = true;
                 ModifyTeamMnBtn.Enabled = true;
                 GradeProjectsMnBtn.Enabled = true;
@@ -441,6 +443,8 @@ namespace E_Class
             }
             ProjectList.Enabled = false;
         }
+
+
 
 
 
@@ -589,8 +593,6 @@ namespace E_Class
 
 
 
-
-
         private void ClearAllBoxes()
         {
             Student1Box.Text = "";
@@ -611,6 +613,27 @@ namespace E_Class
         private void DownloadProjBtn_Click(object sender, EventArgs e)
         {
             Database.DownloadProject(GradeList.SelectedItems[0].SubItems[1].Text, GradeList.SelectedItems[0].Text);
+        }
+
+        private void GradeList_MouseClick(object sender, MouseEventArgs e)
+        {
+                TeamIDBox.Text = GradeList.SelectedItems[0].Text;
+                ProjNameBox.Text = GradeList.SelectedItems[0].SubItems[2].Text;
+                GradeBox.Value = Decimal.Parse(GradeList.SelectedItems[0].SubItems[3].Text);
+        }
+
+        private void SubmitGradeBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                TeamIDBox.Text = GradeList.SelectedItems[0].Text;
+                ProjNameBox.Text = GradeList.SelectedItems[0].SubItems[2].Text;
+                GradeBox.Value = Decimal.Parse(GradeList.SelectedItems[0].SubItems[3].Text);
+            }
+            catch (Exception msg)
+            {
+                MessageBox.Show("Please first select an item from the list");
+            }
         }
     }
 }

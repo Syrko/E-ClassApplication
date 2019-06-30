@@ -56,9 +56,6 @@ namespace E_Class
                 var listViewItem = new ListViewItem(row);
                 CoursesList.Items.Add(listViewItem);
             }
-
-
-
             SelectedCourseLabel.Location = new Point(475, 20);
             SelectCourseBtn.Location = new Point(551, 458);
             //==============================================================================

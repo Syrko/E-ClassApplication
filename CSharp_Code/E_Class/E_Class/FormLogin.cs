@@ -7,7 +7,7 @@ namespace E_Class
 {
     public partial class FormLogin : Form
     {
-    
+
 
 		private AbstractFormFactory formFactory;
 
@@ -39,13 +39,13 @@ namespace E_Class
 
         private void LogInBtn_Click(object sender, EventArgs e)
         {
-            login("M15750", "VmTF7K9e", this);
-            //login("K11108", "gifU7TbKk2lq", this);
-            //login(UsernameBox.Text, PasswordBox.Text);
+            //login("M15750", "VmTF7K9e", this);
+            login("K11108", "gifU7TbKk2lq", this);
+            //login(UsernameBox.Text, PasswordBox.Text, this);
         }
 
 
-        
+
 
         private void FormLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
