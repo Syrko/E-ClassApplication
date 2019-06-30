@@ -445,8 +445,14 @@ namespace E_Class
                 try
                 {
                     con.Open();
-                    string sql = "DELETE FROM Projects WHERE id = @id)";
-                    NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+
+					string sql = "DELETE FROM PrjectsOfTeam WHERE project_id = @projetc_id)";
+					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+					cmd.Parameters.AddWithValue("project_id", project_id);
+					cmd.ExecuteNonQuery();
+
+					sql = "DELETE FROM Projects WHERE id = @id)";
+                    cmd = new NpgsqlCommand(sql, con);
                     cmd.Parameters.AddWithValue("id", project_id);
                     cmd.ExecuteNonQuery();
                      
@@ -917,7 +923,6 @@ namespace E_Class
 					}
 
 					System.IO.File.WriteAllBytes(@path + "//" + results["name"], downloadedFile);
-					con.Close();
 				}
 				catch (Exception msg)
 				{
@@ -926,6 +931,59 @@ namespace E_Class
 				}
 			}
 		}
+
+
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		public static void EditProject(string project_id, string name, string description, int max_grade, DateTime due_date)
+		{
+			using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+			{
+				try
+				{
+					con.Open();
+					string sql = "UPDATE Projects SET (name, description, max_grade, due_date) = (@name, @description, @max_grade, @due_date) WHERE id=@id";
+					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+					cmd.Parameters.AddWithValue("id", project_id);
+					cmd.Parameters.AddWithValue("name", name);
+					cmd.Parameters.AddWithValue("description", description);
+					cmd.Parameters.AddWithValue("max_grade", max_grade);
+					cmd.Parameters.AddWithValue("due_date", due_date);
+					cmd.ExecuteNonQuery();
+				}
+				catch (Exception msg)
+				{
+					MessageBox.Show(msg.ToString());
+					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+				}
+			}
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		public static Team GetTeamOfStudent(Student student, string course_id)
+		{
+			using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
+			{
+				try
+				{
+					con.Open();
+					string sql = "SELECT team_id FROM StudentsTeams WHERE stu_reg_num=@stu_reg_num AND course_id=@course_id";
+					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+					cmd.Parameters.AddWithValue("stu_reg_num", student.registrationNumber.getRegNumString());
+					cmd.Parameters.AddWithValue("course_id", course_id);
+					NpgsqlDataReader results = cmd.ExecuteReader();
+					if (results.Read())
+						return new Team(results[0].ToString(), getStudentsOfTeam(results[0].ToString()), GetTeamsProjectFiles(results[0].ToString()));
+					else
+						return null;
+				}
+				catch (Exception msg)
+				{
+					MessageBox.Show(msg.ToString());
+					MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
+					return null;
+				}
+			}
+		}
+
 	}
 
 
