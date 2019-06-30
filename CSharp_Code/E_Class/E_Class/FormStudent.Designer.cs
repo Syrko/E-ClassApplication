@@ -33,19 +33,18 @@
             this.ProjectsList = new System.Windows.Forms.ListView();
             this.BrowseBtn = new System.Windows.Forms.Button();
             this.UploadBtn = new System.Windows.Forms.Button();
-            this.DescriptionBox = new System.Windows.Forms.ListView();
             this.UploadGroupBox = new System.Windows.Forms.GroupBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.DescriptionBox = new System.Windows.Forms.TextBox();
             this.FileNameLabel = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.DueDateLabel = new System.Windows.Forms.Label();
+            this.ProjectNameLabel = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.SelectCourseMnBtn = new System.Windows.Forms.Button();
             this.ProjectsMnBtn = new System.Windows.Forms.Button();
@@ -53,6 +52,7 @@
             this.SelectedCourseLabel = new System.Windows.Forms.Label();
             this.SelectCourseBtn = new System.Windows.Forms.Button();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.MsgLabel = new System.Windows.Forms.Label();
             this.UploadGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -119,28 +119,19 @@
             this.UploadBtn.UseVisualStyleBackColor = false;
             this.UploadBtn.Click += new System.EventHandler(this.UploadBtn_Click);
             // 
-            // DescriptionBox
-            // 
-            this.DescriptionBox.Location = new System.Drawing.Point(22, 94);
-            this.DescriptionBox.Margin = new System.Windows.Forms.Padding(2);
-            this.DescriptionBox.Name = "DescriptionBox";
-            this.DescriptionBox.Size = new System.Drawing.Size(444, 78);
-            this.DescriptionBox.TabIndex = 32;
-            this.DescriptionBox.UseCompatibleStateImageBehavior = false;
-            // 
             // UploadGroupBox
             // 
             this.UploadGroupBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.UploadGroupBox.BackColor = System.Drawing.Color.White;
-            this.UploadGroupBox.Controls.Add(this.label12);
+            this.UploadGroupBox.Controls.Add(this.MsgLabel);
+            this.UploadGroupBox.Controls.Add(this.DescriptionBox);
             this.UploadGroupBox.Controls.Add(this.FileNameLabel);
             this.UploadGroupBox.Controls.Add(this.label8);
-            this.UploadGroupBox.Controls.Add(this.label6);
-            this.UploadGroupBox.Controls.Add(this.label5);
+            this.UploadGroupBox.Controls.Add(this.DueDateLabel);
+            this.UploadGroupBox.Controls.Add(this.ProjectNameLabel);
             this.UploadGroupBox.Controls.Add(this.label4);
             this.UploadGroupBox.Controls.Add(this.label3);
             this.UploadGroupBox.Controls.Add(this.label2);
-            this.UploadGroupBox.Controls.Add(this.DescriptionBox);
             this.UploadGroupBox.Controls.Add(this.UploadBtn);
             this.UploadGroupBox.Controls.Add(this.BrowseBtn);
             this.UploadGroupBox.Controls.Add(this.label7);
@@ -153,27 +144,14 @@
             this.UploadGroupBox.TabIndex = 33;
             this.UploadGroupBox.TabStop = false;
             // 
-            // label11
+            // DescriptionBox
             // 
-            this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(103)))), ((int)(((byte)(178)))));
-            this.label11.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
-            this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(-5, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(148, 64);
-            this.label11.TabIndex = 43;
-            this.label11.Text = "TestTitle";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label12.Location = new System.Drawing.Point(19, 26);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(66, 13);
-            this.label12.TabIndex = 42;
-            this.label12.Text = "Course Title:";
+            this.DescriptionBox.Location = new System.Drawing.Point(22, 84);
+            this.DescriptionBox.Multiline = true;
+            this.DescriptionBox.Name = "DescriptionBox";
+            this.DescriptionBox.ReadOnly = true;
+            this.DescriptionBox.Size = new System.Drawing.Size(424, 81);
+            this.DescriptionBox.TabIndex = 43;
             // 
             // FileNameLabel
             // 
@@ -195,25 +173,25 @@
             this.label8.TabIndex = 39;
             this.label8.Text = "File:";
             // 
-            // label6
+            // DueDateLabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label6.Location = new System.Drawing.Point(79, 186);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(61, 13);
-            this.label6.TabIndex = 37;
-            this.label6.Text = "30-06-2019";
+            this.DueDateLabel.AutoSize = true;
+            this.DueDateLabel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.DueDateLabel.Location = new System.Drawing.Point(79, 186);
+            this.DueDateLabel.Name = "DueDateLabel";
+            this.DueDateLabel.Size = new System.Drawing.Size(61, 13);
+            this.DueDateLabel.TabIndex = 37;
+            this.DueDateLabel.Text = "30-06-2019";
             // 
-            // label5
+            // ProjectNameLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label5.Location = new System.Drawing.Point(92, 54);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(48, 13);
-            this.label5.TabIndex = 36;
-            this.label5.Text = "TestTitle";
+            this.ProjectNameLabel.AutoSize = true;
+            this.ProjectNameLabel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ProjectNameLabel.Location = new System.Drawing.Point(92, 40);
+            this.ProjectNameLabel.Name = "ProjectNameLabel";
+            this.ProjectNameLabel.Size = new System.Drawing.Size(48, 13);
+            this.ProjectNameLabel.TabIndex = 36;
+            this.ProjectNameLabel.Text = "TestTitle";
             // 
             // label4
             // 
@@ -229,7 +207,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label3.Location = new System.Drawing.Point(19, 79);
+            this.label3.Location = new System.Drawing.Point(19, 67);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 13);
             this.label3.TabIndex = 34;
@@ -239,7 +217,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label2.Location = new System.Drawing.Point(19, 54);
+            this.label2.Location = new System.Drawing.Point(19, 40);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 13);
             this.label2.TabIndex = 33;
@@ -261,6 +239,18 @@
             this.label10.Size = new System.Drawing.Size(473, 95);
             this.label10.TabIndex = 41;
             // 
+            // label11
+            // 
+            this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(103)))), ((int)(((byte)(178)))));
+            this.label11.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(-5, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(148, 64);
+            this.label11.TabIndex = 43;
+            this.label11.Text = "TestTitle";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog1";
@@ -272,7 +262,7 @@
             this.SelectCourseMnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SelectCourseMnBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SelectCourseMnBtn.ForeColor = System.Drawing.Color.White;
-            this.SelectCourseMnBtn.Location = new System.Drawing.Point(-5, 78);
+            this.SelectCourseMnBtn.Location = new System.Drawing.Point(-5, 66);
             this.SelectCourseMnBtn.Margin = new System.Windows.Forms.Padding(2);
             this.SelectCourseMnBtn.Name = "SelectCourseMnBtn";
             this.SelectCourseMnBtn.Size = new System.Drawing.Size(148, 64);
@@ -288,7 +278,7 @@
             this.ProjectsMnBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ProjectsMnBtn.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ProjectsMnBtn.ForeColor = System.Drawing.Color.White;
-            this.ProjectsMnBtn.Location = new System.Drawing.Point(-5, 138);
+            this.ProjectsMnBtn.Location = new System.Drawing.Point(-5, 126);
             this.ProjectsMnBtn.Margin = new System.Windows.Forms.Padding(2);
             this.ProjectsMnBtn.Name = "ProjectsMnBtn";
             this.ProjectsMnBtn.Size = new System.Drawing.Size(148, 64);
@@ -331,6 +321,15 @@
             this.SelectCourseBtn.UseVisualStyleBackColor = false;
             this.SelectCourseBtn.Click += new System.EventHandler(this.SelectCourseBtn_Click);
             // 
+            // MsgLabel
+            // 
+            this.MsgLabel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.MsgLabel.Location = new System.Drawing.Point(152, 15);
+            this.MsgLabel.Name = "MsgLabel";
+            this.MsgLabel.Size = new System.Drawing.Size(161, 24);
+            this.MsgLabel.TabIndex = 44;
+            this.MsgLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -365,19 +364,17 @@
         private System.Windows.Forms.ListView ProjectsList;
         private System.Windows.Forms.Button BrowseBtn;
         private System.Windows.Forms.Button UploadBtn;
-        private System.Windows.Forms.ListView DescriptionBox;
         private System.Windows.Forms.GroupBox UploadGroupBox;
         private System.Windows.Forms.Label FileNameLabel;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label DueDateLabel;
+        private System.Windows.Forms.Label ProjectNameLabel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.Button SelectCourseMnBtn;
         private System.Windows.Forms.Button ProjectsMnBtn;
@@ -385,5 +382,7 @@
         private System.Windows.Forms.Label SelectedCourseLabel;
         private System.Windows.Forms.Button SelectCourseBtn;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.TextBox DescriptionBox;
+        private System.Windows.Forms.Label MsgLabel;
     }
 }

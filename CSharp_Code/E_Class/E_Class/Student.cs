@@ -80,7 +80,7 @@ namespace E_Class
 		}
 
 		// Methods
-		public void uploadProjectFile(ProjectFile projectToUpload) { throw new NotImplementedException(); }
+		public void uploadProjectFile(byte[] file, string name, DateTime date, string team_id, string project_id) { Database.UploadProject(file, name, date, team_id, project_id); }
 		public void viewCourseGrades(Course course) { throw new NotImplementedException(); }
 
 	}

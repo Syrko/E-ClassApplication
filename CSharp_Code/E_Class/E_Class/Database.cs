@@ -594,7 +594,7 @@ namespace E_Class
 
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public static void UploadProject(byte[] file, string name, string date, string team_id, string project_id)
+        public static void UploadProject(byte[] file, string name, DateTime date, string team_id, string project_id)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
             {
@@ -602,48 +602,55 @@ namespace E_Class
                 {
                     con.Open();
 
-					string sql = "SELECT project_file_id FROM Projectsofteam WHERE team_id=@team_id AND project_id=@project_id";
-					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
-					cmd.Parameters.AddWithValue("team_id", team_id);
-					cmd.Parameters.AddWithValue("project_id", project_id);
-					NpgsqlDataReader results = cmd.ExecuteReader();
-					if (results.Read())
+                    string sql = "SELECT project_file_id FROM Projectsofteam WHERE team_id=@team_id AND project_id=@project_id";
+                    NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
+                    cmd.Parameters.AddWithValue("team_id", team_id);
+                    cmd.Parameters.AddWithValue("project_id", project_id);
+                    NpgsqlDataReader results = cmd.ExecuteReader();
+
+                    string file_id = null;
+                    if (results.Read())
+                    {
+                        file_id = results[0].ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Could not upload file");
+                        return;
+                    }
+                    results.Close();
+
+					if(file_id == null)
 					{
-						if(results.IsDBNull(0))
-						{
-							string id = RegNum.getNextValue("projectfile");
+						string id = RegNum.getNextValue("projectfile");
 
-							sql = "INSERT INTO projectfiles VALUES(@id, @file, @name, @date)";
-							cmd = new NpgsqlCommand(sql, con);
+						sql = "INSERT INTO projectfiles VALUES(@id, @file, @name, @date)";
+                        NpgsqlCommand cmd2 = new NpgsqlCommand(sql, con);
 
-							cmd.Parameters.AddWithValue("id", id);
-							cmd.Parameters.AddWithValue("file", file);
-							cmd.Parameters.AddWithValue("name", name);
-							cmd.Parameters.AddWithValue("date", date);
-							cmd.ExecuteNonQuery();
+						cmd2.Parameters.AddWithValue("id", id);
+						cmd2.Parameters.AddWithValue("file", file);
+						cmd2.Parameters.AddWithValue("name", name);
+						cmd2.Parameters.AddWithValue("date", date);
+						cmd2.ExecuteNonQuery();
 
-							sql = "UPDATE projectsofteam SET project_file_id=@project_file_id WHERE team_id=@team_id AND project_id=@project_id";
-							cmd = new NpgsqlCommand(sql, con);
-							cmd.Parameters.AddWithValue("project_file_id", id);
-							cmd.Parameters.AddWithValue("team_id", team_id);
-							cmd.Parameters.AddWithValue("project_id", project_id);
-							cmd.ExecuteNonQuery();
-						}
-						else
-						{ 
-							sql = "UPDATE projectfiles SET (file, name, date)=(@file, @name, @date) WHERE id=@id";
-							cmd = new NpgsqlCommand(sql, con);
+						sql = "UPDATE projectsofteam SET project_file_id=@project_file_id WHERE team_id=@team_id AND project_id=@project_id";
+                        NpgsqlCommand cmd3 = new NpgsqlCommand(sql, con);
+						cmd3.Parameters.AddWithValue("project_file_id", id);
+						cmd3.Parameters.AddWithValue("team_id", team_id);
+						cmd3.Parameters.AddWithValue("project_id", project_id);
+						cmd3.ExecuteNonQuery();
 
-							cmd.Parameters.AddWithValue("file", file);
-							cmd.Parameters.AddWithValue("name", name);
-							cmd.Parameters.AddWithValue("date", date);
-							cmd.Parameters.AddWithValue("id", results.GetString(0));
-							cmd.ExecuteNonQuery();
-						}
 					}
 					else
-					{
-						MessageBox.Show("Couldn't upload file");
+					{ 
+						sql = "UPDATE projectfiles SET (file, name, date)=(@file, @name, @date) WHERE id=@id";
+                        NpgsqlCommand cmd4 = new NpgsqlCommand(sql, con);
+
+						cmd4.Parameters.AddWithValue("file", file);
+						cmd4.Parameters.AddWithValue("name", name);
+						cmd4.Parameters.AddWithValue("date", date);
+						cmd4.Parameters.AddWithValue("id", file_id);
+						cmd4.ExecuteNonQuery();
 					}
 
                 }
@@ -806,8 +813,15 @@ namespace E_Class
                     NpgsqlDataReader results = cmd.ExecuteReader();
                     if (results.Read())
                     {
-
-                        return (int)results[0];
+                        if (results[0] is null)
+                        {
+                            return -1;
+                        }
+                        else
+                        {
+                            return int.Parse(results[0].ToString());
+                        }
+                        
                     }
                     else
                     {
