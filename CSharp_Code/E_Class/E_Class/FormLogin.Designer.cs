@@ -35,9 +35,6 @@
             this.PassLabel = new System.Windows.Forms.Label();
             this.Container = new System.Windows.Forms.Label();
             this.LogInBtn = new System.Windows.Forms.Button();
-            this.LoginAdmin = new System.Windows.Forms.Button();
-            this.LoginProf = new System.Windows.Forms.Button();
-            this.LoginStudent = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // UsernameBox
@@ -109,49 +106,6 @@
             this.LogInBtn.MouseEnter += new System.EventHandler(this.LogInBtn_Enter);
             this.LogInBtn.MouseLeave += new System.EventHandler(this.LogInBtn_Leave);
             // 
-            // LoginAdmin
-            // 
-            this.LoginAdmin.BackColor = System.Drawing.Color.LightSalmon;
-            this.LoginAdmin.FlatAppearance.BorderSize = 0;
-            this.LoginAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LoginAdmin.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LoginAdmin.Location = new System.Drawing.Point(56, 291);
-            this.LoginAdmin.Margin = new System.Windows.Forms.Padding(2);
-            this.LoginAdmin.Name = "LoginAdmin";
-            this.LoginAdmin.Size = new System.Drawing.Size(115, 45);
-            this.LoginAdmin.TabIndex = 9;
-            this.LoginAdmin.Text = "Admin";
-            this.LoginAdmin.UseVisualStyleBackColor = false;
-            this.LoginAdmin.Click += new System.EventHandler(this.LoginAdmin_Click);
-            // 
-            // LoginProf
-            // 
-            this.LoginProf.BackColor = System.Drawing.Color.LightSalmon;
-            this.LoginProf.FlatAppearance.BorderSize = 0;
-            this.LoginProf.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LoginProf.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LoginProf.Location = new System.Drawing.Point(249, 291);
-            this.LoginProf.Margin = new System.Windows.Forms.Padding(2);
-            this.LoginProf.Name = "LoginProf";
-            this.LoginProf.Size = new System.Drawing.Size(115, 45);
-            this.LoginProf.TabIndex = 10;
-            this.LoginProf.Text = "Professor";
-            this.LoginProf.UseVisualStyleBackColor = false;
-            // 
-            // LoginStudent
-            // 
-            this.LoginStudent.BackColor = System.Drawing.Color.LightSalmon;
-            this.LoginStudent.FlatAppearance.BorderSize = 0;
-            this.LoginStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LoginStudent.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LoginStudent.Location = new System.Drawing.Point(445, 291);
-            this.LoginStudent.Margin = new System.Windows.Forms.Padding(2);
-            this.LoginStudent.Name = "LoginStudent";
-            this.LoginStudent.Size = new System.Drawing.Size(115, 45);
-            this.LoginStudent.TabIndex = 11;
-            this.LoginStudent.Text = "Student";
-            this.LoginStudent.UseVisualStyleBackColor = false;
-            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -159,15 +113,12 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(616, 382);
-            this.Controls.Add(this.LoginStudent);
             this.Controls.Add(this.LogInBtn);
             this.Controls.Add(this.PassLabel);
             this.Controls.Add(this.NameLabel);
             this.Controls.Add(this.PasswordBox);
             this.Controls.Add(this.UsernameBox);
             this.Controls.Add(this.Container);
-            this.Controls.Add(this.LoginAdmin);
-            this.Controls.Add(this.LoginProf);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximumSize = new System.Drawing.Size(632, 420);
             this.MinimumSize = new System.Drawing.Size(632, 420);
@@ -188,9 +139,6 @@
         private System.Windows.Forms.Label PassLabel;
         private System.Windows.Forms.Label Container;
         private System.Windows.Forms.Button LogInBtn;
-        private System.Windows.Forms.Button LoginAdmin;
-        private System.Windows.Forms.Button LoginProf;
-        private System.Windows.Forms.Button LoginStudent;
     }
 }
 
