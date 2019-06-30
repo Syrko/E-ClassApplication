@@ -163,7 +163,7 @@ namespace E_Class
                         break;
                     }
                 }
-                
+
                 FileNameLabel.Text = temp;
                 FileInBytes = System.IO.File.ReadAllBytes(openFileDialog.FileName);
             }
@@ -291,7 +291,7 @@ namespace E_Class
             }
             else
             {
-                
+
                 SelectedCourse = CoursesList.SelectedItems[0].SubItems[1].Text;
                 SelectedCourseLabel.Text = CoursesList.SelectedItems[0].Text + " is selected";
                 ProjectsMnBtn.Enabled = true;

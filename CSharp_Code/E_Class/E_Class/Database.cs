@@ -15,7 +15,7 @@ namespace E_Class
 {
     class Database
     {
-        private static string connectionString = "Server=127.0.0.1; User id=postgres; Password=123456789; Database=eclass2";
+        private static string connectionString = "Server=127.0.0.1; User id=postgres; Password=AWgrKOS1; Database=E-Class";
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public static void CreateTeam(List<string> students, string course_id)
