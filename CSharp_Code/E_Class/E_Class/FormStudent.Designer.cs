@@ -33,7 +33,7 @@
             this.ProjectsList = new System.Windows.Forms.ListView();
             this.BrowseBtn = new System.Windows.Forms.Button();
             this.UploadBtn = new System.Windows.Forms.Button();
-            this.TeamMembersList = new System.Windows.Forms.ListView();
+            this.DescriptionBox = new System.Windows.Forms.ListView();
             this.UploadGroupBox = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -118,14 +118,14 @@
             this.UploadBtn.UseVisualStyleBackColor = false;
             this.UploadBtn.Click += new System.EventHandler(this.UploadBtn_Click);
             // 
-            // TeamMembersList
+            // DescriptionBox
             // 
-            this.TeamMembersList.Location = new System.Drawing.Point(22, 94);
-            this.TeamMembersList.Margin = new System.Windows.Forms.Padding(2);
-            this.TeamMembersList.Name = "TeamMembersList";
-            this.TeamMembersList.Size = new System.Drawing.Size(444, 78);
-            this.TeamMembersList.TabIndex = 32;
-            this.TeamMembersList.UseCompatibleStateImageBehavior = false;
+            this.DescriptionBox.Location = new System.Drawing.Point(22, 94);
+            this.DescriptionBox.Margin = new System.Windows.Forms.Padding(2);
+            this.DescriptionBox.Name = "DescriptionBox";
+            this.DescriptionBox.Size = new System.Drawing.Size(444, 78);
+            this.DescriptionBox.TabIndex = 32;
+            this.DescriptionBox.UseCompatibleStateImageBehavior = false;
             // 
             // UploadGroupBox
             // 
@@ -140,7 +140,7 @@
             this.UploadGroupBox.Controls.Add(this.label4);
             this.UploadGroupBox.Controls.Add(this.label3);
             this.UploadGroupBox.Controls.Add(this.label2);
-            this.UploadGroupBox.Controls.Add(this.TeamMembersList);
+            this.UploadGroupBox.Controls.Add(this.DescriptionBox);
             this.UploadGroupBox.Controls.Add(this.UploadBtn);
             this.UploadGroupBox.Controls.Add(this.BrowseBtn);
             this.UploadGroupBox.Controls.Add(this.label7);
@@ -363,7 +363,7 @@
         private System.Windows.Forms.ListView ProjectsList;
         private System.Windows.Forms.Button BrowseBtn;
         private System.Windows.Forms.Button UploadBtn;
-        private System.Windows.Forms.ListView TeamMembersList;
+        private System.Windows.Forms.ListView DescriptionBox;
         private System.Windows.Forms.GroupBox UploadGroupBox;
         private System.Windows.Forms.Label FileNameLabel;
         private System.Windows.Forms.Label label8;

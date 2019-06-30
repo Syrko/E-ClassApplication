@@ -39,11 +39,17 @@ namespace E_Class
             CoursesList.GridLines = true;
             CoursesList.Sorting = SortOrder.Ascending;
             CoursesList.Columns.Add("Select a course to continue", -2, HorizontalAlignment.Center);
+            CoursesList.Columns.Add("Course ID", -2, HorizontalAlignment.Center);
 
             Dictionary<string, string> Courses = Database.getAllCourses();
             foreach (KeyValuePair<string, string> course in Courses)
             {
-                var listViewItem = new ListViewItem(course.Value);
+                var row = new String[]
+                {
+                    course.Value
+                    , course.Key
+                };
+                var listViewItem = new ListViewItem(row);
                 CoursesList.Items.Add(listViewItem);
             }
 
@@ -63,6 +69,11 @@ namespace E_Class
             ProjectsList.Columns.Add("Project", -2, HorizontalAlignment.Left);
             ProjectsList.Columns.Add("Sent", -2, HorizontalAlignment.Left);
             ProjectsList.Columns.Add("Grade", -2, HorizontalAlignment.Left);
+
+
+            
+
+
             //==============================================================
 
             ProjectsList.Hide();
@@ -176,11 +187,46 @@ namespace E_Class
 
             label11.Text = CoursesList.SelectedItems[0].Text;
 
+            UpdateProjectList();
 
             ProjectsList.Show();
             UploadGroupBox.Show();
         }
 
+        public void UpdateProjectList()
+        {
+
+            List<Project> res = Database.GetProjectsForCourse(CoursesList.SelectedItems[0].SubItems[1].Text);
+
+            foreach (Project proj in res)
+            {
+                string sent = "Yes";
+                if(Database.GetFileDetails("T4", proj.getProjectID()) == null)
+                {
+                    sent = "-";
+                }
+                string grade = Database.GetGrade("T4", proj.getProjectID()).ToString();
+
+                if(int.Parse(grade) == -1)
+                {
+                    grade = "-";
+                }
+
+                var row = new String[]
+                {
+                proj.getname()
+                , sent
+                , grade
+                };
+                var ProjectlistViewItem = new ListViewItem(row);
+                ProjectsList.Items.Add(ProjectlistViewItem);
+            }
+
+            /*Project proj = Database.GetProject("P1");
+            label6.Text = proj.getDueDate().ToString();
+            DescriptionArea.Text = proj.getdescription();*/
+
+        }
 
         private void SelectCourseBtn_Click(object sender, EventArgs e)
         {
