@@ -43,12 +43,10 @@ namespace E_Class
 					
 					foreach(Project proj in GetProjectsForCourse(course_id))
 					{
-						sql = "INSERT INTO ProjectsOfTeam VALUES(@project_id, @project_file_id, @team_id, @grade)";
+						sql = "INSERT INTO ProjectsOfTeam VALUES(@project_id, null, @team_id, null)";
 						cmd = new NpgsqlCommand(sql, con);
 						cmd.Parameters.AddWithValue("project_id", proj.getProjectID());
-						cmd.Parameters.AddWithValue("project_file_id", null);
 						cmd.Parameters.AddWithValue("team_id", team_id);
-						cmd.Parameters.AddWithValue("grade", null);
 						cmd.ExecuteNonQuery();
 					}
 
@@ -78,7 +76,7 @@ namespace E_Class
 
 					while (results.Read())
 					{
-						returnList.Add(results.GetInt32(0));
+						returnList.Add(int.Parse(results.GetString(0).Substring(1)));
 					}
 					
                      

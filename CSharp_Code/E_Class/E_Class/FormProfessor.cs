@@ -476,10 +476,65 @@ namespace E_Class
         {
             if(CreateEditTeamBtn.Text == "Submit")
             {
+                List<string> stuIDs = new List<string>();
+                if (Student1Box.Text.Trim() != "")
+                {
+                    stuIDs.Add(Student1Box.Text);
+                }
+
+                if (Student2Box.Text.Trim() != "")
+                {
+                    stuIDs.Add(Student2Box.Text);
+                }
+
+                if (Student3Box.Text.Trim() != "")
+                {
+                    stuIDs.Add(Student3Box.Text);
+                }
+
+                if (Student4Box.Text.Trim() != "")
+                {
+                    stuIDs.Add(Student4Box.Text);
+                }
+
+                if (Student5Box.Text.Trim() != "")
+                {
+                    stuIDs.Add(Student5Box.Text);
+                }
+
+                Database.EditTeam(TeamList.SelectedItems[0].Text, selectedCourse, stuIDs);
                 CreateEditTeamBtn.Text = "Create";
             }
             else
             {
+                List<string> stuIDs = new List<string>();
+                if (Student1Box.Text.Trim() != "")
+                {
+                    stuIDs.Add(Student1Box.Text);
+                }
+
+                if (Student2Box.Text.Trim() != "")
+                {
+                    stuIDs.Add(Student2Box.Text);
+                }
+
+                if (Student3Box.Text.Trim() != "")
+                {
+                    stuIDs.Add(Student3Box.Text);
+                }
+
+                if (Student4Box.Text.Trim() != "")
+                {
+                    stuIDs.Add(Student4Box.Text);
+                }
+
+                if (Student5Box.Text.Trim() != "")
+                {
+                    stuIDs.Add(Student5Box.Text);
+                }
+                Database.CreateTeam(stuIDs, selectedCourse);
+
+
             }
         }
 
