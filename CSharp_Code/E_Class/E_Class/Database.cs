@@ -607,7 +607,6 @@ namespace E_Class
                     cmd.Parameters.AddWithValue("team_id", team_id);
                     cmd.Parameters.AddWithValue("project_id", project_id);
                     NpgsqlDataReader results = cmd.ExecuteReader();
-
                     string file_id = null;
                     if (results.Read())
                     {
