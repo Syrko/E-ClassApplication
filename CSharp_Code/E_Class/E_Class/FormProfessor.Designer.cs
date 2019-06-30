@@ -233,12 +233,12 @@
             // 
             // CreateEditUserLabel
             // 
+            this.CreateEditUserLabel.BackColor = System.Drawing.Color.Transparent;
             this.CreateEditUserLabel.Location = new System.Drawing.Point(62, 15);
             this.CreateEditUserLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.CreateEditUserLabel.Name = "CreateEditUserLabel";
             this.CreateEditUserLabel.Size = new System.Drawing.Size(202, 27);
             this.CreateEditUserLabel.TabIndex = 26;
-            this.CreateEditUserLabel.Text = "label";
             this.CreateEditUserLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // CancelProjectBtn
@@ -326,6 +326,7 @@
             this.RegNumErrorLabel.Name = "RegNumErrorLabel";
             this.RegNumErrorLabel.Size = new System.Drawing.Size(174, 22);
             this.RegNumErrorLabel.TabIndex = 13;
+            this.RegNumErrorLabel.Visible = false;
             // 
             // DescriptionErrorLabel
             // 
@@ -335,6 +336,7 @@
             this.DescriptionErrorLabel.Name = "DescriptionErrorLabel";
             this.DescriptionErrorLabel.Size = new System.Drawing.Size(278, 98);
             this.DescriptionErrorLabel.TabIndex = 37;
+            this.DescriptionErrorLabel.Visible = false;
             // 
             // GradeProjectsMnBtn
             // 
@@ -475,12 +477,12 @@
             // 
             // label2
             // 
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Location = new System.Drawing.Point(93, 15);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(210, 27);
             this.label2.TabIndex = 26;
-            this.label2.Text = "label";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // CancelTeamBtn
@@ -517,6 +519,7 @@
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(154, 22);
             this.label13.TabIndex = 38;
+            this.label13.Visible = false;
             // 
             // label14
             // 
@@ -526,6 +529,7 @@
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(154, 22);
             this.label14.TabIndex = 42;
+            this.label14.Visible = false;
             // 
             // label15
             // 
@@ -535,6 +539,7 @@
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(154, 22);
             this.label15.TabIndex = 43;
+            this.label15.Visible = false;
             // 
             // label16
             // 
@@ -544,6 +549,7 @@
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(154, 22);
             this.label16.TabIndex = 44;
+            this.label16.Visible = false;
             // 
             // label17
             // 
@@ -553,6 +559,7 @@
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(154, 22);
             this.label17.TabIndex = 45;
+            this.label17.Visible = false;
             // 
             // TeamList
             // 
@@ -703,6 +710,7 @@
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(153, 22);
             this.label18.TabIndex = 46;
+            this.label18.Visible = false;
             // 
             // ChooseCourseMnBtn
             // 
