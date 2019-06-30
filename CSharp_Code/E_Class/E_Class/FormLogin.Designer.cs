@@ -38,7 +38,6 @@
             this.LoginAdmin = new System.Windows.Forms.Button();
             this.LoginProf = new System.Windows.Forms.Button();
             this.LoginStudent = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // UsernameBox
@@ -153,16 +152,6 @@
             this.LoginStudent.Text = "Student";
             this.LoginStudent.UseVisualStyleBackColor = false;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(319, 347);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -170,7 +159,6 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(616, 382);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.LoginStudent);
             this.Controls.Add(this.LogInBtn);
             this.Controls.Add(this.PassLabel);
@@ -203,7 +191,6 @@
         private System.Windows.Forms.Button LoginAdmin;
         private System.Windows.Forms.Button LoginProf;
         private System.Windows.Forms.Button LoginStudent;
-        private System.Windows.Forms.Button button1;
     }
 }
 

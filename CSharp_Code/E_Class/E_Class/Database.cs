@@ -15,7 +15,7 @@ namespace E_Class
 {
     class Database
     {
-        private static string connectionString = "Server=127.0.0.1; User id=postgres; Password=123456789; Database=eclassmirror";
+        private static string connectionString = "Server=127.0.0.1; User id=postgres; Password=123456789; Database=eclass2";
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public static void CreateTeam(List<string> students, string course_id)
@@ -41,7 +41,7 @@ namespace E_Class
 						cmd.Parameters.AddWithValue("course_id", course_id);
 						cmd.ExecuteNonQuery();
 					}
-					
+
 					foreach(Project proj in GetProjectsForCourse(course_id))
 					{
 						sql = "INSERT INTO ProjectsOfTeam VALUES(@project_id, null, @team_id, null)";
@@ -79,8 +79,8 @@ namespace E_Class
 					{
 						returnList.Add(int.Parse(results.GetString(0).Substring(1)));
 					}
-					
-                     
+
+
 					return returnList;
                 }
                 catch (Exception msg)
@@ -118,14 +118,14 @@ namespace E_Class
 								return UserTypes.ADMIN;
 							default:
 								MessageBox.Show("Invalid reg_num -- Error at validation", "Error");
-								 
+
 								return null;
 						}
 					}
 					else
 					{
 						MessageBox.Show("Credentials do not match. \nCheck your input and try again.");
-						 
+
 						return null;
 					}
 				}
@@ -158,14 +158,14 @@ namespace E_Class
 						string surname = results.GetString(results.GetOrdinal("surname"));
 						string password = results.GetString(results.GetOrdinal("password"));
 						Email email = new Email(results.GetString(results.GetOrdinal("email")));
-                         
+
 						return UserFactory.getInstance().createUser(userType, reg_num, password, name, surname, email);
 
 					}
 					else
 					{
 						MessageBox.Show("No such user -- Database get user");
-						 
+
 						return null;
 					}
 
@@ -191,7 +191,7 @@ namespace E_Class
 					string sql = "INSERT INTO Users VALUES(@reg_num, @name, @password, @surname, @email)";
 					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
 
-					
+
 					RegNum regNum = new RegNum(RegNum.getNextValue(userType));
 					cmd.Parameters.AddWithValue("reg_num", regNum.getRegNumString());
 					cmd.Parameters.AddWithValue("name", name);
@@ -205,7 +205,7 @@ namespace E_Class
 					cmd.Parameters.AddWithValue("reg_num", regNum.getRegNumString());
 					cmd.ExecuteNonQuery();
 
-					 
+
 				}
 				catch (Exception msg)
 				{
@@ -252,7 +252,7 @@ namespace E_Class
 					cmd = new NpgsqlCommand(sql, con);
 					cmd.Parameters.AddWithValue("reg_Num", user.registrationNumber.getRegNumString());
 
-					 
+
 				}
 				catch (Exception msg)
 				{
@@ -280,7 +280,7 @@ namespace E_Class
 					cmd.ExecuteNonQuery();
 
 
-					 
+
 				}
 				catch (Exception msg)
 				{
@@ -308,7 +308,7 @@ namespace E_Class
 
 					cmd.ExecuteNonQuery();
 
-					 
+
 				}
 				catch (Exception msg)
 				{
@@ -367,7 +367,7 @@ namespace E_Class
                     else
                     {
                         MessageBox.Show("No project with id: " + projectID + " found!");
-                         
+
                         return null;
                     }
 
@@ -412,22 +412,23 @@ namespace E_Class
         }
 
 		[MethodImpl(MethodImplOptions.Synchronized)]
-		public static void InsertProject(string name, string description, int max_grade, string course_id)
+		public static void InsertProject(string name, string description, int max_grade, string course_id, DateTime due_date)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
             {
                 try
                 {
                     con.Open();
-                    string sql = "INSERT INTO Projects VALUES(@id, @name, @description, @max_grade, @course_id)";
+                    string sql = "INSERT INTO Projects VALUES(@id, @name, @description, @max_grade, @course_id, @due_date)";
                     NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
                     cmd.Parameters.AddWithValue("id", RegNum.getNextValue("Project"));
                     cmd.Parameters.AddWithValue("name", name);
                     cmd.Parameters.AddWithValue("description", description);
                     cmd.Parameters.AddWithValue("max_grade", max_grade);
                     cmd.Parameters.AddWithValue("course_id", course_id);
+                    cmd.Parameters.AddWithValue("due_date", due_date);
                     cmd.ExecuteNonQuery();
-                     
+
                 }
                 catch (Exception msg)
                 {
@@ -446,6 +447,7 @@ namespace E_Class
                 {
                     con.Open();
 
+
 					string sql = "DELETE FROM PrjectsOfTeam WHERE project_id = @projetc_id)";
 					NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
 					cmd.Parameters.AddWithValue("project_id", project_id);
@@ -453,9 +455,10 @@ namespace E_Class
 
 					sql = "DELETE FROM Projects WHERE id = @id)";
                     cmd = new NpgsqlCommand(sql, con);
+                    string sql = "DELETE FROM Projects WHERE id = @id";
+                    NpgsqlCommand cmd = new NpgsqlCommand(sql, con);
                     cmd.Parameters.AddWithValue("id", project_id);
                     cmd.ExecuteNonQuery();
-                     
                 }
                 catch (Exception msg)
                 {
@@ -478,7 +481,7 @@ namespace E_Class
                     cmd.Parameters.AddWithValue("grade", grade);
                     cmd.Parameters.AddWithValue("fileID", projectFile.getProjectFileID());
                     cmd.ExecuteNonQuery();
-                     
+
                 }
                 catch (Exception msg)
                 {
@@ -508,7 +511,7 @@ namespace E_Class
                     {
                         courses.Add(new Course(results[0].ToString(), results[1].ToString(), (Professor)GetUser("Professor", prof_reg_num), GetProjectsForCourse(results[0].ToString()),GetTeams(results[0].ToString())));//0 = course id, 1 = course name
                     }
-                     
+
                     return courses;
 
                 }
@@ -516,7 +519,7 @@ namespace E_Class
                 {
                     MessageBox.Show(msg.ToString());
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
-                     
+
                     return null;
                 }
             }
@@ -540,16 +543,16 @@ namespace E_Class
                     List<string> courses = new List<string>();
                     if(results.Read())
                     {
-                        
+
                     }
-                     
+
 
                 }
                 catch (Exception msg)
                 {
                     MessageBox.Show(msg.ToString());
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
-                     
+
                     return;
                 }
             }
@@ -570,7 +573,7 @@ namespace E_Class
 					cmd.Parameters.AddWithValue("team_id", team.getTeamID());
 					cmd.Parameters.AddWithValue("course_id", course.getCourseID());
 					cmd.ExecuteNonQuery();
-					 
+
 				}
 				catch (Exception msg)
 				{
@@ -597,14 +600,14 @@ namespace E_Class
                     cmd.Parameters.AddWithValue("name", name);
                     cmd.Parameters.AddWithValue("date", date);
                     cmd.ExecuteNonQuery();
-                     
+
                 }
                 catch (Exception msg)
                 {
                     MessageBox.Show(msg.ToString());
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
                 }
-                 
+
             }
         }
 
@@ -621,20 +624,20 @@ namespace E_Class
 
                     cmd.Parameters.AddWithValue("id", id);
                     cmd.ExecuteNonQuery();
-                     
+
                 }
                 catch (Exception msg)
                 {
                     MessageBox.Show(msg.ToString());
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
                 }
-                 
+
             }
         }
-        
-        
+
+
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public static List<Team> GetTeams(string courseID) 
+        public static List<Team> GetTeams(string courseID)
         {
             using (NpgsqlConnection con = new NpgsqlConnection(connectionString))
             {
@@ -651,9 +654,9 @@ namespace E_Class
                     while (results.Read())
                     {
                         teams.Add(new Team(results[0].ToString(), getStudentsOfTeam(results[0].ToString()), GetTeamsProjectFiles(results[0].ToString())));
-                        
+
                     }
-                     
+
                     return teams;
                 }
                 catch (Exception msg)
@@ -662,10 +665,10 @@ namespace E_Class
                     MessageBox.Show(msg.ToString());
                     return null;
                 }
-                
+
             }
         }
-        
+
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public static Dictionary<Project, ProjectFile> GetTeamsProjectFiles(string teamID)
@@ -685,7 +688,7 @@ namespace E_Class
                     {
                         dict.Add(GetProject(results[0].ToString()), GetFileDetails(teamID, results[0].ToString()));
                     }
-                     
+
                     return dict;
                 }
                 catch (Exception msg)
@@ -720,22 +723,22 @@ namespace E_Class
                         Console.Write(DateTime.Parse(results[3].ToString()));
 
 
-                         
+
                         return new ProjectFile(results[0].ToString(), (byte[])results[1], results[2].ToString(),GetGrade(teamID, projectID), DateTime.Parse(results[3].ToString()));
-                        
+
                     }
                     else
                     {
-                         
+
                         return null;
                     }
-                    
+
                 }
                 catch (Exception msg)
                 {
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
                     MessageBox.Show(msg.ToString());
-                     
+
                     return null;
 
                 }
@@ -765,13 +768,13 @@ namespace E_Class
                     {
                         return -1;
                     }
-                    
+
                 }
                 catch (Exception msg)
                 {
                     MessageBox.Show("There was a problem while executing this action. Please contact the developers.");
                     MessageBox.Show(msg.ToString());
-                    
+
                     return -1;
                 }
             }
@@ -797,7 +800,7 @@ namespace E_Class
 					{
 						returnList.Add((Student)(Database.GetUser("student", results.GetString(0))));
 					}
-					
+
 					return returnList;
 				}
 				catch (Exception msg)
@@ -806,7 +809,7 @@ namespace E_Class
 					MessageBox.Show(msg.ToString());
 					return null;
 				}
-				
+
 			}
 		}
 		[MethodImpl(MethodImplOptions.Synchronized)]
@@ -985,6 +988,4 @@ namespace E_Class
 		}
 
 	}
-
-
 }
