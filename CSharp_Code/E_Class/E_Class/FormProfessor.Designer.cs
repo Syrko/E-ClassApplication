@@ -216,6 +216,7 @@
             // DescriptionBox
             // 
             this.DescriptionBox.Location = new System.Drawing.Point(23, 172);
+            this.DescriptionBox.MaxLength = 100;
             this.DescriptionBox.Multiline = true;
             this.DescriptionBox.Name = "DescriptionBox";
             this.DescriptionBox.Size = new System.Drawing.Size(276, 96);
@@ -233,6 +234,7 @@
             0,
             0});
             this.MaxGradeBox.Name = "MaxGradeBox";
+            this.MaxGradeBox.ReadOnly = true;
             this.MaxGradeBox.Size = new System.Drawing.Size(69, 22);
             this.MaxGradeBox.TabIndex = 29;
             // 
@@ -276,6 +278,7 @@
             this.ProjectNameBox.BackColor = System.Drawing.Color.White;
             this.ProjectNameBox.Location = new System.Drawing.Point(20, 67);
             this.ProjectNameBox.Margin = new System.Windows.Forms.Padding(2);
+            this.ProjectNameBox.MaxLength = 32;
             this.ProjectNameBox.Name = "ProjectNameBox";
             this.ProjectNameBox.Size = new System.Drawing.Size(172, 20);
             this.ProjectNameBox.TabIndex = 0;
@@ -448,6 +451,7 @@
             // Student5Box
             // 
             this.Student5Box.Location = new System.Drawing.Point(19, 216);
+            this.Student5Box.MaxLength = 6;
             this.Student5Box.Name = "Student5Box";
             this.Student5Box.Size = new System.Drawing.Size(152, 20);
             this.Student5Box.TabIndex = 36;
@@ -455,6 +459,7 @@
             // Student4Box
             // 
             this.Student4Box.Location = new System.Drawing.Point(205, 145);
+            this.Student4Box.MaxLength = 6;
             this.Student4Box.Name = "Student4Box";
             this.Student4Box.Size = new System.Drawing.Size(152, 20);
             this.Student4Box.TabIndex = 35;
@@ -462,6 +467,7 @@
             // Student3Box
             // 
             this.Student3Box.Location = new System.Drawing.Point(19, 145);
+            this.Student3Box.MaxLength = 6;
             this.Student3Box.Name = "Student3Box";
             this.Student3Box.Size = new System.Drawing.Size(152, 20);
             this.Student3Box.TabIndex = 34;
@@ -469,6 +475,7 @@
             // Student2Box
             // 
             this.Student2Box.Location = new System.Drawing.Point(205, 73);
+            this.Student2Box.MaxLength = 6;
             this.Student2Box.Name = "Student2Box";
             this.Student2Box.Size = new System.Drawing.Size(152, 20);
             this.Student2Box.TabIndex = 33;
@@ -476,6 +483,7 @@
             // Student1Box
             // 
             this.Student1Box.Location = new System.Drawing.Point(19, 74);
+            this.Student1Box.MaxLength = 6;
             this.Student1Box.Name = "Student1Box";
             this.Student1Box.Size = new System.Drawing.Size(152, 20);
             this.Student1Box.TabIndex = 32;
@@ -653,7 +661,13 @@
             // 
             this.GradeBox.BackColor = System.Drawing.Color.White;
             this.GradeBox.Location = new System.Drawing.Point(250, 67);
+            this.GradeBox.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             this.GradeBox.Name = "GradeBox";
+            this.GradeBox.ReadOnly = true;
             this.GradeBox.Size = new System.Drawing.Size(50, 20);
             this.GradeBox.TabIndex = 6;
             // 
@@ -672,6 +686,7 @@
             this.ProjNameBox.BackColor = System.Drawing.Color.White;
             this.ProjNameBox.Location = new System.Drawing.Point(89, 66);
             this.ProjNameBox.Margin = new System.Windows.Forms.Padding(2);
+            this.ProjNameBox.MaxLength = 32;
             this.ProjNameBox.Name = "ProjNameBox";
             this.ProjNameBox.ReadOnly = true;
             this.ProjNameBox.Size = new System.Drawing.Size(151, 20);

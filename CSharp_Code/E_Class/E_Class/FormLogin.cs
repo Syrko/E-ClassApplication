@@ -40,8 +40,8 @@ namespace E_Class
         private void LogInBtn_Click(object sender, EventArgs e)
         {
             //login("M15750", "VmTF7K9e", this);
-            login("K10234", "hmfNFIsU5", this);
-            //login(UsernameBox.Text, PasswordBox.Text, this);
+            //login("K10234", "hmfNFIsU5", this);
+            login(UsernameBox.Text, PasswordBox.Text, this);
         }
 
 
@@ -49,17 +49,6 @@ namespace E_Class
         private void FormLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
 			Application.Exit();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Database.GetTeamsProjectFiles("T3");
-        }
-
-        private void LoginAdmin_Click(object sender, EventArgs e)
-        {
-            /*FormAdmin test = new FormAdmin("dasda");
-            test.Show();*/
         }
     }
 }
