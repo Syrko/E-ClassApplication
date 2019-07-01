@@ -454,7 +454,7 @@
             this.Student5Box.MaxLength = 6;
             this.Student5Box.Name = "Student5Box";
             this.Student5Box.Size = new System.Drawing.Size(152, 20);
-            this.Student5Box.TabIndex = 36;
+            this.Student5Box.TabIndex = 5;
             // 
             // Student4Box
             // 
@@ -462,7 +462,7 @@
             this.Student4Box.MaxLength = 6;
             this.Student4Box.Name = "Student4Box";
             this.Student4Box.Size = new System.Drawing.Size(152, 20);
-            this.Student4Box.TabIndex = 35;
+            this.Student4Box.TabIndex = 4;
             // 
             // Student3Box
             // 
@@ -470,7 +470,7 @@
             this.Student3Box.MaxLength = 6;
             this.Student3Box.Name = "Student3Box";
             this.Student3Box.Size = new System.Drawing.Size(152, 20);
-            this.Student3Box.TabIndex = 34;
+            this.Student3Box.TabIndex = 3;
             // 
             // Student2Box
             // 
@@ -478,7 +478,7 @@
             this.Student2Box.MaxLength = 6;
             this.Student2Box.Name = "Student2Box";
             this.Student2Box.Size = new System.Drawing.Size(152, 20);
-            this.Student2Box.TabIndex = 33;
+            this.Student2Box.TabIndex = 2;
             // 
             // Student1Box
             // 
@@ -486,7 +486,7 @@
             this.Student1Box.MaxLength = 6;
             this.Student1Box.Name = "Student1Box";
             this.Student1Box.Size = new System.Drawing.Size(152, 20);
-            this.Student1Box.TabIndex = 32;
+            this.Student1Box.TabIndex = 1;
             // 
             // label2
             // 
@@ -506,7 +506,7 @@
             this.CancelTeamBtn.Margin = new System.Windows.Forms.Padding(2);
             this.CancelTeamBtn.Name = "CancelTeamBtn";
             this.CancelTeamBtn.Size = new System.Drawing.Size(56, 22);
-            this.CancelTeamBtn.TabIndex = 31;
+            this.CancelTeamBtn.TabIndex = 7;
             this.CancelTeamBtn.Text = "Cancel";
             this.CancelTeamBtn.UseVisualStyleBackColor = false;
             this.CancelTeamBtn.Click += new System.EventHandler(this.CancelTeamBtn_Click);
@@ -519,7 +519,7 @@
             this.CreateEditTeamBtn.Margin = new System.Windows.Forms.Padding(2);
             this.CreateEditTeamBtn.Name = "CreateEditTeamBtn";
             this.CreateEditTeamBtn.Size = new System.Drawing.Size(130, 37);
-            this.CreateEditTeamBtn.TabIndex = 12;
+            this.CreateEditTeamBtn.TabIndex = 6;
             this.CreateEditTeamBtn.Text = "Create team";
             this.CreateEditTeamBtn.UseVisualStyleBackColor = false;
             this.CreateEditTeamBtn.Click += new System.EventHandler(this.CreateEditTeamBtn_Click);
