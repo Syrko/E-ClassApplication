@@ -34,6 +34,7 @@
             this.BrowseBtn = new System.Windows.Forms.Button();
             this.UploadBtn = new System.Windows.Forms.Button();
             this.UploadGroupBox = new System.Windows.Forms.GroupBox();
+            this.MsgLabel = new System.Windows.Forms.Label();
             this.DescriptionBox = new System.Windows.Forms.TextBox();
             this.FileNameLabel = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -52,7 +53,6 @@
             this.SelectedCourseLabel = new System.Windows.Forms.Label();
             this.SelectCourseBtn = new System.Windows.Forms.Button();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.MsgLabel = new System.Windows.Forms.Label();
             this.UploadGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -144,6 +144,15 @@
             this.UploadGroupBox.TabIndex = 33;
             this.UploadGroupBox.TabStop = false;
             // 
+            // MsgLabel
+            // 
+            this.MsgLabel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.MsgLabel.Location = new System.Drawing.Point(152, 15);
+            this.MsgLabel.Name = "MsgLabel";
+            this.MsgLabel.Size = new System.Drawing.Size(161, 24);
+            this.MsgLabel.TabIndex = 44;
+            this.MsgLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // DescriptionBox
             // 
             this.DescriptionBox.Location = new System.Drawing.Point(22, 84);
@@ -157,9 +166,10 @@
             // 
             this.FileNameLabel.AutoSize = true;
             this.FileNameLabel.BackColor = System.Drawing.Color.Gainsboro;
+            this.FileNameLabel.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FileNameLabel.Location = new System.Drawing.Point(170, 226);
             this.FileNameLabel.Name = "FileNameLabel";
-            this.FileNameLabel.Size = new System.Drawing.Size(83, 13);
+            this.FileNameLabel.Size = new System.Drawing.Size(87, 14);
             this.FileNameLabel.TabIndex = 40;
             this.FileNameLabel.Text = "No file selected.";
             // 
@@ -179,9 +189,8 @@
             this.DueDateLabel.BackColor = System.Drawing.Color.WhiteSmoke;
             this.DueDateLabel.Location = new System.Drawing.Point(79, 186);
             this.DueDateLabel.Name = "DueDateLabel";
-            this.DueDateLabel.Size = new System.Drawing.Size(61, 13);
+            this.DueDateLabel.Size = new System.Drawing.Size(0, 13);
             this.DueDateLabel.TabIndex = 37;
-            this.DueDateLabel.Text = "30-06-2019";
             // 
             // ProjectNameLabel
             // 
@@ -189,9 +198,8 @@
             this.ProjectNameLabel.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ProjectNameLabel.Location = new System.Drawing.Point(92, 40);
             this.ProjectNameLabel.Name = "ProjectNameLabel";
-            this.ProjectNameLabel.Size = new System.Drawing.Size(48, 13);
+            this.ProjectNameLabel.Size = new System.Drawing.Size(0, 13);
             this.ProjectNameLabel.TabIndex = 36;
-            this.ProjectNameLabel.Text = "TestTitle";
             // 
             // label4
             // 
@@ -242,13 +250,13 @@
             // label11
             // 
             this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(103)))), ((int)(((byte)(178)))));
-            this.label11.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold);
+            this.label11.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.White;
             this.label11.Location = new System.Drawing.Point(-5, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(148, 64);
             this.label11.TabIndex = 43;
-            this.label11.Text = "TestTitle";
+            this.label11.Text = "No course selected";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // openFileDialog
@@ -320,15 +328,6 @@
             this.SelectCourseBtn.Text = "Select";
             this.SelectCourseBtn.UseVisualStyleBackColor = false;
             this.SelectCourseBtn.Click += new System.EventHandler(this.SelectCourseBtn_Click);
-            // 
-            // MsgLabel
-            // 
-            this.MsgLabel.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.MsgLabel.Location = new System.Drawing.Point(152, 15);
-            this.MsgLabel.Name = "MsgLabel";
-            this.MsgLabel.Size = new System.Drawing.Size(161, 24);
-            this.MsgLabel.TabIndex = 44;
-            this.MsgLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormStudent
             // 

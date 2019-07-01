@@ -27,7 +27,7 @@ namespace E_Class
         string projIDForEditGrade;
 
 
-        
+
 
         public FormProfessor(string reg_num, FormLogin login)
         {
@@ -41,7 +41,7 @@ namespace E_Class
             GradeProjectsMnBtn.BackColor = Color.FromArgb(100, 10, 10, 10);
             label1.BackColor = Color.FromArgb(100, 10, 10, 10);
             LogoutBtn.BackColor = Color.FromArgb(100, 10, 10, 10);
-            
+
             TeamGroupBox.Paint += Paint;
             ProjectGroupBox.Paint += Paint;
             GradeGroupBox.Paint += Paint;
@@ -107,9 +107,9 @@ namespace E_Class
             GradeList.FullRowSelect = true;
             GradeList.GridLines = true;
             GradeList.Sorting = SortOrder.Ascending;
-            
+
             GradeList.Columns.Add("Team", -2, HorizontalAlignment.Left);
-            GradeList.Columns.Add("Project ID", -2, HorizontalAlignment.Left);            
+            GradeList.Columns.Add("Project ID", -2, HorizontalAlignment.Left);
             GradeList.Columns.Add("Project name", -2, HorizontalAlignment.Left);
             GradeList.Columns.Add("Project Uploaded", -2, HorizontalAlignment.Left);
             GradeList.Columns.Add("Grade", -2, HorizontalAlignment.Left);
@@ -155,7 +155,7 @@ namespace E_Class
             ProjectGroupBox.Text = "";
             GradeGroupBox.Text = "";
 
-            TeamGroupBox.Bounds = new Rectangle(new Point(550, 12), new Size(380, 355)); 
+            TeamGroupBox.Bounds = new Rectangle(new Point(550, 12), new Size(380, 355));
 
             CoursesList.Show();
             SelectCourseBtn.Show();
@@ -168,11 +168,11 @@ namespace E_Class
             ProjectGroupBox.Hide();
             ProjectList.Hide();
 
-            
+
             ModifyProjectMnBtn.Enabled = false;
             ModifyTeamMnBtn.Enabled = false;
             GradeProjectsMnBtn.Enabled = false;
-            
+
         }
 
         private void YouAreHere(Button pressedBtn)
@@ -189,7 +189,7 @@ namespace E_Class
                     {
                         btn.BackColor = Color.FromArgb(100, 10, 10, 10);
                     }
-                        
+
                 }
             }
         }
@@ -198,14 +198,14 @@ namespace E_Class
 
         private void Paint(object sender, PaintEventArgs p)
         {
-            Brush backCol = new SolidBrush(Color.FromArgb(200, 255,255,255));
+            Brush backCol = new SolidBrush(Color.FromArgb(200, 255, 255, 255));
             GroupBox box = (GroupBox)sender;
             p.Graphics.Clear(SystemColors.Control);//Clear system colors
             p.Graphics.FillRectangle(backCol, this.ClientRectangle);//Paint white background
             DrawGroupBox(box, p.Graphics, Color.Black, Color.Black);//Draw Borders
         }
-        
-        
+
+
         private void DrawGroupBox(GroupBox box, Graphics g, Color textColor, Color borderColor)
         {
             if (box != null)
@@ -278,7 +278,7 @@ namespace E_Class
 
 
 
-            RefreshList("TeamList");
+            RefreshList();
             ClearAllBoxes();
             EnableViewLists();
             ChangeBtnNames();
@@ -304,14 +304,14 @@ namespace E_Class
 
 
 
-            RefreshList("ProjectList");
+            RefreshList();
             ClearAllBoxes();
             EnableViewLists();
             ChangeBtnNames();
         }
 
 
-      
+
 
 
         private void GradeProjectsMnBtn_Click(object sender, EventArgs e)
@@ -332,14 +332,14 @@ namespace E_Class
 
 
 
-            RefreshList("GradeList");
+            RefreshList();
             ClearAllBoxes();
             EnableViewLists();
             ChangeBtnNames();
         }
 
 
-        
+
 
         private void SelectCourseBtn_Click(object sender, EventArgs e)
         {
@@ -364,8 +364,13 @@ namespace E_Class
 
         private void TeamDelete_RightClick(object sender, System.EventArgs e)
         {
-            user.deleteTeam(TeamList.SelectedItems[0].Text);
-            RefreshList("TeamList");
+            DialogResult dialogResult = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                user.deleteTeam(TeamList.SelectedItems[0].Text);
+                RefreshList();
+            }
+            
         }
 
         private void TeamEdit_RightClick(object sender, System.EventArgs e)
@@ -379,9 +384,9 @@ namespace E_Class
             list.Add(Student5Box);
             foreach (Team team in selCourse.getTeamList())
             {
-                if(team.getTeamID() == TeamList.SelectedItems[0].Text)
+                if (team.getTeamID() == TeamList.SelectedItems[0].Text)
                 {
-                    for(int i = 0; i < team.getStudentList().Count; i++)
+                    for (int i = 0; i < team.getStudentList().Count; i++)
                     {
                         list[i].Text = team.getStudentList()[i].registrationNumber.getRegNumString();
                     }
@@ -393,11 +398,16 @@ namespace E_Class
 
         private void ProjectDelete_RightClick(object sender, System.EventArgs e)
         {
-            user.deleteProject(ProjectList.SelectedItems[0].Text);
-            RefreshList("ProjectList");
+            DialogResult dialogResult = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                user.deleteProject(ProjectList.SelectedItems[0].Text);
+                RefreshList();
+            }
+            
         }
 
-        
+
         private void ProjectEdit_RightClick(object sender, System.EventArgs e)
         {
             CreateEditProjectBtn.Text = "Submit";
@@ -448,59 +458,45 @@ namespace E_Class
 
         private void CreateEditTeamBtn_Click(object sender, EventArgs e)
         {
-            if(CreateEditTeamBtn.Text == "Submit")
+            if (CreateEditTeamBtn.Text == "Submit")
             {
                 List<string> stuIDs = new List<string>();
-                if (Student1Box.Text.Trim() != "")
+                if (Student1Box.Text.Trim().Length != 0)
                 {
-                    if (!Database.isStudentInTeamAlready(selCourse.getCourseID(), Student1Box.Text.Trim()))
-                        stuIDs.Add(Student1Box.Text);
-                    else
-                        label13.Visible = true;
+                    stuIDs.Add(Student1Box.Text);
                 }
 
-                if (Student2Box.Text.Trim() != "")
+                if (Student2Box.Text.Trim().Length != 0)
                 {
-                    if (!Database.isStudentInTeamAlready(selCourse.getCourseID(), Student2Box.Text.Trim()))
-                        stuIDs.Add(Student2Box.Text);
-                    else
-                        label14.Visible = true;
+                    stuIDs.Add(Student2Box.Text);
                 }
 
-                if (Student3Box.Text.Trim() != "")
+                if (Student3Box.Text.Trim().Length != 0)
                 {
-                    if (!Database.isStudentInTeamAlready(selCourse.getCourseID(), Student3Box.Text.Trim()))
-                        stuIDs.Add(Student3Box.Text);
-                    else
-                        label15.Visible = true;
+                    stuIDs.Add(Student3Box.Text);
+                }
+                
+                if (Student4Box.Text.Trim().Length != 0)
+                {
+                    stuIDs.Add(Student4Box.Text);
                 }
 
-                if (Student4Box.Text.Trim() != "")
+                if (Student5Box.Text.Trim().Length != 0)
                 {
-                    if (!Database.isStudentInTeamAlready(selCourse.getCourseID(), Student4Box.Text.Trim()))
-                        stuIDs.Add(Student4Box.Text);
-                    else
-                        label16.Visible = true;
-                }
+                    stuIDs.Add(Student5Box.Text);
 
-                if (Student5Box.Text.Trim() != "")
-                {
-                    if (!Database.isStudentInTeamAlready(selCourse.getCourseID(), Student5Box.Text.Trim()))
-                        stuIDs.Add(Student5Box.Text);
-                    else
-                        label17.Visible = true;
                 }
 
 
                 if (stuIDs.Count > 0)
                 {
                     bool flag = true;
-                    foreach(string item in stuIDs)
+                    foreach (string item in stuIDs)
                     {
                         int temp;
-                        if(item[0] != 'M' || !int.TryParse(item.Substring(1), out temp))
+                        if (item[0] != 'M' || !int.TryParse(item.Substring(1), out temp))
                         {
-                            MessageBox.Show(item+" not a valid student registration number", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(item + " not a valid student registration number", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             flag = false;
                             break;
                         }
@@ -512,69 +508,54 @@ namespace E_Class
                         ClearAllBoxes();
                         EnableViewLists();
                         ChangeBtnNames();
-                        RefreshList("TeamList");
-                        label13.Visible = false;
-                        label14.Visible = false;
-                        label15.Visible = false;
-                        label16.Visible = false;
-                        label17.Visible = false;
+                        RefreshList();
                     }
-                    
+
                 }
                 else
                 {
                     MessageBox.Show("You need at least one valid student", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                
 
-                
+
+
 
 
             }
             else
             {
                 List<string> stuIDs = new List<string>();
-                if (Student1Box.Text.Trim() != "")
+                if (Student1Box.Text.Trim().Length != 0)
                 {
                     if (!Database.isStudentInTeamAlready(selCourse.getCourseID(), Student1Box.Text.Trim()))
                         stuIDs.Add(Student1Box.Text);
-                    else
-                        label13.Visible = true;
                 }
 
-                if (Student2Box.Text.Trim() != "")
+                if (Student2Box.Text.Trim().Length != 0)
                 {
                     if (!Database.isStudentInTeamAlready(selCourse.getCourseID(), Student2Box.Text.Trim()))
                         stuIDs.Add(Student2Box.Text);
-                    else
-                        label14.Visible = true;
                 }
 
-                if (Student3Box.Text.Trim() != "")
+                if (Student3Box.Text.Trim().Length != 0)
                 {
                     if (!Database.isStudentInTeamAlready(selCourse.getCourseID(), Student3Box.Text.Trim()))
                         stuIDs.Add(Student3Box.Text);
-                    else
-                        label15.Visible = true;
                 }
 
-                if (Student4Box.Text.Trim() != "")
+                if (Student4Box.Text.Trim().Length != 0)
                 {
                     if (!Database.isStudentInTeamAlready(selCourse.getCourseID(), Student4Box.Text.Trim()))
                         stuIDs.Add(Student4Box.Text);
-                    else
-                        label16.Visible = true;
                 }
 
-                if (Student5Box.Text.Trim() != "")
+                if (Student5Box.Text.Trim().Length != 0)
                 {
                     if (!Database.isStudentInTeamAlready(selCourse.getCourseID(), Student5Box.Text.Trim()))
                         stuIDs.Add(Student5Box.Text);
-                    else
-                        label17.Visible = true;
                 }
 
-                if(stuIDs.Count > 0)
+                if (stuIDs.Count > 0)
                 {
                     bool flag = true;
                     foreach (string item in stuIDs)
@@ -594,21 +575,16 @@ namespace E_Class
                         ClearAllBoxes();
                         EnableViewLists();
                         ChangeBtnNames();
-                        RefreshList("TeamList");
-                        label13.Visible = false;
-                        label14.Visible = false;
-                        label15.Visible = false;
-                        label16.Visible = false;
-                        label17.Visible = false;
+                        RefreshList();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("You need at least one valid student","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("You need at least one valid student", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                
 
-                
+
+
             }
         }
 
@@ -625,7 +601,7 @@ namespace E_Class
 
         private void CreateEditProjectBtn_Click(object sender, EventArgs e)
         {
-            if(CreateEditProjectBtn.Text == "Submit")
+            if (CreateEditProjectBtn.Text == "Submit")
             {
                 try
                 {
@@ -635,7 +611,7 @@ namespace E_Class
                         ClearAllBoxes();
                         EnableViewLists();
                         ChangeBtnNames();
-                        RefreshList("ProjectList");
+                        RefreshList();
                     }
                     else
                     {
@@ -643,31 +619,31 @@ namespace E_Class
                     }
 
                 }
-                catch(Exception msg)
+                catch (Exception msg)
                 {
                     MessageBox.Show("Please select an item from the list", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                
+
             }
             else
             {
                 try
                 {
-                    if(!(ProjectNameBox.Text.Length == 0 || DescriptionBox.Text.Length == 0 || DateTime.Compare(dateTimePicker1.Value, DateTime.Now)<0))
+                    if (!(ProjectNameBox.Text.Length == 0 || DescriptionBox.Text.Length == 0 || DateTime.Compare(dateTimePicker1.Value, DateTime.Now) < 0))
                     {
                         user.createProject(ProjectNameBox.Text, DescriptionBox.Text, (int)MaxGradeBox.Value, selectedCourse, DateTime.Parse(dateTimePicker1.Value.Date.ToString("yyyy-MM-dd") + " 23:59:59"));
                         ClearAllBoxes();
                         EnableViewLists();
                         ChangeBtnNames();
-                        RefreshList("ProjectList");
+                        RefreshList();
                     }
                     else
                     {
                         MessageBox.Show("Please check again the fields", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
-                    
+
                 }
-                catch(Exception msg)
+                catch (Exception msg)
                 {
                     MessageBox.Show("Please select an item from the list", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
@@ -726,13 +702,16 @@ namespace E_Class
         {
             try
             {
-                Database.DownloadProject(GradeList.SelectedItems[0].SubItems[1].Text, GradeList.SelectedItems[0].Text);
+                if(GradeList.SelectedItems[0].SubItems[3].Text == "Yes")
+                    Database.DownloadProject(GradeList.SelectedItems[0].SubItems[1].Text, GradeList.SelectedItems[0].Text);
+                else
+                    MessageBox.Show("No file to download", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch(Exception msg)
+            catch (Exception msg)
             {
                 MessageBox.Show("Please select an item", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            
+
         }
 
         private void GradeList_MouseClick(object sender, MouseEventArgs e)
@@ -747,11 +726,19 @@ namespace E_Class
         {
             try
             {
+                if(GradeList.SelectedItems[0].SubItems[3].Text == "Yes")
+                {
+                    user.gradeProject(TeamIDBox.Text, projIDForEditGrade, (int)GradeBox.Value);
+                    ClearAllBoxes();
+                    EnableViewLists();
+                    ChangeBtnNames();
+                    RefreshList();
+                }
+                else
+                {
+                    MessageBox.Show("The is no file uploaded", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
                 
-                user.gradeProject(TeamIDBox.Text, projIDForEditGrade, (int)GradeBox.Value);
-                ClearAllBoxes();
-                EnableViewLists();
-                ChangeBtnNames();
             }
             catch (Exception msg)
             {
@@ -761,92 +748,90 @@ namespace E_Class
 
 
 
-        private void RefreshList(string table)
+        private void RefreshList()
         {
             currentUser = Database.GetUser(UserTypes.PROFESSOR, currentUser.registrationNumber.getRegNumString());
             user = (Professor)currentUser;
-            if (table == "TeamList")
+
+            TeamList.Items.Clear();
+            var listViewItem = new ListViewItem();
+            foreach (Course course in user.getCourseList())
             {
-                TeamList.Items.Clear();
-                var listViewItem = new ListViewItem();
-                foreach (Course course in user.getCourseList())
+                if (course.getCourseID() == selectedCourse)
                 {
-                    if (course.getCourseID() == selectedCourse)
-                    {
-                        selCourse = course;
-                        break;
-                    }
-                }
-                foreach (Team team in selCourse.getTeamList())
-                {
-                    listViewItem = new ListViewItem();
-                    listViewItem.Text = team.getTeamID();
-                    foreach (Student stu in team.getStudentList())
-                    {
-                        listViewItem.SubItems.Add(stu.registrationNumber.getRegNumString());
-                    }
-                    TeamList.Items.Add(listViewItem);
+                    selCourse = course;
+                    break;
                 }
             }
-            else if(table == "ProjectList")
+            foreach (Team team in selCourse.getTeamList())
             {
-                ProjectList.Items.Clear();
-                foreach (Project proj in selCourse.getProjectList())
+                listViewItem = new ListViewItem();
+                listViewItem.Text = team.getTeamID();
+                foreach (Student stu in team.getStudentList())
                 {
-                    var listViewItem = new ListViewItem();
-                    listViewItem.Text = proj.getProjectID();
-                    listViewItem.SubItems.Add(proj.getname());
-                    listViewItem.SubItems.Add(proj.getmaxGrade().ToString());
-                    ProjectList.Items.Add(listViewItem);
+                    listViewItem.SubItems.Add(stu.registrationNumber.getRegNumString());
                 }
+                TeamList.Items.Add(listViewItem);
             }
-            else
+
+
+            ProjectList.Items.Clear();
+            foreach (Project proj in selCourse.getProjectList())
             {
-                GradeList.Items.Clear();
-                var listViewItem = new ListViewItem();
-                foreach (Team team in selCourse.getTeamList())
+                listViewItem = new ListViewItem();
+                listViewItem.Text = proj.getProjectID();
+                listViewItem.SubItems.Add(proj.getname());
+                listViewItem.SubItems.Add(proj.getmaxGrade().ToString());
+                ProjectList.Items.Add(listViewItem);
+            }
+
+
+
+            GradeList.Items.Clear();
+            listViewItem = new ListViewItem();
+            foreach (Team team in selCourse.getTeamList())
+            {
+                foreach (KeyValuePair<Project, ProjectFile> pair in team.getProjectAssignmentsD())
                 {
-                    foreach (KeyValuePair<Project, ProjectFile> pair in team.getProjectAssignmentsD())
+                    if (DateTime.Compare(pair.Key.getDueDate(), DateTime.Now) < 0)
                     {
-                        if (DateTime.Compare(pair.Key.getDueDate(), DateTime.Now) < 0)
+                        listViewItem = new ListViewItem();
+                        listViewItem.Text = team.getTeamID();
+                        listViewItem.SubItems.Add(pair.Key.getProjectID());
+                        listViewItem.SubItems.Add(pair.Key.getname());
+                        if (pair.Value == null)
                         {
-                            listViewItem = new ListViewItem();
-                            listViewItem.Text = team.getTeamID();
-                            listViewItem.SubItems.Add(pair.Key.getProjectID());
-                            listViewItem.SubItems.Add(pair.Key.getname());
-                            if (pair.Value == null)
+                            listViewItem.SubItems.Add("No");
+                        }
+                        else
+                        {
+                            listViewItem.SubItems.Add("Yes");
+                        }
+                        try
+                        {
+                            if (!(pair.Value.getGrade() < 0))
                             {
-                                listViewItem.SubItems.Add("No");
+                                listViewItem.SubItems.Add(pair.Value.getGrade().ToString());
                             }
                             else
                             {
-                                listViewItem.SubItems.Add("Yes");
-                            }
-                            try
-                            {
-                                if (!(pair.Value.getGrade() < 0))
-                                {
-                                    listViewItem.SubItems.Add(pair.Value.getGrade().ToString());
-                                }
-                                else
-                                {
-                                    listViewItem.SubItems.Add("-");
-                                }
-
-                            }
-                            catch (NullReferenceException ex)
-                            {
                                 listViewItem.SubItems.Add("-");
                             }
-                            GradeList.Items.Add(listViewItem);
-                        }
 
+                        }
+                        catch (NullReferenceException ex)
+                        {
+                            listViewItem.SubItems.Add("-");
+                        }
+                        GradeList.Items.Add(listViewItem);
                     }
 
                 }
+
             }
         }
-
+    
+        /*
         private void HideErrorLabels()
         {
             label13.Visible = false;
@@ -855,7 +840,9 @@ namespace E_Class
             label16.Visible = false;
             label17.Visible = false;
             DescriptionErrorLabel.Visible = false;
+            RegNumErrorLabel.Visible = false;
+            label18.Visible = false;
         }
-
+        */
     }
 }

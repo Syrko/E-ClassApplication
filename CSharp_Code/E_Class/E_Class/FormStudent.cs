@@ -81,8 +81,9 @@ namespace E_Class
             SelectCourseMnBtn.BackColor = Color.FromArgb(66, 131, 178);
 
             UploadGroupBox.Location = new Point(450, 12);
-
+            UploadBtn.Enabled = false;
             ProjectsMnBtn.Enabled = false;
+            BrowseBtn.Enabled = false;
 
             UploadGroupBox.Paint += Paint;
 
@@ -166,6 +167,7 @@ namespace E_Class
 
                 FileNameLabel.Text = temp;
                 FileInBytes = System.IO.File.ReadAllBytes(openFileDialog.FileName);
+                UploadBtn.Enabled = true;
             }
 
 
@@ -184,6 +186,7 @@ namespace E_Class
 
             ProjectsList.Hide();
             UploadGroupBox.Hide();
+            BrowseBtn.Enabled = false;
 
 
         }
@@ -206,9 +209,10 @@ namespace E_Class
             {
                 Team team = Database.GetTeamOfStudent(user, SelectedCourse);
                 var listViewItem = new ListViewItem();
-
+                
                 foreach (KeyValuePair<Project, ProjectFile> pair in team.getProjectAssignmentsD())
                 {
+                    
                     if (DateTime.Compare(pair.Key.getDueDate(), DateTime.Now) > 0)
                     {
                         listViewItem = new ListViewItem();
@@ -244,7 +248,7 @@ namespace E_Class
             }
             catch (Exception msg)
             {
-                MessageBox.Show("you have no team");
+                MessageBox.Show("You have no team");
             }
 
         }
@@ -308,6 +312,7 @@ namespace E_Class
                 
                 user.uploadProjectFile(FileInBytes, FileNameLabel.Text, DateTime.Now, team.getTeamID(), ProjectsList.SelectedItems[0].Text);
                 MsgLabel.Text = "File uploaded Successfully";
+                UploadBtn.Enabled = false;
             }
             catch(Exception msg)
             {
@@ -324,7 +329,7 @@ namespace E_Class
             Project proj = Database.GetProject(ProjectsList.SelectedItems[0].Text);
             ProjectFile file = Database.GetFileDetails(team.getTeamID(), ProjectsList.SelectedItems[0].Text);
 
-
+            BrowseBtn.Enabled = true;
 
             ProjectNameLabel.Text = ProjectsList.SelectedItems[0].SubItems[1].Text;
             DescriptionBox.Text = proj.getdescription();

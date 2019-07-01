@@ -607,8 +607,6 @@ namespace E_Class
                     cmd.Parameters.AddWithValue("team_id", team_id);
                     cmd.Parameters.AddWithValue("project_id", project_id);
 
-                    MessageBox.Show(team_id.ToString(), project_id.ToString());
-
                     NpgsqlDataReader results = cmd.ExecuteReader();
                     string file_id = null;
                     if (results.Read())
@@ -644,7 +642,6 @@ namespace E_Class
 					}
 					else
 					{
-                        MessageBox.Show(file_id.ToString());
                         sql = "UPDATE projectfiles SET (file, name, date)=(@file, @name, @date) WHERE id=@id";
                         NpgsqlCommand cmd4 = new NpgsqlCommand(sql, con);
 
